@@ -6,7 +6,7 @@ public class TesterForGit : MonoBehaviour
 {
     void Start()
     {
-       //Some changes
+       //Some changes with conflict
        //Some more changes without conflict 
     }
 
