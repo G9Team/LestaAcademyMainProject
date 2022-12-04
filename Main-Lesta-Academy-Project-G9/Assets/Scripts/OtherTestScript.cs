@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class OtherTestScript : MonoBehaviour
 {
-   //some code
+   //create a conflict
 }
