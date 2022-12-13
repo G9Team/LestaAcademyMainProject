@@ -28,7 +28,7 @@ public class EnemyScript : MonoBehaviour
     {
 
         if (other.tag == "PlayerAtackHitbox") {
-        int damage = other.transform.parent.GetComponent<PlayerController>().AtackForce;
+        int damage = other.transform.parent.GetComponent<NewPlayerController>().AtackForce;
         GetDamage(damage);
         }
         
@@ -38,7 +38,7 @@ public class EnemyScript : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         //Debug.Log(other.collider);
-        PlayerController player = other.gameObject.GetComponent<PlayerController>();
+        NewPlayerController player = other.gameObject.GetComponent<NewPlayerController>();
         //Debug.Log(player);
         if (player is null) return;
         player.GetDamage(_atackDamage);
