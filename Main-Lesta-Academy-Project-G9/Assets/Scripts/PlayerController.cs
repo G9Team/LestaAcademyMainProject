@@ -1,46 +1,87 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] public float runSpeed;
-    [SerializeField] private float _jumpforce;
-    [SerializeField] private Transform _legsPoint;
-    Rigidbody playerRigidbody;
-    Animator playerAnimator;
-    private int _jumpcounter, _maxJumps = 1;
-    bool isFacingRight;
+    [SerializeField] private float _runSpeed;
+    [SerializeField] private float _jumpHeight;
+
+    private Rigidbody playerRigidbody;
+    private Animator playerAnimator;
+
+    private bool isFacingRight;
+    private bool isGrounded;
+    private bool isAbleDoubleJump;
+
+    public LayerMask groundLayer;
+    public Transform groundChecker;
+
+    private float _groundCheckRadius = 0.3f;
+    private Collider[] _groundCollisions;
+
 
     void Start()
     {
-        _jumpcounter = _maxJumps;
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        playerRigidbody.AddForce(Physics.gravity * 5 * playerRigidbody.mass);
-        if (Physics.CheckSphere(transform.position, 0.1f)) _jumpcounter = _maxJumps;
-        if (Input.GetKey(KeyCode.Space) && _jumpcounter > 0) {
-        playerRigidbody.AddForce(Vector3.up * _jumpforce, ForceMode.Impulse);
-        
-        _jumpcounter--;
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            isGrounded = false;
+            playerAnimator.SetBool("IsGrounded", false);
+            playerRigidbody.AddForce(new Vector3(0, _jumpHeight, 0), ForceMode.Impulse);
+            isAbleDoubleJump = true;
         }
-        float move = Input.GetAxis("Horizontal");
-        playerAnimator.SetFloat("Speed", Mathf.Abs(move));
-        playerRigidbody.velocity = new Vector3(move * runSpeed, playerRigidbody.velocity.y, 0);
-        if(move>0 && isFacingRight) Flip();
-        else if(move<0 && !isFacingRight) Flip();
-        
+
+        else if(!isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isAbleDoubleJump)
+            {
+                playerRigidbody.velocity = Vector3.up * _jumpHeight * 0.08f;
+                isAbleDoubleJump = false;
+            }
+        }
+
+        _groundCollisions = Physics.OverlapSphere(groundChecker.position, _groundCheckRadius, groundLayer);
+        if (_groundCollisions.Length > 0) isGrounded = true;
+        else isGrounded = false;
+
+        playerAnimator.SetBool("IsGrounded", isGrounded);
+
     }
 
-    void Flip() 
+    void FixedUpdate()
+    {
+        Move(); 
+    }
+
+    private void Move()
+    {
+        float move = Input.GetAxis("Horizontal");
+        UpdateAnimatorValue(move);
+        playerRigidbody.velocity = new Vector3(move * _runSpeed, playerRigidbody.velocity.y, 0);
+        if (move > 0 && isFacingRight) Flip();
+        else if (move < 0 && !isFacingRight) Flip();
+    }
+
+    private void Flip() 
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
         localScale.z = -localScale.z;
         transform.localScale = localScale;
+    }
+
+    private void UpdateAnimatorValue(float horizontalSpeed)
+    {
+        float h = 0;
+        if (horizontalSpeed > 0 && horizontalSpeed < 1)  h = 0.5f;
+        else if (horizontalSpeed > -0.55f && horizontalSpeed < 0)  h = -0.5f;
+        else if (horizontalSpeed > 0.55f)  h = 1;
+        else if (horizontalSpeed < -0.55f)  h = -1;
+
+        playerAnimator.SetFloat("Speed", Mathf.Abs(h));
     }
 }
