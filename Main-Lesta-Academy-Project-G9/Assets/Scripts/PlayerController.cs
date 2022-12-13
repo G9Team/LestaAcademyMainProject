@@ -1,83 +1,87 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] public float runSpeed;
-    [SerializeField] private float _jumpforce;
-    [SerializeField] private GameObject _hitboxPrefab;
-    [SerializeField] private Transform _legsPosition;
-    Rigidbody playerRigidbody;
-    Animator playerAnimator;
-    private int _jumpcounter, _maxJumps = 1;
-    bool isFacingRight, _isAtacking = false, _isInvincible = false;
-    private int _health = 4;
-    public int AtackForce {get; private set; } = 1;
+    [SerializeField] private float _runSpeed;
+    [SerializeField] private float _jumpHeight;
+
+    private Rigidbody playerRigidbody;
+    private Animator playerAnimator;
+
+    private bool isFacingRight;
+    private bool isGrounded;
+    private bool isAbleDoubleJump;
+
+    public LayerMask groundLayer;
+    public Transform groundChecker;
+
+    private float _groundCheckRadius = 0.3f;
+    private Collider[] _groundCollisions;
+
+
     void Start()
     {
-        _jumpcounter = _maxJumps;
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
     }
 
+    void Update()
+    {
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            isGrounded = false;
+            playerAnimator.SetBool("IsGrounded", false);
+            playerRigidbody.AddForce(new Vector3(0, _jumpHeight, 0), ForceMode.Impulse);
+            isAbleDoubleJump = true;
+        }
+
+        else if(!isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            if (isAbleDoubleJump)
+            {
+                playerRigidbody.velocity = Vector3.up * _jumpHeight * 0.08f;
+                isAbleDoubleJump = false;
+            }
+        }
+
+        _groundCollisions = Physics.OverlapSphere(groundChecker.position, _groundCheckRadius, groundLayer);
+        if (_groundCollisions.Length > 0) isGrounded = true;
+        else isGrounded = false;
+
+        playerAnimator.SetBool("IsGrounded", isGrounded);
+
+    }
+
     void FixedUpdate()
     {
-        if((Input.GetKey(KeyCode.E) || Input.GetMouseButton(0)) && !_isAtacking){
-            Atack();
-        }
-        CheckForJumpingConditions();
+        Move(); 
+    }
+
+    private void Move()
+    {
         float move = Input.GetAxis("Horizontal");
-        playerAnimator.SetFloat("Speed", Mathf.Abs(move));
-        playerRigidbody.velocity = new Vector3(move * runSpeed, playerRigidbody.velocity.y, 0);
-        if(move>0 && isFacingRight) Flip();
-        else if(move<0 && !isFacingRight) Flip();
-        
+        UpdateAnimatorValue(move);
+        playerRigidbody.velocity = new Vector3(move * _runSpeed, playerRigidbody.velocity.y, 0);
+        if (move > 0 && isFacingRight) Flip();
+        else if (move < 0 && !isFacingRight) Flip();
     }
-    private void CheckForJumpingConditions(){
-        playerRigidbody.AddForce(Physics.gravity * 5 * playerRigidbody.mass);
-        if (Physics.CheckSphere(_legsPosition.position, 0.05f)) _jumpcounter = _maxJumps;
-        if (Input.GetKey(KeyCode.Space) && _jumpcounter > 0) {
-        playerRigidbody.AddForce(Vector3.up * _jumpforce, ForceMode.Impulse);
-        _jumpcounter--;
-        }
-    }
-    void Flip() 
+
+    private void Flip() 
     {
         isFacingRight = !isFacingRight;
         Vector3 localScale = transform.localScale;
         localScale.z = -localScale.z;
         transform.localScale = localScale;
     }
-    public void GetDamage(int acceptedDamage) => StartCoroutine(ApplyDamage(acceptedDamage));
-    private IEnumerator ApplyDamage(int acceptedDamage){
-        if (_isInvincible) yield return null;
-        if(_health - acceptedDamage <= 0) Die();
-        Debug.Log("hit! ");
-        _isInvincible = true;
-        _health -= acceptedDamage;
-        Debug.Log("Damage accepted " + acceptedDamage + " Health left: " + _health);
-        yield return new WaitForSeconds (0.6f);
-        _isInvincible = false;
 
-    }
-    private void Die(){
-        Debug.Log("U are dead ");
-        Destroy(this.gameObject);
-    }
-    private void Atack(){
-        StartCoroutine(HitBoxApplier());
-    }
-    private IEnumerator HitBoxApplier(){
-        _isAtacking = true;
-        GameObject hitbox = Instantiate(_hitboxPrefab, 
-            new Vector3(
-                this.transform.position.x + (isFacingRight ? -0.5f : 0.5f), 
-                this.transform.position.y + 1.5f, 
-                this.transform.position.z),
-            Quaternion.identity, this.transform);
-        Destroy(hitbox, 0.2f);
-        yield return new WaitForSeconds(0.4f);
-        _isAtacking = false;
+    private void UpdateAnimatorValue(float horizontalSpeed)
+    {
+        float h = 0;
+        if (horizontalSpeed > 0 && horizontalSpeed < 1)  h = 0.5f;
+        else if (horizontalSpeed > -0.55f && horizontalSpeed < 0)  h = -0.5f;
+        else if (horizontalSpeed > 0.55f)  h = 1;
+        else if (horizontalSpeed < -0.55f)  h = -1;
+
+        playerAnimator.SetFloat("Speed", Mathf.Abs(h));
     }
 }
