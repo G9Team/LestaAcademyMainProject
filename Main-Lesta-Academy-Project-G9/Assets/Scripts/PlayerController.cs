@@ -10,13 +10,25 @@ public class PlayerController : MonoBehaviour
 
     private bool isFacingRight;
     private bool isGrounded;
-    private bool isAbleDoubleJump;
+    private bool canDoubleJump;
+    private bool isWallDetected;
+    private bool isWallSliding;
+    private bool canWallSlide;
+    private bool canWallJump = true;
+    private bool canMove = true;
+
+    private int facingDirection = 1;
+    [SerializeField] private Vector3 wallJumpDirection;
 
     public LayerMask groundLayer;
     public Transform groundChecker;
 
-    private float _groundCheckRadius = 0.3f;
+    private float _groundCheckRadius = 0.4f;
     private Collider[] _groundCollisions;
+
+    public Transform wallChecker;
+    public float wallCheckDistance;
+    public LayerMask wallLayer;      
 
 
     void Start()
@@ -27,51 +39,121 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+       
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            isGrounded = false;
-            playerAnimator.SetBool("IsGrounded", false);
-            playerRigidbody.AddForce(new Vector3(0, _jumpHeight, 0), ForceMode.Impulse);
-            isAbleDoubleJump = true;
+            canMove = true;
+            Jump();
         }
 
-        else if(!isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isAbleDoubleJump)
-            {
-                playerRigidbody.velocity = Vector3.up * _jumpHeight * 0.08f;
-                isAbleDoubleJump = false;
-            }
-        }
-
-        _groundCollisions = Physics.OverlapSphere(groundChecker.position, _groundCheckRadius, groundLayer);
-        if (_groundCollisions.Length > 0) isGrounded = true;
-        else isGrounded = false;
-
-        playerAnimator.SetBool("IsGrounded", isGrounded);
-
+        CheckCollision();
+        AnimatorController();
+        FlipController();
     }
 
     void FixedUpdate()
     {
-        Move(); 
+       
+        if (Input.GetAxis("Vertical") < 0)
+        {
+            canWallSlide = false;
+        }
+
+        if (isWallDetected && canWallSlide)
+        {
+            isWallSliding = true;
+            playerRigidbody.velocity = new Vector3(0, playerRigidbody.velocity.y * 0.1f);
+            canMove = false;
+        }
+
+        else if (!isWallDetected) 
+        { 
+            isWallSliding = false; 
+            Move(); 
+        }
+    }
+
+    private void Jump()
+    {
+
+        canWallSlide = false;
+        if (isWallSliding && canWallJump)
+        {
+            WallJump();
+        }
+        else if (isGrounded)
+        {
+            isWallSliding = false;
+            playerRigidbody.AddForce(Vector3.up * _jumpHeight, ForceMode.Impulse);
+            canDoubleJump = true;
+        }
+            
+        else if (canDoubleJump)
+        {
+            canDoubleJump = false;
+            playerRigidbody.velocity += Vector3.up * _jumpHeight * 0.08f;        
+        }      
+    }
+
+    private void WallJump()
+    {
+        Vector3 direction = new Vector3(wallJumpDirection.x * -facingDirection, wallJumpDirection.y);     
+        playerRigidbody.AddForce(direction * _jumpHeight * 80 * Time.deltaTime,ForceMode.Impulse);
+        Flip();
+        canDoubleJump = true;
+    }
+
+    private void FlipController()
+    {
+        float move = Input.GetAxis("Horizontal");
+        if (isGrounded && isWallDetected)
+        {
+            if (isFacingRight && move < 0)
+            {
+                Flip();
+            }
+            else if (!isFacingRight && move > 0) Flip();
+        }
     }
 
     private void Move()
     {
-        float move = Input.GetAxis("Horizontal");
-        UpdateAnimatorValue(move);
-        playerRigidbody.velocity = new Vector3(move * _runSpeed, playerRigidbody.velocity.y, 0);
-        if (move > 0 && isFacingRight) Flip();
-        else if (move < 0 && !isFacingRight) Flip();
+        if (canMove)
+        {
+            float move = Input.GetAxis("Horizontal");
+            UpdateAnimatorValue(move);
+            playerRigidbody.velocity = new Vector3(move * _runSpeed, playerRigidbody.velocity.y, 0);
+
+            if (move > 0 && isFacingRight) Flip();
+            else if (move < 0 && !isFacingRight) Flip();
+        }
+        
     }
 
     private void Flip() 
     {
+        facingDirection = -facingDirection;
         isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
-        localScale.z = -localScale.z;
-        transform.localScale = localScale;
+        transform.Rotate(0, 180, 0);
+        wallCheckDistance = -wallCheckDistance;
+    }
+
+    private void CheckCollision()
+    {
+        _groundCollisions = Physics.OverlapSphere(groundChecker.position, _groundCheckRadius, groundLayer);
+        if (_groundCollisions.Length > 0) { isGrounded = true; canMove = true; }
+        else isGrounded = false;
+
+        isWallDetected = Physics.Raycast(wallChecker.position, Vector2.right, wallCheckDistance, wallLayer);
+        if(isWallDetected) Debug.Log("detected");
+        
+        if (!isGrounded && playerRigidbody.velocity.y < 0) canWallSlide = true;
+    }
+
+    private void AnimatorController()
+    {
+        playerAnimator.SetBool("IsGrounded", isGrounded);
+        playerAnimator.SetBool("IsWallSliding", isWallSliding);
     }
 
     private void UpdateAnimatorValue(float horizontalSpeed)
@@ -83,5 +165,10 @@ public class PlayerController : MonoBehaviour
         else if (horizontalSpeed < -0.55f)  h = -1;
 
         playerAnimator.SetFloat("Speed", Mathf.Abs(h));
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(wallChecker.position, new Vector3(wallChecker.position.x + wallCheckDistance, wallChecker.position.y, wallChecker.position.z));
     }
 }
