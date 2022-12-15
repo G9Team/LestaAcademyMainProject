@@ -5,7 +5,9 @@ using UnityEngine;
 public class JumperTest : MonoBehaviour
 {
     [SerializeField] private Transform _legsPosition;
-    [SerializeField] private float _jumpForce, _timeToCheck, _gravityIncreaser, _mainGravityScaler;
+    [SerializeField] private float _jumpForce, _timeToCheck, _mainGravityScaler;
+    //[SerializeField] private float _gravityIncreaser;
+
     private Rigidbody _rigidBody;
     private bool _doCheckGround = true, _dubleJump = false;
     private WaitForSeconds _wait;
@@ -14,9 +16,12 @@ public class JumperTest : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody>();
         _wait = new WaitForSeconds(_timeToCheck);
     }
-    private void FixedUpdate() {
+    private void Update() {
         Jump();
-        VelocityHandler();
+    }
+    private void FixedUpdate() {
+       
+        //VelocityHandler();
         _rigidBody.velocity += Vector3.up * _rigidBody.mass * _mainGravityScaler * -1;
     }
     private bool IsGrounded(){
@@ -44,9 +49,11 @@ public class JumperTest : MonoBehaviour
         yield return _wait;
         _doCheckGround = true;
     }
+    /*
     private void VelocityHandler(){
         if (_rigidBody.velocity.y < 0){
-            _rigidBody.velocity += Vector3.up * _gravityIncreaser * -1;
+           // _rigidBody.velocity += Vector3.up * _gravityIncreaser * -1;
         }
     }
+    */
 }
