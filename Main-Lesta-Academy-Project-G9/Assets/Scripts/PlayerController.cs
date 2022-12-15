@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
     private void WallJump()
     {
         Vector3 direction = new Vector3(wallJumpDirection.x * -facingDirection, wallJumpDirection.y);     
-        playerRigidbody.AddForce(direction * _jumpHeight * 80 * Time.deltaTime,ForceMode.Impulse);
+        playerRigidbody.AddForce(direction * _jumpHeight * Time.deltaTime,ForceMode.Impulse);
         Flip();
         canDoubleJump = true;
     }

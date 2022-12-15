@@ -37,7 +37,7 @@ public class NewPlayerController : MonoBehaviour
     private void CheckForJumpingConditions(){
         playerRigidbody.AddForce(Physics.gravity * 5 * playerRigidbody.mass);
         if (Physics.CheckSphere(_legsPosition.position, 0.05f)) _jumpcounter = _maxJumps;
-        if (Input.GetKey(KeyCode.Space) && _jumpcounter > 0) {
+        if (Input.GetKeyDown(KeyCode.Space) && _jumpcounter > 0) {
         playerRigidbody.AddForce(Vector3.up * _jumpforce, ForceMode.Impulse);
         _jumpcounter--;
         }
