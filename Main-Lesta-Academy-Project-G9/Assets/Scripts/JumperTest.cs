@@ -7,7 +7,7 @@ public class JumperTest : MonoBehaviour
     [SerializeField] private Transform _legsPosition;
     [SerializeField] private float _jumpForce, _timeToCheck, _mainGravityScaler;
     //[SerializeField] private float _gravityIncreaser;
-
+    public LayerMask EverythingAceptPlayer;
     private Rigidbody _rigidBody;
     private bool _doCheckGround = true, _dubleJump = false;
     private WaitForSeconds _wait;
@@ -25,7 +25,7 @@ public class JumperTest : MonoBehaviour
         _rigidBody.velocity += Vector3.up * _rigidBody.mass * _mainGravityScaler * -1;
     }
     private bool IsGrounded(){
-        return _doCheckGround && Physics.CheckSphere(_legsPosition.position, 0.05f);
+        return _doCheckGround && Physics.CheckSphere(_legsPosition.position, 0.05f, EverythingAceptPlayer);
     }
     private void Jump(){
 
