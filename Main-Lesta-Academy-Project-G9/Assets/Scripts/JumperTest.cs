@@ -40,7 +40,7 @@ public class JumperTest : MonoBehaviour
                 return;
             }
             if (IsGrounded()) _dubleJump = true;
-            StartCoroutine(TemporaryDontCheckGround());
+          
         }
     }
 
