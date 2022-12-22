@@ -30,9 +30,11 @@ public class PlayerController : MonoBehaviour
     [Header("Wall Settings")]
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform wallChecker;
-    private float _wallCheckRadius = 0.6f;
+    private float _wallCheckRadius = 0.55f;
     private Collider[] _wallCollisions;
-    
+
+    [HideInInspector] public bool ledgeDetected;
+
     void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate()
-    {     
+    {
         if (Input.GetAxis("Vertical") < 0)
         {
             canWallSlide = false;
@@ -70,6 +72,8 @@ public class PlayerController : MonoBehaviour
             isWallSliding = false; 
             Move(); 
         }
+
+        _playerRigidbody.velocity += Vector3.up * _playerRigidbody.mass * _mainGravityScaler * -1;
     }
 
     private void JumpController()
@@ -96,16 +100,15 @@ public class PlayerController : MonoBehaviour
     {
         float tempVelocity = _playerRigidbody.velocity.x;
         _playerRigidbody.velocity = Vector3.zero;
-        _playerRigidbody.velocity += Vector3.up * _jumpHeight * _mainGravityScaler;
+        _playerRigidbody.velocity += Vector3.up * _jumpHeight;
         _playerRigidbody.velocity += new Vector3(tempVelocity, 0, 0);
     }
 
     private void WallJump()
-    {  
+    {
         _playerRigidbody.velocity = Vector3.zero;
-        _playerRigidbody.velocity += Vector3.up * _jumpHeight * 1.5f * _mainGravityScaler;
-        _playerRigidbody.AddForce(-facingDirection * 100, 0, 0, ForceMode.Impulse);
-
+        _playerRigidbody.AddForce(-facingDirection * 50, 0, 0, ForceMode.Impulse);
+        _playerRigidbody.velocity += Vector3.up * _jumpHeight * 2f;
     }
 
     private void Move()
@@ -115,6 +118,7 @@ public class PlayerController : MonoBehaviour
             float move = Input.GetAxis("Horizontal");
             UpdateAnimatorValue(move);
             _playerRigidbody.velocity = new Vector3(move * _runSpeed, _playerRigidbody.velocity.y, 0);
+          
 
             if (move > 0 && isFacingRight) Flip();
             else if (move < 0 && !isFacingRight) Flip();
@@ -139,6 +143,7 @@ public class PlayerController : MonoBehaviour
         else { isWallDetected = false; }
 
         if (!isGrounded && _playerRigidbody.velocity.y < 0) canWallSlide = true;
+
     }
 
     private void AnimatorController()
