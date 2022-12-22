@@ -25,7 +25,8 @@ public class JumperTest : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        bool result = Physics.CheckSphere(_legsPosition.position, 0.05f, EverythingAceptPlayer);
+        bool result = Physics.CheckSphere(_legsPosition.position, 0.05f, EverythingAceptPlayer) ||
+                      Physics.CheckSphere(_legsPosition.GetChild(0).position, 0.05f, EverythingAceptPlayer);
         if (result){
             _dubleJump = true;
             _checker = true;
@@ -34,8 +35,7 @@ public class JumperTest : MonoBehaviour
     }
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Debug.Log($"Jumping {_dubleJump}, {IsGrounded()}");
+        
         if (Input.GetKeyDown(KeyCode.Space) && (_dubleJump || IsGrounded()))
         {
             _checker = true;
