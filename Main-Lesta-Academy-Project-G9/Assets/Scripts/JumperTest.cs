@@ -5,7 +5,7 @@ using UnityEngine;
 public class JumperTest : MonoBehaviour
 {
     [SerializeField] private Transform _legsPosition;
-    [SerializeField] private float _jumpForce, _mainGravityScaler;
+    [SerializeField] private float _jumpForce, _mainGravityScaler, _fallGravityScaler;
     public LayerMask EverythingAceptPlayer;
     private Rigidbody _rigidBody;
     private bool _dubleJump = false, _isJumping, _checker;
@@ -22,6 +22,7 @@ public class JumperTest : MonoBehaviour
     {
 
         _rigidBody.velocity += Vector3.up * _rigidBody.mass * _mainGravityScaler * -1;
+        GravityHandler();
     }
     private bool IsGrounded()
     {
@@ -60,6 +61,11 @@ public class JumperTest : MonoBehaviour
             IsGrounded();
         }
         Debug.Log($"Checking doublejump: {_dubleJump}, Checker: {_checker}, IsGrounded: {IsGrounded()}");
+    }
+    private void GravityHandler(){
+        if (_rigidBody.velocity.y <0){
+            _rigidBody.velocity += Vector3.up * _fallGravityScaler;
+        }
     }
 
 }
