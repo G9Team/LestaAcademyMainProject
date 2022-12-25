@@ -2180,8 +2180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _legsPosition: {fileID: 2057042079}
   _jumpForce: 10
-  _timeToCheck: 0.01
   _mainGravityScaler: 1.5
+  _fallGravityScaler: 0
   EverythingAceptPlayer:
     serializedVersion: 2
     m_Bits: 247
@@ -2310,16 +2310,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _runSpeed: 0
   _jumpHeight: 0
-  wallJumpDirection: {x: 0, y: 0, z: 0}
+  _mainGravityScaler: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
   groundChecker: {fileID: 0}
-  wallChecker: {fileID: 0}
-  wallCheckDistance: 0
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
+  wallChecker: {fileID: 0}
+  ledgeDetected: 0
 --- !u!1 &312712812
 GameObject:
   m_ObjectHideFlags: 0
@@ -9865,7 +9865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827569485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.02, y: 1.6, z: 0}
+  m_LocalPosition: {x: 57.44, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

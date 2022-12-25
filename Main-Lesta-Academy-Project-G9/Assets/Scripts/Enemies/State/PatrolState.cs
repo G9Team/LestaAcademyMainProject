@@ -19,7 +19,7 @@ public class PatrolState : AiStateBase
 
     public void MiniUpdate()
     {
-        if(Random.Range(0,100) < 50f)
+        if(Random.Range(0,100) < 50)
         {
             RaycastHit hit;
             float right_dist = 9999f;
@@ -31,13 +31,24 @@ public class PatrolState : AiStateBase
 
             if (left_dist > 2f && Random.Range(0, 100) < 50)
             {
-                _movePos = _ai.transform.position + new Vector3(-Mathf.Min(Random.Range(_minDistance, _maxDistance), left_dist), 0f, 0f);
+                _movePos = CheckGround(_ai.transform.position + new Vector3(-Mathf.Min(Random.Range(_minDistance, _maxDistance), left_dist), 0f, 0f), left_dist);
             }
             else if(right_dist > 2f)
             {
-                _movePos = _ai.transform.position + new Vector3(Mathf.Min(Random.Range(_minDistance, _maxDistance), right_dist), 0f, 0f);
+                _movePos = CheckGround(_ai.transform.position + new Vector3(Mathf.Min(Random.Range(_minDistance, _maxDistance), right_dist), 0f, 0f), right_dist);
             }
         }
+    }
+
+    Vector3 CheckGround(Vector3 vector, float distance)
+    {
+        if (Physics.Raycast(vector, Vector3.down, 1.5f)) return vector; //have ground
+        RaycastHit hit;
+        if (Physics.Raycast(vector - new Vector3(0f, 1.5f, 0f), new Vector3(_ai.transform.position.x - vector.x, 0f, 0f), out hit, distance))
+        {
+            return new Vector3(hit.point.x, vector.y, vector.z);
+        }
+        else return _ai.transform.position; //cant see ground from AI to vector to move, return original position to stay
     }
 
     public void Update()
