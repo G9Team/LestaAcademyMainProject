@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _runSpeed;
     [SerializeField] private float _jumpHeight;
     [SerializeField] private float _mainGravityScaler;
-  
+    [SerializeField] private float _fallGravityScaler;
+
     private Rigidbody _playerRigidbody;
     private Animator _playerAnimator;
 
@@ -33,6 +34,15 @@ public class PlayerController : MonoBehaviour
     private float _wallCheckRadius = 0.55f;
     private Collider[] _wallCollisions;
 
+    private Vector2 offset1;
+    private Vector2 offset2;
+
+    private Vector2 climbBegunPosition;
+    private Vector2 climbOverPosition;
+
+    private bool canGrab = true;
+    private bool canClimb;
+
     [HideInInspector] public bool ledgeDetected;
 
     void Start()
@@ -43,23 +53,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        CheckCollision();
+        CheckLedge();
+        AnimatorController();
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             canMove = true;
             JumpController();
         }
-
-        CheckCollision();
-        AnimatorController();  
     }
 
     void FixedUpdate()
     {
-        if (Input.GetAxis("Vertical") < 0)
-        {
-            canWallSlide = false;
-        }
-
         if (isWallDetected && canWallSlide)
         {
             isWallSliding = true;
@@ -73,6 +79,7 @@ public class PlayerController : MonoBehaviour
             Move(); 
         }
 
+        GravityHandler();
         _playerRigidbody.velocity += Vector3.up * _playerRigidbody.mass * _mainGravityScaler * -1;
     }
 
@@ -96,6 +103,22 @@ public class PlayerController : MonoBehaviour
         }      
     }
 
+    private void CheckLedge()
+    {
+        if (ledgeDetected && canGrab)
+        {
+            canGrab = false;
+            Vector2 ledgePosition = GetComponentInChildren<LedgeDetection>().transform.position;
+            climbBegunPosition = ledgePosition + offset1;
+            climbOverPosition = ledgePosition + offset2;
+
+            canClimb = true;
+        }
+            if (canClimb)
+                transform.position = climbBegunPosition;    
+        
+    }
+
     private void Jump()
     {
         float tempVelocity = _playerRigidbody.velocity.x;
@@ -104,11 +127,22 @@ public class PlayerController : MonoBehaviour
         _playerRigidbody.velocity += new Vector3(tempVelocity, 0, 0);
     }
 
+    private void GravityHandler()
+    {
+        if (_playerRigidbody.velocity.y < 0)
+        {
+            _playerRigidbody.velocity += Vector3.up * _fallGravityScaler;
+        }
+    }
+
     private void WallJump()
     {
+        isWallDetected = false;
+        canWallSlide = false;
+        float tempVelocity = _playerRigidbody.velocity.x;
         _playerRigidbody.velocity = Vector3.zero;
-        _playerRigidbody.AddForce(-facingDirection * 50, 0, 0, ForceMode.Impulse);
-        _playerRigidbody.velocity += Vector3.up * _jumpHeight * 2f;
+        _playerRigidbody.velocity += Vector3.up * _jumpHeight;
+        _playerRigidbody.velocity += new Vector3(tempVelocity, 0, 0);
     }
 
     private void Move()
