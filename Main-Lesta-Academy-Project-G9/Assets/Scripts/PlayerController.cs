@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     private Animator _playerAnimator;
 
     private bool canDoubleJump;
-    private bool canWallJump = true;
     private bool canMove = true;
     private bool isWallDetected;
     private bool isWallSliding;
@@ -31,11 +30,12 @@ public class PlayerController : MonoBehaviour
     [Header("Wall Settings")]
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform wallChecker;
-    private float _wallCheckRadius = 0.55f;
+    private float _wallCheckRadius = 0.2f;
     private Collider[] _wallCollisions;
 
-    private Vector2 offset1;
-    private Vector2 offset2;
+    [Header("Ledge Offset Settings")]
+    [SerializeField] private Vector2 offset1;
+    [SerializeField] private Vector2 offset2;
 
     private Vector2 climbBegunPosition;
     private Vector2 climbOverPosition;
@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckCollision();
-        CheckLedge();
         AnimatorController();
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -62,10 +61,13 @@ public class PlayerController : MonoBehaviour
             canMove = true;
             JumpController();
         }
+
+        CheckLedge();   
     }
 
     void FixedUpdate()
-    {
+    {        
+
         if (isWallDetected && canWallSlide)
         {
             isWallSliding = true;
@@ -80,22 +82,26 @@ public class PlayerController : MonoBehaviour
         }
 
         GravityHandler();
-        _playerRigidbody.velocity += Vector3.up * _playerRigidbody.mass * _mainGravityScaler * -1;
     }
+
+
 
     private void JumpController()
     {
         canWallSlide = false;
-        if (isWallSliding && canWallJump)
+
+        if (isWallSliding)
         {
             WallJump();
         }
+
         else if (isGrounded)
         {
             isWallSliding = false;
             Jump();
             canDoubleJump = true;    
-        }       
+        }
+        
         else if (canDoubleJump)
         {
             Jump();  
@@ -107,28 +113,42 @@ public class PlayerController : MonoBehaviour
     {
         if (ledgeDetected && canGrab)
         {
+            canMove = false;
             canGrab = false;
             Vector2 ledgePosition = GetComponentInChildren<LedgeDetection>().transform.position;
-            climbBegunPosition = ledgePosition + offset1;
-            climbOverPosition = ledgePosition + offset2;
+            climbBegunPosition = ledgePosition + new Vector2(offset1.x * - facingDirection, offset1.y);
+            climbOverPosition = ledgePosition + new Vector2(offset2.x * -facingDirection, offset2.y);
 
             canClimb = true;
+            
         }
-            if (canClimb)
-                transform.position = climbBegunPosition;    
-        
+
+        if (canClimb) transform.position = climbBegunPosition; 
     }
+
+    private void LedgeClimbOver()
+    {
+        canClimb = false;
+        transform.position = climbOverPosition;
+        canGrab = true;
+        Invoke("AllowLedgeGrab", 0.1f);
+        canMove = true;
+    }
+
+    private void AllowLedgeGrab() => canGrab = true;
 
     private void Jump()
     {
         float tempVelocity = _playerRigidbody.velocity.x;
         _playerRigidbody.velocity = Vector3.zero;
-        _playerRigidbody.velocity += Vector3.up * _jumpHeight;
+        _playerRigidbody.velocity += Vector3.up * _jumpHeight * _mainGravityScaler * _mainGravityScaler;
         _playerRigidbody.velocity += new Vector3(tempVelocity, 0, 0);
     }
 
     private void GravityHandler()
     {
+        _playerRigidbody.velocity += Vector3.up * _playerRigidbody.mass * _mainGravityScaler * -1;
+
         if (_playerRigidbody.velocity.y < 0)
         {
             _playerRigidbody.velocity += Vector3.up * _fallGravityScaler;
@@ -137,12 +157,15 @@ public class PlayerController : MonoBehaviour
 
     private void WallJump()
     {
-        isWallDetected = false;
-        canWallSlide = false;
-        float tempVelocity = _playerRigidbody.velocity.x;
-        _playerRigidbody.velocity = Vector3.zero;
-        _playerRigidbody.velocity += Vector3.up * _jumpHeight;
-        _playerRigidbody.velocity += new Vector3(tempVelocity, 0, 0);
+        if(Input.GetAxis("Horizontal") * -facingDirection > 0)
+        {
+            _wallCheckRadius = 0f;
+            StartCoroutine(RadiusCorrector());
+            float tempVelocity = _playerRigidbody.velocity.x * 20;
+            _playerRigidbody.velocity = Vector3.zero;
+            _playerRigidbody.velocity += Vector3.up * _jumpHeight * 3;
+            _playerRigidbody.velocity += new Vector3(tempVelocity, 0, 0);
+        } 
     }
 
     private void Move()
@@ -169,7 +192,7 @@ public class PlayerController : MonoBehaviour
     private void CheckCollision()
     {
         _groundCollisions = Physics.OverlapSphere(groundChecker.position, _groundCheckRadius, groundLayer);
-        if (_groundCollisions.Length > 0) { isGrounded = true; canMove = true; }
+        if (_groundCollisions.Length > 0 && !canClimb) { isGrounded = true; canMove = true; }
         else isGrounded = false;
         
         _wallCollisions = Physics.OverlapSphere(wallChecker.position, _wallCheckRadius, wallLayer);
@@ -178,12 +201,15 @@ public class PlayerController : MonoBehaviour
 
         if (!isGrounded && _playerRigidbody.velocity.y < 0) canWallSlide = true;
 
+        if (isWallDetected) isWallSliding = true;
     }
 
     private void AnimatorController()
     {
         _playerAnimator.SetBool("IsGrounded", isGrounded);
         _playerAnimator.SetBool("IsWallSliding", isWallSliding);
+        _playerAnimator.SetBool("canClimb", canClimb);
+        _playerAnimator.SetBool("IsWallDetected", isWallDetected);
     }
 
     private void UpdateAnimatorValue(float horizontalSpeed)
@@ -195,6 +221,12 @@ public class PlayerController : MonoBehaviour
         else if (horizontalSpeed < -0.55f)  h = -1;
 
         _playerAnimator.SetFloat("Speed", Mathf.Abs(h));
+    }
+
+    IEnumerator RadiusCorrector()
+    {
+        yield return new WaitForSeconds(0.1f);
+        _wallCheckRadius = 0.2f;
     }
 
 }
