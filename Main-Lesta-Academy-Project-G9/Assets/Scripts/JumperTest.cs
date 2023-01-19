@@ -5,10 +5,11 @@ using UnityEngine;
 public class JumperTest : MonoBehaviour
 {
     [SerializeField] private Transform _legsPosition;
-    [SerializeField] private float _jumpForce, _mainGravityScaler, _fallGravityScaler;
+    [SerializeField] private float _jumpForce, _mainGravityScaler, _fallGravityScaler, _dashForce = 15f, _dashDuration = 0.25f;
     public LayerMask EverythingAceptPlayer;
     private Rigidbody _rigidBody;
     private bool _dubleJump = false, _isJumping, _checker;
+    public bool IsDashing {get; private set;}
 
     private void Awake()
     {
@@ -16,13 +17,21 @@ public class JumperTest : MonoBehaviour
     }
     private void Update()
     {
+        if (IsDashing) return;
         Jump();
+        if (Input.GetKeyDown(KeyCode.LeftShift)){
+            StartCoroutine(DashTimer());
+        }
     }
     private void FixedUpdate()
     {
-
-        _rigidBody.velocity += Vector3.up * _rigidBody.mass * _mainGravityScaler * -1;
+        if (IsDashing){
+            Dashing();
+            return;
+        }
         GravityHandler();
+    }
+    private void LateUpdate(){
     }
     private bool IsGrounded()
     {
@@ -66,6 +75,17 @@ public class JumperTest : MonoBehaviour
         if (_rigidBody.velocity.y <0){
             _rigidBody.velocity += Vector3.up * _fallGravityScaler;
         }
-    }
+        _rigidBody.velocity += Vector3.up * _rigidBody.mass * _mainGravityScaler * -1;
 
+    }
+    private void Dashing(){
+        Vector3 dashspeed = new Vector3(_dashForce, 0, 0);
+        _rigidBody.velocity = dashspeed;
+
+    }
+    private IEnumerator DashTimer(){
+        IsDashing = true;
+        yield return new WaitForSeconds (_dashDuration);
+        IsDashing = false;
+    }
 }

@@ -9,10 +9,12 @@ public class BoxRunner : MonoBehaviour
     [SerializeField] private Transform _forward;
     private bool _isFacingRight;
     private float _move;
+    private JumperTest _jumpController;
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
-    }
+        _jumpController = GetComponent<JumperTest>();
+    }   
     private void Update()
     {
         _move = Input.GetAxis("Horizontal");
@@ -20,6 +22,7 @@ public class BoxRunner : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (_jumpController.IsDashing) return;
         _rigidBody.velocity = new Vector3(_move * RunSpeed, _rigidBody.velocity.y, 0);
         if (IsForwardWallColidied())
         {
