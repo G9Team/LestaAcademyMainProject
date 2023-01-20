@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Drops : MonoBehaviour
 {
+    private GameObject _nucleus;
+    private bool _fire = true;
+    private float _nucleusSpeed = 4f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +18,45 @@ public class Drops : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_fire) {
+
+            _nucleus = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            _nucleus.transform.SetPositionAndRotation(transform.position, new Quaternion(0, 0, 0, 0));
+            
+
+            _fire = false;
+        }
+
+        if (_nucleus != null) {
+                _nucleus.transform.Translate(0, _nucleusSpeed * Time.deltaTime * -1, 0);
+        }
+
+        if (_nucleus && _nucleus.transform.position.y < 40) {
+            StartCoroutine(RemoveNucleus());
+            ;
+        }
         
     }
+
+
+
+    
+
+
+    private IEnumerator RemoveNucleus()
+{
+        Debug.Log("ddd");
+
+        if (_nucleus) {
+            Destroy(_nucleus); //remove Object for memory cleaning  
+        }
+        
+
+    yield return new WaitForSeconds(1);
+
+    
+        _fire = true;
+}
+
+
 }
