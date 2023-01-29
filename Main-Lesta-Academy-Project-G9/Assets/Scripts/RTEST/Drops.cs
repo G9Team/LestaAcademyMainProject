@@ -45,14 +45,12 @@ public class Drops : MonoBehaviour
 
     private IEnumerator RemoveNucleus()
 {
-        Debug.Log("ddd");
-
-        if (_nucleus) {
+         if (_nucleus) {
             Destroy(_nucleus); //remove Object for memory cleaning  
         }
         
 
-    yield return new WaitForSeconds(1);
+             yield return new WaitForSeconds(1);
 
     
         _fire = true;
