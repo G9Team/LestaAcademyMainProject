@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackState : AiStateBase
+public class AttackNear : AiStateBase
 {
     AIBase _ai;
     Rigidbody _rigidbody;
-    float _attackDistance = 1f;
+    float _attackDistance = 2f;
 
     public void Init(AIBase ai)
     {
@@ -16,15 +16,15 @@ public class AttackState : AiStateBase
 
     public void MiniUpdate()
     {
-        if (Vector3.Distance(_ai.transform.position, _ai._player.transform.position) <= _attackDistance)
-            //change health here
-            return;
+        if (Vector3.Distance(_ai.transform.position, _ai.GetEnemyPosition()) <= _attackDistance)
+            _ai._enemy.ChangeHealth(-1);
     }
 
     public void Update()
     {
-        if (Mathf.Abs(_ai.transform.position.y - _ai._player.transform.position.y) > 0.5f) return;
-        _movePosition(_ai._player.transform.position);
+        Vector3 enemyPos = _ai.GetEnemyPosition();
+        if (Mathf.Abs(_ai.transform.position.y - enemyPos.y) > 0.5f) return;
+        _movePosition(enemyPos);
     }
 
     void _movePosition(Vector3 position)
