@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IAlive
 {
     [Header("Main Settings")]
     [SerializeField] private float _runSpeed;
@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
     private bool canClimb;
 
     [HideInInspector] public bool ledgeDetected;
+
+    private int _health = 3;
+    private int _maxHealth = 3;
 
     void Start()
     {
@@ -234,4 +237,35 @@ public class PlayerController : MonoBehaviour
         _wallCheckRadius = 0.2f;
     }
 
+    public int GetHealth()
+    {
+        return _health;
+    }
+
+    public void SetHealth(int health)
+    {
+        _health = health;
+    }
+
+    public void ChangeHealth(int health)
+    {
+        _health = Mathf.Max(0, Mathf.Min(_maxHealth, _health + health));
+    }
+
+/*
+#if UNITY_EDITOR
+    private void OnGUI()
+    {
+        Vector2 guiPoint = HandleUtility.WorldToGUIPoint(transform.position);
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.black;
+        style.alignment = TextAnchor.UpperCenter;
+
+        if (_health > 0)
+            GUI.Label(new Rect(guiPoint.x - 50, guiPoint.y - 60, 100f, 30f), "Health: " + GetHealth().ToString(), style);
+        else
+            GUI.Label(new Rect(guiPoint.x - 50, guiPoint.y - 60, 100f, 30f), "Game Over", style);
+    }
+#endif
+*/
 }

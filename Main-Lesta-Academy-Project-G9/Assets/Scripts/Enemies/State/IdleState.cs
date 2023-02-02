@@ -15,7 +15,9 @@ public class IdleState : AiStateBase
     {
         //currently we dont have exact mechanics, so just switch to patrol
         if (Random.Range(0, 100) < 30)
+        {
             _ai.ForceState(AIBase.ENEMY_STATE.PATROL);
+        }
     }
 
     public void Update()
