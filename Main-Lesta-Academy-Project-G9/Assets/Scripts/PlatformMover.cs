@@ -8,7 +8,7 @@ public class PlatformMover : MonoBehaviour
     
     void Start()
     {
-        this.transform.DOMoveY(41f, 4f, false).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuart);
+        this.transform.DOMoveY(this.transform.position.y - 2f, 0.2f, false).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear);
     }
 
 }

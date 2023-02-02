@@ -9,7 +9,7 @@ public class EnemyScript : MonoBehaviour
     private int _health = 2;
     private int _atackDamage = 1;
     private Rigidbody _rigidBody;
-
+    private bool _isInvincible = false;
     private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -18,7 +18,7 @@ public class EnemyScript : MonoBehaviour
     private void FixedUpdate()
     {
         
-        if (Vector3.Distance(this.transform.position, _player.transform.position) < 10f)
+        if (Vector3.Distance(this.transform.position, _player.transform.position) < 10f && !_isInvincible)
         {
             FollowPlayer(_player.transform.position);
             
@@ -27,18 +27,25 @@ public class EnemyScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.tag == "PlayerAtackHitbox") {
-        int damage = other.transform.parent.GetComponent<NewPlayerController>().AtackForce;
-        GetDamage(damage);
+        if (other.tag == "PlayerAtackHitbox" && !_isInvincible) {
+            StartCoroutine(Invulnerability());
+        var battlePlayer = other.transform.parent.GetComponent<PlayerBattleData>();
+        GetDamage(battlePlayer.AtackForce);
+        GetKnockback(battlePlayer.KnockbackForce);
         }
         
 
+    }
+    private IEnumerator Invulnerability(){
+        _isInvincible = true;
+        yield return new WaitForSeconds(0.15f);
+        _isInvincible = false;
     }
    
     private void OnCollisionEnter(Collision other)
     {
         //Debug.Log(other.collider);
-        NewPlayerController player = other.gameObject.GetComponent<NewPlayerController>();
+        PlayerBattleData player = other.gameObject.GetComponent<PlayerBattleData>();
         //Debug.Log(player);
         if (player is null) return;
         player.GetDamage(_atackDamage);
@@ -61,5 +68,9 @@ public class EnemyScript : MonoBehaviour
     {
         Debug.Log("OMG, u killed Teddy bear!!! He is freaking DEAD now! ");
         Destroy(this.gameObject);
+    }
+    public void GetKnockback(Vector3 knockbackForce){
+        _rigidBody.AddForce(knockbackForce, ForceMode.Impulse);
+        print("Knockback: " + knockbackForce);
     }
 }
