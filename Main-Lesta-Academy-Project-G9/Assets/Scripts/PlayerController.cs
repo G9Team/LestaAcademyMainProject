@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour, IAlive
     private Vector2 climbOverPosition;
 
     private bool canGrab = true;
+    private bool canFlip = true;
     private bool canClimb;
 
     [HideInInspector] public bool ledgeDetected;
@@ -116,7 +117,7 @@ public class PlayerController : MonoBehaviour, IAlive
     {
         if (ledgeDetected && canGrab)
         {
-            canMove = false;
+            
             canGrab = false;
             Vector2 ledgePosition = GetComponentInChildren<LedgeDetection>().transform.position;
             climbBegunPosition = ledgePosition + new Vector2(offset1.x * - facingDirection, offset1.y);
@@ -126,14 +127,18 @@ public class PlayerController : MonoBehaviour, IAlive
             
         }
 
-        if (canClimb) transform.position = climbBegunPosition; 
+        if (canClimb)
+        {
+            canMove = false;
+            transform.position = climbBegunPosition;
+        }
+             
     }
 
     private void LedgeClimbOver()
     {
         canClimb = false;
         transform.position = climbOverPosition;
-        canGrab = true;
         Invoke("AllowLedgeGrab", 0.1f);
         canMove = true;
     }
