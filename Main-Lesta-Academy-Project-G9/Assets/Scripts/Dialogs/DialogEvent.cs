@@ -9,12 +9,12 @@ public class DialogEvent : MonoBehaviour
     {
         public float delay;
         public UnityEngine.Events.UnityEvent<string> onInvoke;
-        public bool invoked = false;
+        [HideInInspector] public bool invoked = false;
     }
     public string eventName;
     public DEC[] events;
     bool _invoke = false;
-    public float _time = 0f;
+    float _time = 0f;
     float _maxTime;
 
     public void Run()
