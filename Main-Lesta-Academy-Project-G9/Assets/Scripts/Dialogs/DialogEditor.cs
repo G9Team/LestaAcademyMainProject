@@ -83,7 +83,7 @@ public class DialogEditor : Editor
                             }
                         }
 
-                        EditorGUILayout.LabelField("Dialog"); gr.group.dialog = EditorGUILayout.TextArea(gr.group.dialog, GUILayout.Height(100), GUILayout.ExpandHeight(true));
+                        EditorGUILayout.LabelField("Dialog"); gr.group.dialog = EditorGUILayout.TextArea(gr.group.dialog, GUILayout.Height(100), GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
                         break;
                     case DialogAsset.ArrayGroup.GroupType.EVENT:
                         using (new EditorGUILayout.HorizontalScope())
