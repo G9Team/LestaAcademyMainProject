@@ -6,18 +6,20 @@ public class EnemyScript : MonoBehaviour
 {
     [SerializeField] private float _runSpeed;
     private GameObject _player = null;
-    private int _health = 2;
+    private int _health = 3;
     private int _atackDamage = 1;
     private Rigidbody _rigidBody;
-    private bool _isInvincible = false;
+    private bool _isInvincible = false, _isDead = false;
+    private Animator _animator;
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         _player = GameObject.FindGameObjectWithTag("Player");
         _rigidBody = GetComponent<Rigidbody>();
     }
     private void FixedUpdate()
     {
-        
+        if (_isDead || _isInvincible) return;   
         if (Vector3.Distance(this.transform.position, _player.transform.position) < 10f && !_isInvincible)
         {
             FollowPlayer(_player.transform.position);
@@ -66,8 +68,10 @@ public class EnemyScript : MonoBehaviour
     }
     private void Die()
     {
+        _isDead = true;
         Debug.Log("OMG, u killed Teddy bear!!! He is freaking DEAD now! ");
-        Destroy(this.gameObject);
+        _animator.SetBool("die", true);
+        Destroy(this.gameObject, 1f);
     }
     public void GetKnockback(Vector3 knockbackForce){
         _rigidBody.AddForce(knockbackForce, ForceMode.Impulse);

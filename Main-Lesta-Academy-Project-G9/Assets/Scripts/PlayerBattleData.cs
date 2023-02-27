@@ -6,7 +6,7 @@ public class PlayerBattleData : MonoBehaviour
 {
     [SerializeField] private GameObject _hitbox;
     [SerializeField] private float _atackDelay, _knockbackForce;
-    public int AtackForce { get; private set; }
+    public int AtackForce { get; private set; } = 1;
 
     public Vector3 KnockbackForce
     {
