@@ -7,11 +7,11 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
-<<<<<<< HEAD
     sRGBTexture: 0
-=======
-    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
     alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
@@ -53,11 +53,7 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-<<<<<<< HEAD
   textureType: 1
-=======
-  textureType: 0
->>>>>>> 32d226c4435f9123035b5e672a102dff621718cf
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -105,7 +101,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-<<<<<<< HEAD
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -130,8 +125,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-=======
->>>>>>> 32d226c4435f9123035b5e672a102dff621718cf
   spriteSheet:
     serializedVersion: 2
     sprites: []
