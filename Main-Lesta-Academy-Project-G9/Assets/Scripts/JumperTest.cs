@@ -32,7 +32,6 @@ public class JumperTest : MonoBehaviour
             return;
         }
         GravityHandler();
-        _animator.SetFloat("Yspeed", _rigidBody.velocity.y);
     }
     private bool IsGrounded()
     {
@@ -51,6 +50,7 @@ public class JumperTest : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) && (IsGrounded() || _dubleJump))
         {
+            _animator.SetTrigger("jump");
             float tempVelocity = _rigidBody.velocity.x;
             _rigidBody.velocity = Vector3.zero;
             _rigidBody.velocity += Vector3.up * _jumpForce * _mainGravityScaler * _mainGravityScaler;

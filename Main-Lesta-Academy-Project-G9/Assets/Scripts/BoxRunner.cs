@@ -30,7 +30,10 @@ public class BoxRunner : MonoBehaviour
     private void Update()
     {
         _move = Input.GetAxis("Horizontal");
-        if(_move != 0) Direction = Mathf.Sign(_move);
+        if(_move != 0){ 
+            Direction = Mathf.Sign(_move);
+            _move = Direction;
+        }
     }
     private void FixedUpdate()
     {
