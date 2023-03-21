@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -18,8 +19,19 @@ public class PlayerController : MonoBehaviour, IAlive
     private bool isWallSliding;
     private bool isFacingRight;
     private bool canWallSlide;
+    private bool isGrabbed;
+    private bool isSwinging;
+    private bool canJump = true;
     private int facingDirection = 1;
-    
+
+    private Collider[] _wallCollisions;
+    private Collider[] _boxCollisions;
+    private Collider[] _lianaCollisions;
+    private Collider[] _groundBoxCollision;
+
+    [SerializeField] private LayerMask boxLayer;
+    [SerializeField] private LayerMask lianaLayer;
+
     [Header("Ground Settings")]
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundChecker;
@@ -30,8 +42,9 @@ public class PlayerController : MonoBehaviour, IAlive
     [Header("Wall Settings")]
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform wallChecker;
+    
     private float _wallCheckRadius = 0.2f;
-    private Collider[] _wallCollisions;
+    
 
     [Header("Ledge Offset Settings")]
     [SerializeField] private Vector2 offset1;
@@ -49,6 +62,10 @@ public class PlayerController : MonoBehaviour, IAlive
     private int _health = 3;
     private int _maxHealth = 3;
 
+    Transform currentSwingable;
+    
+
+
     void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
@@ -60,13 +77,14 @@ public class PlayerController : MonoBehaviour, IAlive
         CheckCollision();
         AnimatorController();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
             canMove = true;
             JumpController();
         }
 
-        CheckLedge();   
+        CheckLedge();
+        /*Swing();*/
     }
 
     void FixedUpdate()
@@ -110,7 +128,16 @@ public class PlayerController : MonoBehaviour, IAlive
         {
             Jump();  
             canDoubleJump = false;       
-        }      
+        }
+
+        else if (isSwinging)
+        {
+            isSwinging = false;
+            Jump();
+            StartCoroutine(RadiusCorrector(_wallCheckRadius, 0.1f));
+            
+            
+        }
     }
 
     private void CheckLedge()
@@ -168,7 +195,7 @@ public class PlayerController : MonoBehaviour, IAlive
         if(Input.GetAxis("Horizontal") * -facingDirection > 0)
         {
             _wallCheckRadius = 0f;
-            StartCoroutine(RadiusCorrector());
+            StartCoroutine(RadiusCorrector(0.2f, 0.4f));
             float tempVelocity = _playerRigidbody.velocity.x * 20;
             _playerRigidbody.velocity = Vector3.zero;
             _playerRigidbody.velocity += Vector3.up * _jumpHeight * 3;
@@ -182,13 +209,33 @@ public class PlayerController : MonoBehaviour, IAlive
         {
             float move = Input.GetAxis("Horizontal");
             UpdateAnimatorValue(move);
+            
+
             _playerRigidbody.velocity = new Vector3(move * _runSpeed, _playerRigidbody.velocity.y, 0);
           
 
-            if (move > 0 && isFacingRight) Flip();
-            else if (move < 0 && !isFacingRight) Flip();
+            if (move > 0 && isFacingRight && !isGrabbed) Flip();
+            else if (move < 0 && !isFacingRight && !isGrabbed) Flip();
         }       
     }
+
+  /*  private void Swing()
+    {
+        if (isSwinging)
+        {
+            canMove = false;
+            float horizontal = Input.GetAxis("Horizontal");
+
+            transform.position = new Vector3(currentSwingable.position.x - 0.6f * facingDirection, currentSwingable.position.y,0);
+            currentSwingable.GetComponent<Rigidbody>().AddForce(facingDirection * transform.right *20* horizontal, ForceMode.Acceleration);
+            
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                JumpController();
+            }
+        }
+
+    }*/
 
     private void Flip() 
     {
@@ -200,12 +247,42 @@ public class PlayerController : MonoBehaviour, IAlive
     private void CheckCollision()
     {
         _groundCollisions = Physics.OverlapSphere(groundChecker.position, _groundCheckRadius, groundLayer);
-        if (_groundCollisions.Length > 0 && !canClimb) { isGrounded = true; canMove = true; }
+        _groundBoxCollision = Physics.OverlapSphere(groundChecker.position, _wallCheckRadius, boxLayer);
+        if (_groundCollisions.Length > 0 || _groundBoxCollision.Length>0 && !canClimb) { isGrounded = true; canMove = true; }
         else isGrounded = false;
         
         _wallCollisions = Physics.OverlapSphere(wallChecker.position, _wallCheckRadius, wallLayer);
         if (_wallCollisions.Length > 0) { isWallDetected = true;  }
         else { isWallDetected = false; }
+
+        _boxCollisions = Physics.OverlapSphere(wallChecker.position, _wallCheckRadius, boxLayer);
+        if (_boxCollisions.Length > 0) 
+        {
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                isGrabbed = true;
+                _boxCollisions[0].transform.SetParent(transform);
+                canJump = false;
+   
+            }
+
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                isGrabbed = false;
+                _boxCollisions[0].transform.SetParent(null);
+                canJump = true;
+            }
+        }
+
+        _lianaCollisions = Physics.OverlapSphere(wallChecker.position, _wallCheckRadius, lianaLayer);
+        if(_lianaCollisions.Length > 0)
+        {
+            currentSwingable = _lianaCollisions[0].transform;
+            isSwinging = true;
+        }
+       
+
 
         if (!isGrounded && _playerRigidbody.velocity.y < 0) canWallSlide = true;
 
@@ -218,6 +295,7 @@ public class PlayerController : MonoBehaviour, IAlive
         _playerAnimator.SetBool("IsWallSliding", isWallSliding);
         _playerAnimator.SetBool("canClimb", canClimb);
         _playerAnimator.SetBool("IsWallDetected", isWallDetected);
+        _playerAnimator.SetBool("IsGrabbed", isGrabbed);
     }
 
     private void UpdateAnimatorValue(float horizontalSpeed)
@@ -231,11 +309,17 @@ public class PlayerController : MonoBehaviour, IAlive
         _playerAnimator.SetFloat("Speed", Mathf.Abs(h));
     }
 
-    IEnumerator RadiusCorrector()
+    IEnumerator RadiusCorrector(float prevValue, float delay)
     {
-        yield return new WaitForSeconds(0.1f);
-        _wallCheckRadius = 0.2f;
+        _wallCheckRadius = 0f;
+        yield return new WaitForSeconds(delay);
+        _wallCheckRadius = prevValue;
+
     }
+
+    
+
+
 
     public int GetHealth()
     {
@@ -252,20 +336,24 @@ public class PlayerController : MonoBehaviour, IAlive
         _health = Mathf.Max(0, Mathf.Min(_maxHealth, _health + health));
     }
 
-/*
-#if UNITY_EDITOR
-    private void OnGUI()
-    {
-        Vector2 guiPoint = HandleUtility.WorldToGUIPoint(transform.position);
-        GUIStyle style = new GUIStyle();
-        style.normal.textColor = Color.black;
-        style.alignment = TextAnchor.UpperCenter;
 
-        if (_health > 0)
-            GUI.Label(new Rect(guiPoint.x - 50, guiPoint.y - 60, 100f, 30f), "Health: " + GetHealth().ToString(), style);
-        else
-            GUI.Label(new Rect(guiPoint.x - 50, guiPoint.y - 60, 100f, 30f), "Game Over", style);
-    }
-#endif
-*/
+
+    
+
+    /*
+    #if UNITY_EDITOR
+        private void OnGUI()
+        {
+            Vector2 guiPoint = HandleUtility.WorldToGUIPoint(transform.position);
+            GUIStyle style = new GUIStyle();
+            style.normal.textColor = Color.black;
+            style.alignment = TextAnchor.UpperCenter;
+
+            if (_health > 0)
+                GUI.Label(new Rect(guiPoint.x - 50, guiPoint.y - 60, 100f, 30f), "Health: " + GetHealth().ToString(), style);
+            else
+                GUI.Label(new Rect(guiPoint.x - 50, guiPoint.y - 60, 100f, 30f), "Game Over", style);
+        }
+    #endif
+    */
 }
