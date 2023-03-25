@@ -16698,7 +16698,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -40033,6 +40033,7 @@ GameObject:
   - component: {fileID: 1415487722}
   - component: {fileID: 1415487721}
   - component: {fileID: 1415487723}
+  - component: {fileID: 1415487724}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -40109,6 +40110,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!154 &1415487724
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415487719}
+  m_Material: {fileID: 0}
+  m_Enabled: 1
+  m_TerrainData: {fileID: 15600000, guid: 2c5f6de653a43494bb43a594eeaf4a4c, type: 2}
+  m_EnableTreeColliders: 1
 --- !u!1 &1416491720
 GameObject:
   m_ObjectHideFlags: 0
