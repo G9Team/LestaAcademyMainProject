@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerAtackHitbox
+  - Ledge
+  - Liana
   layers:
   - Default
   - TransparentFX
@@ -16,10 +18,10 @@ TagManager:
   - Wall
   - Player
   - Enemy
-  - 
-  - 
-  - 
-  - 
+  - Ledge
+  - Box
+  - Liana
+  - Post Processing
   - 
   - 
   - 
