@@ -81576,15 +81576,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.2083334
+  - time: 1.25
     functionName: StopAttack
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.3333334
-    functionName: ResetCombo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -81592,6 +81585,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.375
     functionName: ResetAttack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4166666
+    functionName: ResetCombo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
