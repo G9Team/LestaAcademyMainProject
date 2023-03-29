@@ -65,6 +65,13 @@ namespace New
         public event Action OnHealthToZero;
 
         private Dictionary<CollectableType, int> _itemAmountByType = new Dictionary<CollectableType, int>();
+        public PlayerData()
+        {
+            foreach (var value in Enum.GetValues(typeof(CollectableType)))
+            {
+                _itemAmountByType.Add((CollectableType)value, 0);
+            }
+        }
 
         public void ChangeHealth(int health) =>
             CurrentHealth += health;

@@ -522,8 +522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactableOnly:
     serializedVersion: 2
-    m_Bits: 0
-  _checkRdius: 0
+    m_Bits: 16384
+  _checkRdius: 1
 --- !u!1 &2548572360135631147
 GameObject:
   m_ObjectHideFlags: 0

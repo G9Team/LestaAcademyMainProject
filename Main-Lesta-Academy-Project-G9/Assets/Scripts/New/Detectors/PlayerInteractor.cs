@@ -32,12 +32,14 @@ namespace New
         }
 
         private void ProceedInteraction(IInteractable interactable){
+            ICollectable collectable = interactable.GetCollectable();
             if (interactable.IsUpgrade()){
                 _upgrader.StartUpgrade(interactable.GetUpgrade());
             }
             else {
-                //other interaction logick + OnDetectionApear.Invoke(TypeOfDetection);
+                //other interaction logic + OnDetectionApear.Invoke(TypeOfDetection);
             }
+            collectable?.Collect();
         }
 
 
