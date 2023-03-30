@@ -21,11 +21,6 @@ namespace New
         public event Action OnHealthToZero;
     }
 
-    public interface IUpgradable
-    {
-        public void Upgrade(UpgradeType typeOfUpgrade, float valueToUpgrade);
-        public void Upgrade(UpgradeType typeOfUpgrade, int valueToUpgrade);
-    }
 
     public interface IAttack
     {
