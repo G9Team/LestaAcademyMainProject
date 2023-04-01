@@ -27,8 +27,23 @@ public class DialogAsset : ScriptableObject
         public float minDialogTime;
         public GroupType groupType;
         public int force = 0;
+        public bool hideName;
         public AnswerGroup[] answers = new AnswerGroup[0];
     }
 
+    [System.Serializable]
+    public class ArrayCharacters
+    {
+        public enum CharacterPosition
+        {
+            LEFT = 0,
+            RIGHT = 1
+        }
+        public string characterName;
+        public CharacterPosition position;
+        public Sprite sprite;
+    }
+
+    public ArrayCharacters[] arrayCharacters;
     public ArrayGroup[] arrayGroups;
 }

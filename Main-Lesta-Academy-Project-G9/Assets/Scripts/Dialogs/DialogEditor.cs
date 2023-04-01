@@ -14,7 +14,14 @@ public class DialogEditor : Editor
         public DialogAsset.ArrayGroup group;
         public bool show = false;
     }
+
+    class CGEF
+    {
+        public DialogAsset.ArrayCharacters group;
+        public bool show = false;
+    }
     List<DAEF> groups = new List<DAEF>();
+    private List<CGEF> chgroups = new List<CGEF>();
     GUIStyle buttonStyle;
     DialogAsset asset
     {
@@ -28,8 +35,11 @@ public class DialogEditor : Editor
         if (!string.IsNullOrEmpty(jsonState))
             JsonUtility.FromJsonOverwrite(jsonState, treeViewState);
         groups = new List<DAEF>();
+        chgroups = new List<CGEF>();
         foreach (DialogAsset.ArrayGroup da in asset.arrayGroups)
             groups.Add(new DAEF() { group = da });
+        foreach(DialogAsset.ArrayCharacters da in asset.arrayCharacters)
+            chgroups.Add(new CGEF() { group = da});
         buttonStyle = new GUIStyle();
         buttonStyle.alignment = TextAnchor.MiddleLeft;
     }
@@ -40,6 +50,42 @@ public class DialogEditor : Editor
         
         ToolBar();
         GUI.skin.button.alignment = TextAnchor.MiddleLeft;
+        for(int i = 0; i < chgroups.Count; i++)
+        {
+            CGEF gr = chgroups[i];
+            if (gr.show)
+            {
+
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    if (GUILayout.Button($"#CHARACTER_{i} {gr.group.characterName}"))
+                        gr.show = false;
+                    if (GUILayout.Button("Remove", "miniButton", GUILayout.Width(60)))
+                        chgroups.Remove(chgroups[i]);
+                }
+
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    EditorGUILayout.LabelField("Character");
+                    gr.group.characterName = EditorGUILayout.TextField(gr.group.characterName);
+                }
+                gr.group.position = (DialogAsset.ArrayCharacters.CharacterPosition)EditorGUILayout.EnumPopup("Position", gr.group.position);
+                gr.group.sprite = (Sprite)EditorGUILayout.ObjectField("Image", gr.group.sprite, typeof(Sprite), false);
+            }
+            else
+            {
+                string txt = "";
+                txt = $"#CHARACTER_{i} {gr.group.characterName}";
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    if (GUILayout.Button(txt))
+                        gr.show = true;
+                    if (GUILayout.Button("Remove", "miniButton", GUILayout.Width(60)))
+                        chgroups.Remove(chgroups[i]);
+                }
+            }
+        }
+        GUILayout.Space(20f);
         for(int i = 0; i < groups.Count; i++)
         {
             DAEF gr = groups[i];
@@ -81,6 +127,11 @@ public class DialogEditor : Editor
                             {
                                 EditorGUILayout.LabelField("Force Dialog"); gr.group.force = int.Parse(EditorGUILayout.TextField(gr.group.force.ToString()));
                             }
+                        }
+                        
+                        using (new EditorGUILayout.HorizontalScope())
+                        {
+                            gr.group.hideName = EditorGUILayout.Toggle("Hide Name", gr.group.hideName);
                         }
 
                         EditorGUILayout.LabelField("Dialog"); gr.group.dialog = EditorGUILayout.TextArea(gr.group.dialog, GUILayout.Height(100), GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
@@ -197,15 +248,24 @@ public class DialogEditor : Editor
             if (GUILayout.Button("Save", style))
             {
                 DialogAsset.ArrayGroup[] ag = new DialogAsset.ArrayGroup[groups.Count];
+                DialogAsset.ArrayCharacters[] ac = new DialogAsset.ArrayCharacters[chgroups.Count];
                 for(int i = 0; i < ag.Length; i++)
                 {
                     ag[i] = groups[i].group;
                 }
+                for(int i = 0; i < ac.Length; i++)
+                {
+                    ac[i] = chgroups[i].group;
+                }
                 asset.arrayGroups = ag;
+                asset.arrayCharacters = ac;
                 EditorUtility.SetDirty(asset);
                 AssetDatabase.SaveAssetIfDirty(asset);
             }
-
+            if (GUILayout.Button("Add Character", style))
+            {
+                chgroups.Add(new CGEF() { group = new DialogAsset.ArrayCharacters() });
+            }
             if (GUILayout.Button("Add Dialogue", style))
             {
                 groups.Add(new DAEF() { group = new DialogAsset.ArrayGroup() });
