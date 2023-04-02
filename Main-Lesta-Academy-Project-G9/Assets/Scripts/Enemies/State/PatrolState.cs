@@ -4,68 +4,46 @@ using UnityEngine;
 
 public class PatrolState : AiStateBase
 {
-    Vector3 _movePos;
     AIBase _ai;
     Rigidbody _rigidbody;
-    float _maxDistance = 10f;
-    float _minDistance = 4f;
+    float _moveDir = 0;
+    public float speed = 300f;
+    BoxCollider _collider;
 
     public void Init(AIBase ai)
     {
         _ai = ai;
-        _movePos = _ai.transform.position;
         _rigidbody = _ai.GetComponent<Rigidbody>();
+        _collider = _ai.GetComponent<BoxCollider>();
+        _moveDir = 1f;
     }
 
     public void MiniUpdate()
     {
-        if(Random.Range(0,100) < 50)
-        {
-            RaycastHit hit;
-            float right_dist = 9999f;
-            float left_dist = 9999f;
-            if (Physics.Raycast(_ai.transform.position, _ai.transform.right, out hit))
-                right_dist = hit.distance;
-            if (Physics.Raycast(_ai.transform.position, -_ai.transform.right, out hit))
-                left_dist = hit.distance;
-
-            if (left_dist > 2f && Random.Range(0, 100) < 50)
-            {
-                _movePos = CheckGround(_ai.transform.position + new Vector3(-Mathf.Min(Random.Range(_minDistance, _maxDistance), left_dist), 0f, 0f), left_dist);
-            }
-            else if(right_dist > 2f)
-            {
-                _movePos = CheckGround(_ai.transform.position + new Vector3(Mathf.Min(Random.Range(_minDistance, _maxDistance), right_dist), 0f, 0f), right_dist);
-            }
-        }
     }
 
-    Vector3 CheckGround(Vector3 vector, float distance)
+    void CheckDir()
     {
-        if (Physics.Raycast(vector, Vector3.down, 1.5f)) return vector; //have ground
-        RaycastHit hit;
-        if (Physics.Raycast(vector - new Vector3(0f, 1.5f, 0f), new Vector3(_ai.transform.position.x - vector.x, 0f, 0f), out hit, distance))
-        {
-            return new Vector3(hit.point.x, vector.y, vector.z);
-        }
-        else return _ai.transform.position; //cant see ground from AI to vector to move, return original position to stay
+        Vector3 vector = _ai.transform.position + new Vector3(_moveDir*2f, 0f, 0f);
+        if (!Physics.Raycast(vector, Vector3.down, 1.5f) || Physics.Raycast(_ai.transform.position + new Vector3(0, _collider.center.y + _collider.size.y / 2, 0), Vector3.right * _moveDir, 1f))
+            _moveDir *= -1f;
     }
 
     public void Update()
     {
-        _movePosition(_movePos);
+        _movePosition();
     }
 
-    void _movePosition(Vector3 position)
+    void _movePosition()
     {
+        CheckDir();
         Vector3 oldVel = _rigidbody.velocity;
-        Vector3 delta = position - _rigidbody.position;
-        Vector3 vel = delta / Time.deltaTime;
+        Vector3 vel;
         vel.y = oldVel.y;
-        vel.x = Mathf.Abs(oldVel.x) > Mathf.Abs(vel.x) ? oldVel.x : vel.x;
-        vel.z = Mathf.Abs(oldVel.z) > Mathf.Abs(vel.z) ? oldVel.z : vel.z;
+        vel.x = Mathf.Abs(oldVel.x) > Mathf.Abs(_moveDir*speed) ? oldVel.x : _moveDir*speed;
+        vel.z = 0;
         _rigidbody.velocity = vel * Time.deltaTime;
-        Quaternion targetRotation = Quaternion.LookRotation(_ai.transform.position - new Vector3(position.x, _ai.transform.position.y, position.z));
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(_ai.transform.position.x + _moveDir, _ai.transform.position.y, _ai.transform.position.z) - _ai.transform.position);
         _ai.transform.rotation = Quaternion.Slerp(_ai.transform.rotation, targetRotation, 5f * Time.deltaTime);
     }
 }
