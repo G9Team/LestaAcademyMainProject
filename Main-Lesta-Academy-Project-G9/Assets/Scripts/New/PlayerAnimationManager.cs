@@ -14,7 +14,9 @@ namespace New
 
         private bool _isGrounded = true, _isRunning, _isInteracting, _combo, _isAttacking, _canSetCombo;
 
-        public void SetGrounded(bool groundedToSet) => _isGrounded = groundedToSet;
+        public void SetGrounded(bool groundedToSet) => _animator.SetBool("IsGrounded", groundedToSet);
+
+
         public void SetRun(bool runToSet) => _isRunning = runToSet;
         public void SetInteracting(bool interacting) => _isInteracting = interacting;
         public void PullJumpTrigger() => _animator.SetTrigger("Jump");
@@ -45,12 +47,22 @@ namespace New
         {
             AnimatorSetBool();
         }
+
         private void AnimatorSetBool()
-        {
-            _animator.SetBool("IsGrounded", _isGrounded);
-            _animator.SetBool("Running", _isRunning);
+        {        
             _animator.SetBool("Interacting", _isInteracting);
             _animator.SetFloat("YSpeed", _rigidbody.velocity.y);
+            _animator.SetFloat("XSpeed", UpdateAnimatorValue(Mathf.Abs(Input.GetAxis("Horizontal"))));
         }
+
+        private float UpdateAnimatorValue(float horizontalSpeed)
+        {
+            if (horizontalSpeed > 0 && horizontalSpeed < 1) return 0.5f;
+            else if (horizontalSpeed > -0.55f && horizontalSpeed < 0) return -0.5f;
+            else if (horizontalSpeed > 0.55f) return 1f;
+            else if (horizontalSpeed < -0.55f) return -1f;
+            else return 0;
+        }
+
     }
 }

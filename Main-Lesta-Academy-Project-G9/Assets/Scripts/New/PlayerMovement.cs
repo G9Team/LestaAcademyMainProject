@@ -58,6 +58,7 @@ namespace New
         private void ProceedGroundDetection()  {
             _grounded = _canDash = _dubleJump = true;
             _animator?.SetGrounded(_grounded);
+
         }
 
         private void ProceedLedgeDetection()
@@ -82,14 +83,10 @@ namespace New
             else if (_wallDetected) {
                 _moveKeeper = _moveKeeper == 0 || moveDirection == 0? moveDirection :_moveKeeper;
                 _mover.Move(0);
-                _animator?.SetRun(false);
+               
                 return;
             }
             _mover.Move(moveDirection);
-
-            if(moveDirection == 0) _animator?.SetRun(false);
-            else _animator?.SetRun(true);
-
 
         }
 
@@ -104,9 +101,11 @@ namespace New
                RealJump(out _dubleJump);
             }
         }
+
         private void RealJump(out bool couse){
             _mover.Jump();
             couse = false;
+            _animator?.SetGrounded(_grounded);
             _animator?.PullJumpTrigger();
 
         }

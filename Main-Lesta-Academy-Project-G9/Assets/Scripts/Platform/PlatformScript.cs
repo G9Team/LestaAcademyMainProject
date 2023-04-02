@@ -8,7 +8,6 @@ public class PlatformScript : MonoBehaviour
     
     private enum TYPE_PLATFORM
     {
-        DEFAULT,
         GHOST,
         ROTATE,
         MOVE,
