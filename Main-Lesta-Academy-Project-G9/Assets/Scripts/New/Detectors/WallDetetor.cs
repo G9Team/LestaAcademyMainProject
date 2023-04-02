@@ -24,14 +24,20 @@ namespace New
 
         private void IsForwardWallColidied()
         {
+            bool walled = _wallDetected;
+            _wallDetected = false;
             for (int i = 0; i < _forward.childCount; i++)
             {
-                if (Physics.CheckSphere(_forward.GetChild(i).position, 0.05f, _everythingButPlayerAndEnemy) != _wallDetected)
+                if (Physics.CheckSphere(_forward.GetChild(i).position, 0.05f, _everythingButPlayerAndEnemy) == true)
                 {
-                    OnDetectionApear.Invoke(TypeOfDetection);
-                    _wallDetected = Physics.CheckSphere(_forward.GetChild(i).position, 0.05f, _everythingButPlayerAndEnemy);
-                    
+                    _wallDetected = true;
+
                 }
+            }
+            if (_wallDetected != walled)
+            {
+                    Debug.Log("Wall");
+                OnDetectionApear.Invoke(TypeOfDetection);
             }
         }
 
