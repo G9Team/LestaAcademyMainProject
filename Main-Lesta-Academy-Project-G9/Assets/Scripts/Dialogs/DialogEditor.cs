@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -38,8 +39,8 @@ public class DialogEditor : Editor
         chgroups = new List<CGEF>();
         foreach (DialogAsset.ArrayGroup da in asset.arrayGroups)
             groups.Add(new DAEF() { group = da });
-        foreach(DialogAsset.ArrayCharacters da in asset.arrayCharacters)
-            chgroups.Add(new CGEF() { group = da});
+        foreach (DialogAsset.ArrayCharacters da in asset.arrayCharacters)
+            chgroups.Add(new CGEF() { group = da });
         buttonStyle = new GUIStyle();
         buttonStyle.alignment = TextAnchor.MiddleLeft;
     }
@@ -47,10 +48,10 @@ public class DialogEditor : Editor
     public override void OnInspectorGUI()
     {
         GUILayout.Space(5f);
-        
+
         ToolBar();
         GUI.skin.button.alignment = TextAnchor.MiddleLeft;
-        for(int i = 0; i < chgroups.Count; i++)
+        for (int i = 0; i < chgroups.Count; i++)
         {
             CGEF gr = chgroups[i];
             if (gr.show)
@@ -86,13 +87,13 @@ public class DialogEditor : Editor
             }
         }
         GUILayout.Space(20f);
-        for(int i = 0; i < groups.Count; i++)
+        for (int i = 0; i < groups.Count; i++)
         {
             DAEF gr = groups[i];
             if (gr.show)
             {
-                
-                switch(gr.group.groupType)
+
+                switch (gr.group.groupType)
                 {
                     case DialogAsset.ArrayGroup.GroupType.DIALOG:
                         using (new EditorGUILayout.HorizontalScope())
@@ -113,9 +114,9 @@ public class DialogEditor : Editor
                                 EditorGUILayout.LabelField("Event"); gr.group.eventName = EditorGUILayout.TextField(gr.group.eventName);
 
                             }
-                            
+
                         }
-                        
+
                         using (new EditorGUILayout.HorizontalScope())
                         {
                             using (new EditorGUILayout.VerticalScope())
@@ -128,7 +129,7 @@ public class DialogEditor : Editor
                                 EditorGUILayout.LabelField("Force Dialog"); gr.group.force = int.Parse(EditorGUILayout.TextField(gr.group.force.ToString()));
                             }
                         }
-                        
+
                         using (new EditorGUILayout.HorizontalScope())
                         {
                             gr.group.hideName = EditorGUILayout.Toggle("Hide Name", gr.group.hideName);
@@ -168,7 +169,7 @@ public class DialogEditor : Editor
                         if (GUILayout.Button("Add", "miniButton", GUILayout.Width(60)))
                         {
                             DialogAsset.ArrayGroup.AnswerGroup[] answers = gr.group.answers;
-                            gr.group.answers = new DialogAsset.ArrayGroup.AnswerGroup[answers.Length+1];
+                            gr.group.answers = new DialogAsset.ArrayGroup.AnswerGroup[answers.Length + 1];
                             for (int j = 0; j < answers.Length; j++)
                                 gr.group.answers[j] = answers[j];
                         }
@@ -190,9 +191,9 @@ public class DialogEditor : Editor
                             {
                                 DialogAsset.ArrayGroup.AnswerGroup[] answers = gr.group.answers;
                                 gr.group.answers = new DialogAsset.ArrayGroup.AnswerGroup[answers.Length - 1];
-                                for (int k = 0; k < answers.Length-1; k++)
+                                for (int k = 0; k < answers.Length - 1; k++)
                                 {
-                                    gr.group.answers[k] = answers[k < j ? k : k+1];
+                                    gr.group.answers[k] = answers[k < j ? k : k + 1];
                                 }
                             }
                         }
@@ -204,7 +205,7 @@ public class DialogEditor : Editor
                 string txt = "";
                 switch (gr.group.groupType)
                 {
-                    
+
                     case DialogAsset.ArrayGroup.GroupType.DIALOG:
                         txt = $"#{i} {gr.group.characterName}";
                         break;
@@ -235,7 +236,7 @@ public class DialogEditor : Editor
         Rect multiColumnTreeViewRect = new Rect(rect.x, rect.y + topToolbarHeight + spacing, rect.width, rect.height - topToolbarHeight - 2 * spacing);*/
     }
 
-    
+
 
     void ToolBar()
     {
@@ -249,11 +250,11 @@ public class DialogEditor : Editor
             {
                 DialogAsset.ArrayGroup[] ag = new DialogAsset.ArrayGroup[groups.Count];
                 DialogAsset.ArrayCharacters[] ac = new DialogAsset.ArrayCharacters[chgroups.Count];
-                for(int i = 0; i < ag.Length; i++)
+                for (int i = 0; i < ag.Length; i++)
                 {
                     ag[i] = groups[i].group;
                 }
-                for(int i = 0; i < ac.Length; i++)
+                for (int i = 0; i < ac.Length; i++)
                 {
                     ac[i] = chgroups[i].group;
                 }
@@ -282,3 +283,5 @@ public class DialogEditor : Editor
         }
     }
 }
+
+#endif

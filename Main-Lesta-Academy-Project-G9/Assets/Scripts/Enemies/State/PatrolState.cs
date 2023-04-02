@@ -7,7 +7,7 @@ public class PatrolState : AiStateBase
     AIBase _ai;
     Rigidbody _rigidbody;
     float _moveDir = 0;
-    public float speed = 300f;
+    public float speed = 200f;
     BoxCollider _collider;
 
     public void Init(AIBase ai)

@@ -97,10 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258b7dfc454676944a3d97dc2395946b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _innerFly: {fileID: 8954498869689990033}
   _maxDistance: 5
-  _minDistance: 0.5
+  _minDistance: 1
   _rotationScaler: 1
 --- !u!1 &8954498869689990062
 GameObject:

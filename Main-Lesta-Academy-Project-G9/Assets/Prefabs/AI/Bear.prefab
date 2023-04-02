@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 5590715941265981559}
   - component: {fileID: 5590715941265981552}
   - component: {fileID: 5590715941265981558}
+  - component: {fileID: 217262168482039106}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Untagged
@@ -603,7 +604,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4708336762492615970}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 2.006344, z: 1}
@@ -642,6 +643,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   detectDistance: 10
+--- !u!136 &217262168482039106
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4708336762492615970}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &4803933864296579610
 GameObject:
   m_ObjectHideFlags: 0

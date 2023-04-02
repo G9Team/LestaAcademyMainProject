@@ -41,7 +41,7 @@ public class AttackNear : AiStateBase
         Vector3 delta = position - _rigidbody.position;
         Vector3 vel = delta / Time.deltaTime;
         vel.y = oldVel.y * Physics.gravity.y*Time.deltaTime;
-        vel.x = Mathf.Abs(oldVel.x) > Mathf.Abs(vel.x) ? oldVel.x : vel.x;
+        vel.x = Mathf.Min(Mathf.Max((Mathf.Abs(oldVel.x) > Mathf.Abs(vel.x) ? oldVel.x : vel.x), -1f), 1f)*200;
         vel.z = 0f;
         _rigidbody.velocity = vel * Time.deltaTime;
         Quaternion targetRotation = Quaternion.LookRotation(new Vector3(position.x, _ai.transform.position.y, position.z) - _ai.transform.position);

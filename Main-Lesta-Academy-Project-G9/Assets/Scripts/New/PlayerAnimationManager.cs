@@ -28,8 +28,8 @@ namespace New
             if (_isAttacking == false)
             {
                 if (true /*_hitCounter == 0*/){
-                    _animator.Play("Attack 1", 1);
-                    //_animator.SetTrigger("Attack");
+                    //_animator.Play("Attack 1", 1);
+                    _animator.SetTrigger("Attack");
                     _isAttacking = true;
                     StartCoroutine(AttackTimer());
                 }

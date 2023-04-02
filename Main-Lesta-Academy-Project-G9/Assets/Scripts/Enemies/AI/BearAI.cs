@@ -52,6 +52,7 @@ public class BearAI : AIBase
     //used for some events that not needed to call every frame
     void MiniUpdate()
     {
+        if (health <= 0f) return;
         if (_stateClass != null) _stateClass.MiniUpdate();
         _enemy = null;
         Collider[] hits = Physics.OverlapSphere(this.transform.position, 50f);
@@ -79,6 +80,7 @@ public class BearAI : AIBase
 
     void Update()
     {
+        if (health <= 0f) return;
         UpdateAI();
         if (_stateClass != null) _stateClass.Update();
     }
@@ -92,6 +94,7 @@ public class BearAI : AIBase
             _stateClass = null;
             Destroy(GetComponent<Rigidbody>());
             Destroy(GetComponent<BoxCollider>());
+            Destroy(GetComponent<CapsuleCollider>());
             _animator.SetTrigger("death");
             Destroy(this.gameObject, 5f);
         }

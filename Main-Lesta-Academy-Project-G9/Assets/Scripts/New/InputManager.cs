@@ -11,6 +11,8 @@ namespace New
         private PlayerInteractor _interactor;
         private float _move, _exMove;
         private bool _moveflag;
+        bool _isAttacking = false;
+        bool _isJumping = false;
 
         public void Initialize(PlayerInteractor interactor, PlayerMovement movement)
         {
@@ -26,16 +28,23 @@ namespace New
             {
                 _interactor.OnInteractionInput();
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetAxis("Jump") > 0 && !_isJumping)
             {
+                _isJumping = true;
                 _playerMovement.Jump();
             }
+            else if (Input.GetAxis("Jump") == 0)
+                _isJumping = false;
             if (Input.GetKeyDown(KeyCode.LeftShift)){
                 _playerMovement.Dash();
             }
-            if (Input.GetKeyDown(KeyCode.K)){
+            if (Input.GetAxis("Fire1") > 0 && !_isAttacking)
+            {
+                _isAttacking = true;
                 _playerMovement.Attack();
             }
+            else if (Input.GetAxis("Fire1") == 0)
+                _isAttacking = false;
             if (Input.GetKeyDown(KeyCode.CapsLock))
             {
 

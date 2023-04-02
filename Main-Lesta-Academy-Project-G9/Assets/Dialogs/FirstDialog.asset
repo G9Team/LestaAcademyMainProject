@@ -108,3 +108,11 @@ MonoBehaviour:
     force: 0
     hideName: 0
     answers: []
+  - eventName: EndDialog
+    characterName: 
+    dialog: 
+    minDialogTime: 0
+    groupType: 1
+    force: 0
+    hideName: 0
+    answers: []

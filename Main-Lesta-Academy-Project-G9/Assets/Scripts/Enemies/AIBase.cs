@@ -3,7 +3,6 @@ using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public abstract class AIBase : MonoBehaviour

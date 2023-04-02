@@ -19,7 +19,7 @@ public class FootstepSound : MonoBehaviour
     {
         RaycastHit hit;
         AudioClip clip = defaultStep[Random.Range(0, defaultStep.Length)];
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f))
+        if (Physics.Raycast(transform.position + new Vector3(0f,0.1f,0f), Vector3.down, out hit, 0.2f))
         {
             Material mat = findRaycastMaterial(hit);
             if (mat != null)
