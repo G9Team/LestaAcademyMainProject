@@ -1663,7 +1663,7 @@ MonoBehaviour:
   _fallGravityScaler: 0.6
   _dashForce: 30
   _dashDuration: 0.25
-  _runSpeed: 10
+  _runSpeed: 8
   _firstAttackSpeedX: 3
   _secondAttackSpeedX: 3
   _thirdAttackSpeedX: 5
