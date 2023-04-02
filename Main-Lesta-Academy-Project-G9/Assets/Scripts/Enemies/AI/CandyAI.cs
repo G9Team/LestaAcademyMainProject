@@ -85,9 +85,13 @@ public class CandyAI : AIBase
 
     public override void OnTakeDamage(float damage)
     {
+        if (health <= 0f) return;
         health -= damage;
         if (health <= 0)
         {
+            _stateClass = null;
+            Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<BoxCollider>());
             _animator.SetTrigger("death");
             Destroy(this.gameObject, 5f);
         }
