@@ -50,4 +50,9 @@ public abstract class AIBase : MonoBehaviour
     {
         return ((MonoBehaviour)_enemy).transform.position;
     }
+
+    public virtual void OnTakeDamage(float damage)
+    {
+        
+    }
 }
