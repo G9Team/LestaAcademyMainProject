@@ -28,9 +28,10 @@ public class PlayerController : MonoBehaviour, IAlive
     private Collider[] _boxCollisions;
     private Collider[] _lianaCollisions;
     private Collider[] _groundBoxCollision;
+    private Collider[] _platformCollision;
 
     [SerializeField] private LayerMask boxLayer;
-    [SerializeField] private LayerMask lianaLayer;
+    [SerializeField] private LayerMask platformLayer;
 
     [Header("Ground Settings")]
     [SerializeField] private LayerMask groundLayer;
@@ -251,7 +252,11 @@ public class PlayerController : MonoBehaviour, IAlive
         if (_groundCollisions.Length > 0 || _groundBoxCollision.Length>0 && !canClimb) { isGrounded = true; canMove = true; }
         else isGrounded = false;
         
-        _wallCollisions = Physics.OverlapSphere(wallChecker.position, _wallCheckRadius, wallLayer);
+        _platformCollision = Physics.OverlapSphere(groundChecker.position, _groundCheckRadius, platformLayer);
+        if (_platformCollision.Length > 0) transform.SetParent(_platformCollision[0].transform);
+        else transform.SetParent(null);
+
+       _wallCollisions = Physics.OverlapSphere(wallChecker.position, _wallCheckRadius, wallLayer);
         if (_wallCollisions.Length > 0) { isWallDetected = true;  }
         else { isWallDetected = false; }
 
@@ -275,12 +280,7 @@ public class PlayerController : MonoBehaviour, IAlive
             }
         }
 
-        _lianaCollisions = Physics.OverlapSphere(wallChecker.position, _wallCheckRadius, lianaLayer);
-        if(_lianaCollisions.Length > 0)
-        {
-            currentSwingable = _lianaCollisions[0].transform;
-            isSwinging = true;
-        }
+        
        
 
 

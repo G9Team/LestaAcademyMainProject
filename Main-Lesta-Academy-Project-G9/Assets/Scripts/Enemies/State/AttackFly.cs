@@ -40,7 +40,7 @@ public class AttackFly : AiStateBase
         Vector3 delta = position - _rigidbody.position;
         Vector3 vel = delta / Time.deltaTime;
         RaycastHit hit;
-        if (Physics.Raycast(_ai.transform.position, Vector3.down, out hit, 100f))
+        if (Physics.Raycast(_ai.transform.position, Vector3.down, out hit, 100f, ~LayerMask.GetMask("Player")))
         {
             if (hit.distance < 4f)
             {

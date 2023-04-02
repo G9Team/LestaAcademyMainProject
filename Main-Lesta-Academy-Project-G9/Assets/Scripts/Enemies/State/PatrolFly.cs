@@ -9,12 +9,16 @@ public class PatrolFly : AiStateBase
     Rigidbody _rigidbody;
     float _maxDistance = 10f;
     float _minDistance = 4f;
+    public float leftLimit = 8f;
+    public float rightLimit = 8f;
+    float _initX = 0f;
 
     public void Init(AIBase ai)
     {
         _ai = ai;
         _movePos = _ai.transform.position;
         _rigidbody = _ai.GetComponent<Rigidbody>();
+        _initX = _ai.transform.position.x;
     }
 
     public void MiniUpdate()
@@ -24,31 +28,20 @@ public class PatrolFly : AiStateBase
             RaycastHit hit;
             float right_dist = 9999f;
             float left_dist = 9999f;
-            if (Physics.Raycast(_ai.transform.position, _ai.transform.right, out hit))
+            if (Physics.Raycast(_ai.transform.position, Vector3.right, out hit))
                 right_dist = hit.distance;
-            if (Physics.Raycast(_ai.transform.position, -_ai.transform.right, out hit))
+            if (Physics.Raycast(_ai.transform.position, Vector3.left, out hit))
                 left_dist = hit.distance;
 
             if (left_dist > 2f && Random.Range(0, 100) < 50)
             {
-                _movePos = CheckGround(_ai.transform.position + new Vector3(-Mathf.Min(Random.Range(_minDistance, _maxDistance), left_dist), 0f, 0f), left_dist);
+                _movePos = new Vector3(Mathf.Max(_ai.transform.position.x - Mathf.Min(Random.Range(_minDistance, _maxDistance), left_dist), _initX-leftLimit), _ai.transform.position.y, _ai.transform.position.z);
             }
             else if(right_dist > 2f)
             {
-                _movePos = CheckGround(_ai.transform.position + new Vector3(Mathf.Min(Random.Range(_minDistance, _maxDistance), right_dist), 0f, 0f), right_dist);
+                _movePos = new Vector3(Mathf.Min(_ai.transform.position.x + Mathf.Min(Random.Range(_minDistance, _maxDistance), right_dist), _initX + leftLimit), _ai.transform.position.y, _ai.transform.position.z);
             }
         }
-    }
-
-    Vector3 CheckGround(Vector3 vector, float distance)
-    {
-        if (Physics.Raycast(vector, Vector3.down, 1.5f)) return vector; //have ground
-        RaycastHit hit;
-        if (Physics.Raycast(vector - new Vector3(0f, 1.5f, 0f), new Vector3(_ai.transform.position.x - vector.x, 0f, 0f), out hit, distance))
-        {
-            return new Vector3(hit.point.x, vector.y, vector.z);
-        }
-        else return _ai.transform.position; //cant see ground from AI to vector to move, return original position to stay
     }
 
     public void Update()
@@ -62,7 +55,7 @@ public class PatrolFly : AiStateBase
         Vector3 delta = position - _rigidbody.position;
         Vector3 vel = delta / Time.deltaTime;
         RaycastHit hit;
-        if (Physics.Raycast(_ai.transform.position, Vector3.down, out hit, 100f))
+        if (Physics.Raycast(_ai.transform.position, Vector3.down, out hit, 100f, ~LayerMask.GetMask("Player")))
         {
             if (hit.distance < 4f)
             {

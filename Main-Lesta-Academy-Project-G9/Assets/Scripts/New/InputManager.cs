@@ -36,6 +36,10 @@ namespace New
             if (Input.GetKeyDown(KeyCode.K)){
                 _playerMovement.Attack();
             }
+            if (Input.GetKeyDown(KeyCode.CapsLock))
+            {
+
+            }
         }
         private void ProceedMove()
         {

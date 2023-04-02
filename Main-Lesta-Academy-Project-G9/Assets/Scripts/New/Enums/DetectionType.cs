@@ -5,7 +5,8 @@ namespace New
         HeavyInteraction = 0,
         Wall,
         Ground,
-        Ledge
+        Ledge,
+        Platform
 
 
     }
