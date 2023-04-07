@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: terrainMaterial
+  m_Name: Nature/Terrain/Digger/Cuttable-Triplanar
   m_Shader: {fileID: 4800000, guid: 3b1c52c8ea8747f7982b7cae0c3a9ce6, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -30,8 +30,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _TerrainHeightInv: 1
-    - _TerrainWidthInv: 1
+    - _TerrainHeightInv: 0.005
+    - _TerrainWidthInv: 0.0027027028
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
