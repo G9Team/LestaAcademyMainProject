@@ -82,7 +82,7 @@ Material:
     - _BaseLight: 0
     - _Blend: 0.386
     - _BumpScale: 1
-    - _Cutoff: 0.052
+    - _Cutoff: 0.386
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _EnableExternalAlpha: 0
