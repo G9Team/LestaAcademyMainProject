@@ -26,5 +26,8 @@ namespace New
         public IPlayerData GetPlayerData(){
             return this._playerData;
         }
+        public VelocityHandler GetVelocityHandler(){
+            return this._velocityHandler;
+        }
     }
 }

@@ -22,6 +22,8 @@ namespace New
 
         void Update()
         {
+
+            #region playerControll
             _playerMovement.Move(Input.GetAxis("Horizontal"));
 
             if (Input.GetKeyDown(KeyCode.E))
@@ -49,6 +51,7 @@ namespace New
             {
 
             }
+            #endregion
         }
         private void ProceedMove()
         {

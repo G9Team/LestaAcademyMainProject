@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace New
@@ -26,7 +27,7 @@ namespace New
             }
         }
 
-        private int _currrentHealth;
+        private int _currrentHealth = 3;
 
         public int CurrentHealth
         {
@@ -43,7 +44,7 @@ namespace New
                 else if (value <= 0)
                 {
                     _currrentHealth = 0;
-                    OnHealthToZero.Invoke();
+                    OnHealthToZero?.Invoke();
                 }
                 else
                 {
@@ -65,16 +66,32 @@ namespace New
         public event Action OnHealthToZero;
 
         private Dictionary<CollectableType, int> _itemAmountByType = new Dictionary<CollectableType, int>();
+        private bool _isVulnerable = true;
         public PlayerData()
         {
             foreach (var value in Enum.GetValues(typeof(CollectableType)))
             {
                 _itemAmountByType.Add((CollectableType)value, 0);
             }
+            _isVulnerable = true;
         }
 
-        public void ChangeHealth(int health) =>
+        public void ChangeHealth(int health){
+            if(health < 0 && !_isVulnerable) return;
+            if (health < 0){
+                Invulnerability();
+            }
             CurrentHealth += health;
+        }
+
+        async private void Invulnerability(){
+            _isVulnerable = false;
+            await System.Threading.Tasks.Task.Run(() =>{
+                Thread.Sleep(1000);
+                _isVulnerable = true;
+            } );
+            
+        }
 
         public int GetCollectableCount(CollectableType typeOfItem)
         {

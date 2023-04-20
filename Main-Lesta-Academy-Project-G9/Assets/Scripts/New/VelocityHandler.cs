@@ -10,8 +10,9 @@ namespace New
         [SerializeField]
         private float _jumpForce, _mainGravityScaler, _fallGravityScaler,
             _dashForce = 15f, _dashDuration = 0.25f, _runSpeed,
-            _firstAttackSpeedX, _secondAttackSpeedX, _thirdAttackSpeedX;
-        private bool _isFacingRight, _isAttacking;
+            _firstAttackSpeedX, _secondAttackSpeedX, _thirdAttackSpeedX,
+            _noControleDuraton;
+        private bool _isFacingRight, _isAttacking, _isAttacked;
         private float _move
         {
             get
@@ -24,6 +25,7 @@ namespace New
             }
         }
         private float _internalMove, _moveScaler = 1, _currentAttackSpeedX;
+        
         private int _direction;
 
         private Rigidbody _rigidbody;
@@ -42,8 +44,9 @@ namespace New
                 Dashing();
                 return;
             }
-            if (_isAttacking){
-                AttackMovement();
+            if (_isAttacked){
+                            GravityHandler();
+
                 return;
             }
 
@@ -139,9 +142,18 @@ namespace New
         }
         public void StopAttack() => _isAttacking = false;
 
-        private void AttackMovement(){
+        private void AttackedMovement(){
+        }
+        public void Attacked(float knockbackX, float knockbackY){
             _rigidbody.velocity = Vector3.zero;
-            _rigidbody.velocity = new Vector3 (_currentAttackSpeedX, 0, 0);
+            _rigidbody.velocity = new Vector3 (knockbackX * _direction * -1, knockbackY, 0);
+            StartCoroutine(NoControllTime());
+            
+        }
+        private IEnumerator NoControllTime(){
+            _isAttacked = true;
+            yield return new WaitForSeconds(_noControleDuraton);
+            _isAttacked = false;
         }
 
     }
