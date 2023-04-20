@@ -12,6 +12,11 @@ namespace New
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private GameObject _hitbox;
         [SerializeField] private float _attackTimer;
+        [SerializeField] private MeshRenderer swordRenderer;
+        private bool showSword = false;
+        private bool pressedAttack = false;
+        private bool canAttack = true;
+        Coroutine swordCoroutine = null;
 
         private bool _isGrounded = true, _isRunning, _isInteracting, _combo, _isAttacking, _canSetCombo;
         private int _hitCounter = 0;
@@ -27,11 +32,19 @@ namespace New
         {
             if (_isAttacking == false)
             {
-                if (true /*_hitCounter == 0*/){
+                if (canAttack /*_hitCounter == 0*/){
                     //_animator.Play("Attack 1", 1);
                     _animator.SetTrigger("Attack");
                     _isAttacking = true;
                     StartCoroutine(AttackTimer());
+                    pressedAttack = true;
+                    StartCoroutine(CanAttack());
+                    if (!showSword)
+                    {
+                        if(swordCoroutine != null)
+                            StopCoroutine(swordCoroutine);
+                        swordCoroutine = StartCoroutine(ShowShowCoroutine());
+                    }
                 }
                 /*
                 else if (_hitCounter == 1){
@@ -50,6 +63,58 @@ namespace New
                 _canSetCombo = false;
             }
             */
+        }
+
+        IEnumerator CanAttack()
+        {
+            canAttack = false;
+            yield return new WaitForSeconds(1f);
+            canAttack = true;
+        }
+
+        IEnumerator ShowShowCoroutine()
+        {
+            
+            showSword = true;
+            float val = 2f;
+            while (val > 1f)
+            {
+                val -= Time.deltaTime * 10f;
+                swordRenderer.material.SetFloat("_Threshold", val);
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            swordRenderer.material.SetFloat("_Threshold", 1f);
+            swordRenderer.GetComponentInChildren<ParticleSystem>().Play();
+            while (val > 0f)
+            {
+                val -= Time.deltaTime * 10f;
+                swordRenderer.material.SetFloat("_Threshold", val);
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            swordRenderer.material.SetFloat("_Threshold", 0f);
+            while (pressedAttack)
+            {
+                pressedAttack = false;
+                yield return new WaitForSeconds(3f);
+            }
+
+            showSword = false;
+            while (val < 0.5f)
+            {
+                val += Time.deltaTime * 3f;
+                swordRenderer.material.SetFloat("_Threshold", val);
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            swordRenderer.material.SetFloat("_Threshold", 0.5f);
+            swordRenderer.GetComponentInChildren<ParticleSystem>().Play();
+            while (val < 3f)
+            {
+                val += Time.deltaTime * 3f;
+                swordRenderer.material.SetFloat("_Threshold", val);
+                yield return new WaitForSeconds(Time.deltaTime);
+            }
+            swordRenderer.material.SetFloat("_Threshold", 3f);
+            swordCoroutine = null;
         }
         private IEnumerator AttackTimer(){
             yield return new WaitForSeconds(_attackTimer);
