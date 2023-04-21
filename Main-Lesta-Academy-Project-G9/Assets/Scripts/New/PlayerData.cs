@@ -12,6 +12,7 @@ namespace New
         public int MaxHealth { get; private set; }
         public int AttackForce { get; private set; }
         private int _maxEnergy;
+        private int _currentLevel;
 
         private int _currrentEnergy;
         public int CurrentEnergy
@@ -66,14 +67,24 @@ namespace New
         public event Action OnHealthToZero;
 
         private Dictionary<CollectableType, int> _itemAmountByType = new Dictionary<CollectableType, int>();
+        private Dictionary<int, int> _starsByLevel = new Dictionary<int, int>();
         private bool _isVulnerable = true;
-        public PlayerData()
+        public PlayerData(int maxLevelIndex, int currentLevelIndex)
         {
             foreach (var value in Enum.GetValues(typeof(CollectableType)))
             {
                 _itemAmountByType.Add((CollectableType)value, 0);
             }
+            _currentLevel = currentLevelIndex;
+            for (int i = 0; i < maxLevelIndex; i++)
+            {
+                _starsByLevel.Add(i, 0);
+            }
             _isVulnerable = true;
+        }
+
+        public void SetLevel(int currentLevelIndex){
+            _currentLevel = currentLevelIndex;
         }
 
         public void ChangeHealth(int health){
@@ -122,6 +133,10 @@ namespace New
 
                 case UpgradeType.Pirojki:
                     _itemAmountByType[(CollectableType)typeOfUpgrade] += valueToUpgrade;
+                    break;
+
+                case UpgradeType.Star:
+                    _starsByLevel[_currentLevel] += valueToUpgrade;
                     break;
 
                 case UpgradeType.MaxHealth:

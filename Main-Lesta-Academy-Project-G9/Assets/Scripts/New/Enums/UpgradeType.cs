@@ -7,6 +7,7 @@ namespace New
         #region Collectables
         Wheet = 0,
         Pirojki,
+        Star,
         //other collectable here
         #endregion
 

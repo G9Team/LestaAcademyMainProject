@@ -9,6 +9,8 @@ namespace New
         public int GetCollectableCount(CollectableType type);
         public void AddCollectable(CollectableType type);
         public void AddCollectable(CollectableType type, int vlaue);
+        public void SetLevel(int currentLevelIndex);
+
 
     }
     

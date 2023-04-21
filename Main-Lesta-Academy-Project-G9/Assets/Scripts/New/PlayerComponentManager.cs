@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace New
@@ -13,7 +14,7 @@ namespace New
         [SerializeField] private PlayerAnimationManager _animationManager;
         [SerializeField] private InputManager _inputManager;
         [SerializeField] private PlayerInteractionsChecker _interactionChecker;
-        private IPlayerData _playerData = new PlayerData();
+        private IPlayerData _playerData = new PlayerData(SceneManager.sceneCountInBuildSettings, SceneManager.GetActiveScene().buildIndex);
         private IUpgrader _upgrader;
         private PlayerInteractor _interactor;
         private void Awake() {

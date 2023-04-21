@@ -5,6 +5,7 @@ namespace New
         DefaultNone = 20,
         Wheet = 0,
         Pirojki,
+        Star
 
 
     }
