@@ -14,10 +14,11 @@ namespace New
         [SerializeField] private PlayerAnimationManager _animationManager;
         [SerializeField] private InputManager _inputManager;
         [SerializeField] private PlayerInteractionsChecker _interactionChecker;
-        private IPlayerData _playerData = new PlayerData(SceneManager.sceneCountInBuildSettings, SceneManager.GetActiveScene().buildIndex);
+        private IPlayerData _playerData;
         private IUpgrader _upgrader;
         private PlayerInteractor _interactor;
         private void Awake() {
+            _playerData = new PlayerData(SceneManager.sceneCountInBuildSettings, SceneManager.GetActiveScene().buildIndex);
             _upgrader = new PlayerUpgrader(_playerData);
             _interactor = new PlayerInteractor(_upgrader, _interactionChecker);
 
