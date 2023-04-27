@@ -1,17 +1,25 @@
-Shader "Custom/transparent_col" {
+Shader "Custom/SwordShader" {
      Properties {
          _Color ("Color", Color) = (1,1,1,1)
          _Threshold ("Threshhold", Float) = 0.1
          _MainTex ("Albedo (RGB)", 2D) = "white" {}
+         _MetallicSmoothnessMap("Metallic Smoothness", 2D) = "white" {}
+         _NormalMap("Normal Map", 2D) = "bump" {}
+         _Emission("Emission (RGB)", 2D) = "black" {}
      }
      SubShader {
-         Tags { "Queue"="Transparent" "RenderType"="Transparent" }
-         LOD 200
+         Tags { "Queue"="Transparent" "RenderType"="Transparent" "ForceNoShadowCasting" = "True" }
+         LOD 300
+         Cull Off
+
          
          CGPROGRAM
-         #pragma surface surf Lambert alpha
+         #pragma surface surf Standard
  
          sampler2D _MainTex;
+         sampler2D _MetallicSmoothnessMap;
+         sampler2D _NormalMap;
+         sampler2D _Emission;
  
          struct Input {
              float2 uv_MainTex;
@@ -20,7 +28,7 @@ Shader "Custom/transparent_col" {
          fixed4 _Color;
          half _Threshold;
  
-         void surf (Input IN, inout SurfaceOutput o) {
+         void surf (Input IN, inout SurfaceOutputStandard o) {
 
              half4 c = tex2D (_MainTex, IN.uv_MainTex);
              
@@ -36,8 +44,10 @@ Shader "Custom/transparent_col" {
                  discard;
 
              half glow = transparent_diff_squared * _Threshold*10;
-             o.Emission = output_col.rgb * glow;
-
+             o.Emission = output_col.rgb * (2-glow) * tex2D(_Emission, IN.uv_MainTex);
+             o.Metallic = tex2D(_MetallicSmoothnessMap, IN.uv_MainTex).r;
+             o.Smoothness = tex2D(_MetallicSmoothnessMap, IN.uv_MainTex).g;
+             o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex));
              o.Albedo = output_col.rgb;
              o.Alpha = output_col.a;
          }
