@@ -118,6 +118,13 @@ namespace New
         public void SetHealth(int health) =>
             CurrentHealth = (health > MaxHealth) ? MaxHealth : (health <= 0) ? 0 : health;
 
+        public void LoadSave(SaveManager.SaveObject saveObject)
+        {
+            MaxHealth = saveObject.maxHealth;
+            AttackForce = saveObject.attackForce;
+            _maxEnergy = saveObject.maxEnergy;
+        }
+
 
         void IUpgradable.Upgrade(UpgradeType typeOfUpgrade, float valueToUpgrade) { return; }
 
@@ -162,6 +169,7 @@ namespace New
                 default:
                     return;
             }
+            SaveManager.AddValue(typeOfUpgrade, valueToUpgrade);
         }
 
         void IPlayerData.AddCollectable(CollectableType type) =>
