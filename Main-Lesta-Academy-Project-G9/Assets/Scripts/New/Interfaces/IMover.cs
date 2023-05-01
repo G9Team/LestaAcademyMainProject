@@ -8,9 +8,6 @@ namespace New
         public void Move (float direction);
         public void Jump();
         public void Dash();
-        public void FirstAttack();
-        public void SecondAttack();
-        public void ThirdAttack();
         public void StopAttack();
         
         //<summary>

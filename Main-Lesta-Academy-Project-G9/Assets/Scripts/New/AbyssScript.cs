@@ -37,9 +37,6 @@ public class AbyssScript : MonoBehaviour
 
     private void OnSpikeDamaged(GameObject player)
     {
-        IPlayerData data = player.GetComponent<PlayerComponentManager>().GetPlayerData();
-        data?.ChangeHealth(-1);
-        VelocityHandler velocity = player.GetComponent<PlayerComponentManager>().GetVelocityHandler();
-        velocity.Attacked(_xKnockbackForce, _yKnockbackForce);
+        player.GetComponent<PlayerComponentManager>().DamagePlayer(-1);
     }
 }

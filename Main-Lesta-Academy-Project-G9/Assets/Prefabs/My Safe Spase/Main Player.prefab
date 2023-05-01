@@ -6549,7 +6549,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5179245885219132393}
-  m_Material: {fileID: 13400000, guid: f0b8977abe9a00b419c942673dc4a461, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -6606,9 +6606,9 @@ MonoBehaviour:
   _dashForce: 30
   _dashDuration: 0.25
   _runSpeed: 8
-  _firstAttackSpeedX: 3
-  _secondAttackSpeedX: 3
-  _thirdAttackSpeedX: 5
+  _noControleDuraton: 0.25
+  _xKnockbackForce: 15
+  _yKnockbackForce: 15
 --- !u!114 &5179245885219132311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7053,7 +7053,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5413618538812747666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.95, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

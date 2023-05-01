@@ -31,5 +31,9 @@ namespace New
         public VelocityHandler GetVelocityHandler(){
             return this._velocityHandler;
         }
+        public void DamagePlayer(int damage){
+                _playerData.ChangeHealth(-1);
+                _velocityHandler.Attacked();
+        }
     }
 }

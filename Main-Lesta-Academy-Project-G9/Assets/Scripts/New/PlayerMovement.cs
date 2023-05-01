@@ -134,9 +134,6 @@ namespace New
             _animator.Stop();
             _mover.ChangeSpeed(1f);
         }
-        public void FirstAttack() => _mover.FirstAttack();
-        public void SecondAttack() => _mover.SecondAttack();
-        public void ThirdAttack() => _mover.ThirdAttack();
         public void StopAttack() => _mover.StopAttack();
 
         private void OnDisable()

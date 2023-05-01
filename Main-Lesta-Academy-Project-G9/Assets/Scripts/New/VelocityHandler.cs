@@ -10,8 +10,7 @@ namespace New
         [SerializeField]
         private float _jumpForce, _mainGravityScaler, _fallGravityScaler,
             _dashForce = 15f, _dashDuration = 0.25f, _runSpeed,
-            _firstAttackSpeedX, _secondAttackSpeedX, _thirdAttackSpeedX,
-            _noControleDuraton;
+            _noControleDuraton, _xKnockbackForce, _yKnockbackForce;
         private bool _isFacingRight, _isAttacking, _isAttacked;
         private float _move
         {
@@ -45,7 +44,7 @@ namespace New
                 return;
             }
             if (_isAttacked){
-                            GravityHandler();
+                GravityHandler();
 
                 return;
             }
@@ -122,28 +121,14 @@ namespace New
                 transform.localEulerAngles.z
                 );
         }
-        public void FirstAttack()
-        {
-            _currentAttackSpeedX = _firstAttackSpeedX * _direction;
-            _isAttacking = true;
-            Debug.Log("first attack");
-        }
-        public void SecondAttack()
-        {
-            _currentAttackSpeedX = _secondAttackSpeedX * _direction;
-            _isAttacking = true;
-                        Debug.Log("second attack " + _isAttacking);
-
-        }
-        public void ThirdAttack()
-        {
-            _currentAttackSpeedX = _thirdAttackSpeedX * _direction;
-            _isAttacking = true;
-        }
         public void StopAttack() => _isAttacking = false;
 
         private void AttackedMovement(){
         }
+        public void Attacked(){
+            Attacked(_xKnockbackForce, _yKnockbackForce);            
+        }
+
         public void Attacked(float knockbackX, float knockbackY){
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.velocity = new Vector3 (knockbackX * _direction * -1, knockbackY, 0);

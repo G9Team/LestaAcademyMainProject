@@ -10,7 +10,7 @@ namespace New
     public class PlayerData : IPlayerData
     {
         public int MaxHealth { get; private set; }
-        public int AttackForce { get; private set; }
+        public int AttackForce { get; private set; } = 1;
         private int _maxEnergy;
         private int _currentLevel;
 
@@ -98,7 +98,7 @@ namespace New
         async private void Invulnerability(){
             _isVulnerable = false;
             await System.Threading.Tasks.Task.Run(() =>{
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
                 _isVulnerable = true;
             } );
             
