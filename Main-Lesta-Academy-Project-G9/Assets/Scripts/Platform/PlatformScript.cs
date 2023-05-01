@@ -26,7 +26,7 @@ public class PlatformScript : MonoBehaviour
         switch (platformType)
         {
             case TYPE_PLATFORM.GHOST:
-                this.GetComponent<GhostPlatform>().enabled = true;
+                this.GetComponentInChildren<GhostPlatform>().enabled = true;
             break;
 
             case TYPE_PLATFORM.ROTATE:
@@ -43,6 +43,22 @@ public class PlatformScript : MonoBehaviour
      
         } 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+        
+            other.transform.parent = transform;
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        other.transform.SetParent(null);
+    }
+
 
     private void RotateAround()
     {
