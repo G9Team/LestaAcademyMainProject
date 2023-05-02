@@ -15,8 +15,7 @@ public class Platform : MonoBehaviour
 
     [Header("Ghost Settings")]
     private Animator _ghostAnim;
-    [SerializeField]
-    private bool isLooped
+    [SerializeField] private bool isLooped
     {
         set
         {
