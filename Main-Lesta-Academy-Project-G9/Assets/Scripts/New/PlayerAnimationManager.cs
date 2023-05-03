@@ -11,8 +11,8 @@ namespace New
         [SerializeField] private Animator _animator;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private GameObject _hitbox;
-        [SerializeField] private float _attackTimer;
         [SerializeField] private MeshRenderer swordRenderer;
+        [SerializeField] private float attackDelay = 0.5f;
         private bool showSword = false;
         private bool pressedAttack = false;
         private bool canAttack = true;
@@ -30,51 +30,28 @@ namespace New
         public void PullJumpTrigger() => _animator.SetTrigger("Jump");
         public void PullAttackTrigger()
         {
-            if (_isAttacking == false)
-            {
-                if (canAttack /*_hitCounter == 0*/){
-                    //_animator.Play("Attack 1", 1);
-                    _animator.SetTrigger("Attack");
-                    _isAttacking = true;
-                    StartCoroutine(AttackTimer());
-                    pressedAttack = true;
-                    StartCoroutine(CanAttack());
-                    if (!showSword)
-                    {
-                        if(swordCoroutine != null)
-                            StopCoroutine(swordCoroutine);
-                        swordCoroutine = StartCoroutine(ShowShowCoroutine());
-                    }
+            if (canAttack){
+                _animator.SetTrigger("Attack");
+                pressedAttack = true;
+                StartCoroutine(CanAttack());
+                if (!showSword)
+                {
+                    if(swordCoroutine != null)
+                        StopCoroutine(swordCoroutine);
+                    swordCoroutine = StartCoroutine(ShowShowCoroutine());
                 }
-                /*
-                else if (_hitCounter == 1){
-                    _animator.SetTrigger("Attack 2");
-                    _isAttacking = true;
-                }
-                */
             }
-
-            /*
-            else if (_canSetCombo == true)
-            {
-                _animator.SetBool("Combo", true);
-                            Debug.Log("triggered");
-
-                _canSetCombo = false;
-            }
-            */
         }
 
         IEnumerator CanAttack()
         {
             canAttack = false;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(attackDelay);
             canAttack = true;
         }
 
         IEnumerator ShowShowCoroutine()
         {
-            
             showSword = true;
             float val = 2f;
             while (val > 1f)
@@ -116,11 +93,6 @@ namespace New
             swordRenderer.material.SetFloat("_Threshold", 3f);
             swordCoroutine = null;
         }
-        private IEnumerator AttackTimer(){
-            yield return new WaitForSeconds(_attackTimer);
-            _isAttacking = false;
-        }
-
 
         public void ResetAttack() => _isAttacking = false;
         public void ResetCombo() => _animator.SetBool("Combo", false);
