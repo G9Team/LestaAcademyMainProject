@@ -6,9 +6,10 @@ public class AttackNear : AiStateBase
 {
     AIBase _ai;
     Rigidbody _rigidbody;
-    float _attackDistance = 2f;
+    public float attackDistance = 2f;
     bool _attacking = false;
     Animator _animator;
+    public bool dontMoveWhileAttacking = false;
 
     public void Init(AIBase ai)
     {
@@ -19,7 +20,7 @@ public class AttackNear : AiStateBase
 
     public void MiniUpdate()
     {
-        bool needAttack = Vector3.Distance(_ai.transform.position, _ai.GetEnemyPosition()) <= _attackDistance;
+        bool needAttack = Vector3.Distance(_ai.transform.position, _ai.GetEnemyPosition()) <= attackDistance;
         if (needAttack != _attacking)
         {
             _attacking = needAttack;
@@ -32,6 +33,7 @@ public class AttackNear : AiStateBase
     {
         Vector3 enemyPos = _ai.GetEnemyPosition();
         if (Mathf.Abs(_ai.transform.position.y - enemyPos.y) > 2f) return;
+        
         _movePosition(enemyPos);
     }
 
@@ -43,7 +45,8 @@ public class AttackNear : AiStateBase
         vel.y = oldVel.y * Physics.gravity.y*Time.deltaTime;
         vel.x = Mathf.Min(Mathf.Max((Mathf.Abs(oldVel.x) > Mathf.Abs(vel.x) ? oldVel.x : vel.x), -1f), 1f)*200;
         vel.z = 0f;
-        _rigidbody.velocity = vel * Time.deltaTime;
+        if (!(_attacking && dontMoveWhileAttacking))
+            _rigidbody.velocity = vel * Time.deltaTime;
         Quaternion targetRotation = Quaternion.LookRotation(new Vector3(position.x, _ai.transform.position.y, position.z) - _ai.transform.position);
         _ai.transform.rotation = Quaternion.Slerp(_ai.transform.rotation, targetRotation, 5f * Time.deltaTime);
     }
