@@ -60,9 +60,35 @@ namespace New
         private void Spikes()
         {
             _animator.Play("Attack3");
-
-            Instantiate(_spike, new Vector3(0, -2, 0), Quaternion.identity);
+            float xSpawnPosition = Mathf.Sign(GameObject.FindGameObjectWithTag("Player").transform.position.x + 10) * 15;
+            GameObject spikes = Instantiate(_spike, new Vector3(xSpawnPosition, -2, 0), Quaternion.identity);
+            PartialSpikeDestroy(spikes);
         }
+
+        private void PartialSpikeDestroy(GameObject spikes){
+            GameObject[] spikes1 = GetChilds(spikes.transform.GetChild(0).gameObject);
+            GameObject[] spikes2 = GetChilds(spikes.transform.GetChild(1).gameObject);
+            List<int> ints = new List<int>();
+            for (int i = 0; i < spikes1.Length - 4; i++)
+            {
+                ints.Add(Random.Range(0,spikes1.Length));
+            }
+            foreach(int i in ints){
+                spikes1[i].SetActive(!spikes1[i].activeSelf);
+                spikes2[i].SetActive(!spikes2[i].activeSelf);
+            }
+
+        }
+
+        private GameObject[] GetChilds(GameObject spikes){
+            GameObject[] toReturn = new GameObject[spikes.transform.childCount];
+            for (int i = 0; i < spikes.transform.childCount; i++)
+            {
+                toReturn[i] = spikes.transform.GetChild(i).gameObject;
+            }
+            return toReturn;
+        }
+
         private void RailGun()
         {
             _animator.Play("Attack2");

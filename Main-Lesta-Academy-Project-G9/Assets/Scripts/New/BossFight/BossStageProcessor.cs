@@ -15,10 +15,9 @@ namespace New
         private void Start()
         {
             Stage = BossStage.First;
-            _health.NextStage += ProceedNextStage;
         }
 
-        private void ProceedNextStage()
+        public void ProceedNextStage()
         {
             _bossPosotoin.ChangePosition(_positionToShiftStage);
             //await for shift to position

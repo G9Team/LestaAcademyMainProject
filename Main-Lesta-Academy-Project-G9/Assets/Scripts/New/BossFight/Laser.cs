@@ -54,9 +54,6 @@ namespace New
             _lineInstance = Instantiate(_line).gameObject;
             StartCoroutine(StartLaserAttack());
         }
-        private void OnDrawGizmos() {
-            Gizmos.DrawLine(this.transform.position, _rayDirection);
-        }
         private void FixedUpdate() {
             
             if (_casting){
@@ -81,13 +78,13 @@ namespace New
             yield return new WaitForSeconds(_laserDelay);
             _casting = true;
             _laserInstance = Instantiate(_actualLaser, _lineInstance.transform.position, Quaternion.identity).gameObject;
+            Destroy(_lineInstance);
             yield return new WaitForSeconds(_laserDuration);
             _casting = false;
             this.gameObject.SetActive(false);
         }
 
         private void OnDisable() {
-            Destroy(_lineInstance);
             Destroy(_laserInstance, 0.05f);
         }
     }

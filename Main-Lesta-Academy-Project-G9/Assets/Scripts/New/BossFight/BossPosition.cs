@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossPosition : MonoBehaviour
 {
     [SerializeField] public List<Transform> UpperPositions, MidPostitons, LowSidePositions;
-    [SerializeField] private GameObject _bossBody;
+    [SerializeField] private GameObject _bossBody, _particles;
     private List<Transform> _positions = new List<Transform>();
     public Transform CurrentPosition { get; private set; }
 
@@ -26,14 +26,21 @@ public class BossPosition : MonoBehaviour
         ChangePosition(tempPosition);
     }
     
-    public void ChangePosition(Transform position)
+    public void ChangePosition(Transform position)    
     {
+        _particles.SetActive(true);
+
         if (CurrentPosition == position) return;
         //TODO made some async (coroutine) for customisation, track transition
         CurrentPosition = position;
         _bossBody.transform.position = position.position;
         _bossBody.transform.rotation = position.rotation;
+        _particles.SetActive(true);
 
+
+    }
+    public void ChangePositionToSafe(){
+        ChangePosition(UpperPositions[0]);
     }
 
 }

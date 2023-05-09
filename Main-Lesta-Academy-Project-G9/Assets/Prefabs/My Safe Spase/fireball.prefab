@@ -130,6 +130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireballFlyDuration: 0.8
   _fireDelay: 1
+  _v2FlySpeed: 1
+  _v2StepDuration: 1
 --- !u!114 &-740715099690295593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,5 +144,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba3a550b0fb43843a3e4c655b89ac43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _xKnockbackForce: 15
-  _yKnockbackForce: 15

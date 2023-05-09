@@ -9,8 +9,7 @@ namespace New
     {
         [SerializeField] private int _maxHealth;
         public int Health { get; private set; }
-        public event UnityAction NextStage;
-        public event UnityAction Death;
+        public event UnityAction NextStage, Death, Damaged;
 
 
         private void Awake()
@@ -25,11 +24,17 @@ namespace New
             {
                 Debug.Log("Shift stage");
                 NextStage?.Invoke();
+                Health = nextHealth;
+                return;
+
             }
             else if (nextHealth <= 0)
             {
                 Death?.Invoke();
+                Health = 0;
+                return;
             }
+            Damaged?.Invoke();
             Health = nextHealth;
         }
 
@@ -39,7 +44,6 @@ namespace New
             {
                 IPlayerData data = other.transform.parent.GetComponent<PlayerComponentManager>().GetPlayerData();
                 GetDamage(data.AttackForce);
-                Debug.Log("Boss damaged ");
             }
         }
 

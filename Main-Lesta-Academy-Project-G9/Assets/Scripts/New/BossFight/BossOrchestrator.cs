@@ -7,16 +7,19 @@ namespace New
 
     public class BossOrchestrator : MonoBehaviour
     {
-        [SerializeField] private GameObject _bossBody;
-        [SerializeField] private float _loopTimer;
+        [SerializeField] private GameObject _bossBody, _stageVFX;
+        [SerializeField] private float _loopTimer, _breakTimer;
         [SerializeField] private BossHealth _health;
+        private Animator _animator;
         private BossPosition _bossPosition;
         private BossStageProcessor _stageProcessor;
         private BossAttackHandler _attackHandler;
-        private float _actualTimer;
+        private float _actualTimer, _actualBreak;
         private List<BossAttackType> _firstStageAttacks = new List<BossAttackType> { BossAttackType.FireBall, BossAttackType.Spikes };
         private List<BossAttackType> _secondStageAttacks = new List<BossAttackType> { BossAttackType.RailGun };
         private List<BossAttackType> _thirdStageAttacks = new List<BossAttackType> { BossAttackType.BulletHell };
+        private int _attackCounter = 6;
+        private bool _stopper = false;
         private void Awake()
         {
             RefreshAttacksLists();
@@ -24,7 +27,11 @@ namespace New
             _bossPosition = GetComponent<BossPosition>();
             _stageProcessor = GetComponent<BossStageProcessor>();
             _actualTimer = _loopTimer;
+            _actualBreak = _breakTimer;
             _health.Death += Die;
+            _health.Damaged += GetDamage;
+            _health.NextStage += NextStage;
+            _animator = _health.gameObject.GetComponent<Animator>();
         }
         private void RefreshAttacksLists()
         {
@@ -37,9 +44,20 @@ namespace New
 
         private void Update()
         {
+            if (_stopper){
+                
+                _actualBreak -= Time.deltaTime;
+                if(_actualBreak <= 0){
+                    _actualBreak = _breakTimer;
+                    _stopper = false;
+                }
+                return;
+            }
+
             _actualTimer -= Time.deltaTime;
             if (_actualTimer <= 0)
             {
+
                 NextLoop();
             }
         }
@@ -48,9 +66,18 @@ namespace New
         {
             _actualTimer = _loopTimer;
             _bossPosition.ChangePosition();
+            Debug.Log("NextLoop");
             CalculateAttack();
 
 
+        }
+
+        private void NextStage(){
+            StopCoroutine(GetDamageTime());
+            _stageProcessor.ProceedNextStage();
+            _actualBreak = 2.5f;
+            _stageVFX.SetActive(true);
+            _stopper = true;
         }
         private void CalculateAttack()
         {
@@ -83,8 +110,30 @@ namespace New
             Destroy(this.gameObject);
             
         }
+        private void GetDamage(){
+            StartCoroutine(GetDamageTime());
+            
+        }
+        private IEnumerator GetDamageTime(){
+            _animator.Play("Damaged");
+            yield return new WaitForSeconds(0.3f);
+            _bossPosition.ChangePosition();
+            _attackCounter--;
+            if (_attackCounter <=0){
+                CoffeeBreak();
+                Debug.Log("Coffie");
+            }
+            Debug.Log("Damaged");
+
+        }
+        private void CoffeeBreak(){
+            _bossPosition.ChangePositionToSafe();
+            _attackCounter = 6;
+            _stopper = true;
+        }
         private void OnDisable() {
             _health.Death -= Die;
+            _health.Damaged -= GetDamage;
         }
 
     }
