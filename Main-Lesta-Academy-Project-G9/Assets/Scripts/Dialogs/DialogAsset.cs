@@ -28,6 +28,7 @@ public class DialogAsset : ScriptableObject
         public GroupType groupType;
         public int force = 0;
         public bool hideName;
+        public AudioClip clip;
         public AnswerGroup[] answers = new AnswerGroup[0];
     }
 
