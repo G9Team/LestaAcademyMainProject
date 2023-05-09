@@ -15,14 +15,9 @@ public class Platform : MonoBehaviour
 
     [Header("Ghost Settings")]
     private Animator _ghostAnim;
-    [SerializeField] private bool isLooped
-    {
-        set
-        {
-            if (value == true) _loop = -1;
-            else _loop = 0;
-        }
-    }
+
+
+
     [SerializeField] float disappearTime = 3;
     [SerializeField] bool canReset;
     [SerializeField] float resetTime;
@@ -30,13 +25,21 @@ public class Platform : MonoBehaviour
     [SerializeField] private TYPE_PLATFORM platformType;
     [SerializeField] private float _time;
     private int _loop;
-    
-    
+
+
+
     [SerializeField] private Vector3[] _waypoints;
     [SerializeField] private bool isGhost;
+    public bool isLooped;
+
+
+
 
     void Start()
     {
+        if (isLooped) _loop = -1;
+        else _loop = 0;
+
         _ghostAnim = GetComponentInChildren<Animator>();
         _ghostAnim.SetFloat("DissapearTime", 1 / disappearTime);
 
@@ -54,12 +57,34 @@ public class Platform : MonoBehaviour
                 MoveWithRotate();
                 break;
         }
+
+    }
+
+    public void SayToMove()
+    {
+        isLooped = true;
+
+        switch (platformType)
+        {
+            case TYPE_PLATFORM.ROTATE:
+                RotateAround();
+                break;
+
+            case TYPE_PLATFORM.MOVE:
+                MoveToPoints();
+                break;
+
+            case TYPE_PLATFORM.MOVE_WITH_ROTATE:
+                MoveWithRotate();
+                break;
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(platformType == TYPE_PLATFORM.MOVE) collision.transform.parent = transform;
-        if(isGhost) _ghostAnim.SetBool("Trigger", true);
+        if (platformType == TYPE_PLATFORM.MOVE) collision.transform.parent = transform;
+        if (isGhost) _ghostAnim.SetBool("Trigger", true);
     }
 
     private void OnCollisionExit(Collision collision)
