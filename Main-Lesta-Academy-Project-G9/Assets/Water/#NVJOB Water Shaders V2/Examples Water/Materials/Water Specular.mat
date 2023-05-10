@@ -154,8 +154,8 @@ Material:
     m_Floats:
     - _Albedo2Flow: 0.3
     - _Albedo2Tiling: 0.9
-    - _AlbedoContrast: 1.4
-    - _AlbedoIntensity: 0.56
+    - _AlbedoContrast: 0.69
+    - _AlbedoIntensity: 0.61
     - _Brightness: 1
     - _BumpScale: 1
     - _Contrast: 1
@@ -194,8 +194,8 @@ Material:
     - _MainDetailFlow: 0
     - _MainDetailScale: 3
     - _Metallic: 0
-    - _MicrowaveScale: 1
-    - _MicrowaveStrength: 0.1
+    - _MicrowaveScale: 1.04
+    - _MicrowaveStrength: 1.046
     - _MinuteDetailIntensity: 1.455
     - _MinuteDetailScrollSpeed: 0.089
     - _MirrorContrast: 1
@@ -209,9 +209,9 @@ Material:
     - _Mitigation: 22.4
     - _Mode: 0
     - _NormalDetailFlow: 1
-    - _NormalMap1Strength: 0.8
+    - _NormalMap1Strength: 0.56
     - _NormalMap2Flow: 0.4
-    - _NormalMap2Strength: 0.7
+    - _NormalMap2Strength: 0.94
     - _NormalMap2Tiling: 1.1
     - _NormalStrength: 0.85
     - _NormalmapDetailScale: 0.7
@@ -233,17 +233,17 @@ Material:
     - _ParallaxScale: 0.35
     - _Radius: 1
     - _Reflect: 1
-    - _ReflectionContrast: 1.5
-    - _ReflectionSaturation: 0.2
-    - _ReflectionStrength: 1.2
+    - _ReflectionContrast: 1.24
+    - _ReflectionSaturation: 0.58
+    - _ReflectionStrength: 0.49
     - _RefractionIntensity: 0.61
     - _RefractionSpeed: 1.61
     - _ReverseFlow: -5
     - _Saturation: 1
     - _SaturationRef: 0.5
-    - _Shininess: 0.6
+    - _Shininess: 0.329
     - _SmoothnessTextureChannel: 0
-    - _SoftFactor: 0.09
+    - _SoftFactor: 0.052
     - _SpecularHighlights: 1
     - _Speed: 0.5
     - _SpeedX: 0.1
@@ -257,7 +257,7 @@ Material:
     - _WaveSpeed: 20
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.050980393, g: 0.06182073, b: 0.101960786, a: 1}
+    - _AlbedoColor: {r: 0.26486292, g: 0.34307307, b: 0.6037736, a: 1}
     - _BlendColor: {r: 0.29411763, g: 0.29411763, b: 0.29411763, a: 1}
     - _Color: {r: 0.035, g: 0.054999992, b: 0.07, a: 1}
     - _DiffuseColor: {r: 0.32352936, g: 0.32352936, b: 0.32352936, a: 1}
@@ -268,7 +268,7 @@ Material:
     - _MirrorColor: {r: 1.1486983, g: 1.1486983, b: 1.1486983, a: 0.5}
     - _MirrorDepthColor: {r: 0, g: 0, b: 0, a: 0.5}
     - _ReflectColor: {r: 0.2258196, g: 0.23354737, b: 0.23921569, a: 1}
-    - _ReflectionColor: {r: 0.22749412, g: 0.23070937, b: 0.23921569, a: 0.5}
-    - _SpecColor: {r: 0.29411766, g: 0.33075517, b: 0.4117647, a: 1}
+    - _ReflectionColor: {r: 0.4279548, g: 0.47083783, b: 0.5566038, a: 0.5}
+    - _SpecColor: {r: 0.29556784, g: 0.35972768, b: 0.509434, a: 1}
     - _SpecularColor: {r: 0.5808823, g: 0.5808823, b: 0.5808823, a: 1}
   m_BuildTextureStacks: []
