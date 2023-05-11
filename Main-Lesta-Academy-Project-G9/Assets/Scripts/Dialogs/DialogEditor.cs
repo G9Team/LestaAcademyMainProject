@@ -133,7 +133,10 @@ public class DialogEditor : Editor
                         using (new EditorGUILayout.HorizontalScope())
                         {
                             gr.group.hideName = EditorGUILayout.Toggle("Hide Name", gr.group.hideName);
+
                         }
+
+                        gr.group.clip = (AudioClip)EditorGUILayout.ObjectField("Dialog Clip", gr.group.clip, typeof(AudioClip));
 
                         EditorGUILayout.LabelField("Dialog"); gr.group.dialog = EditorGUILayout.TextArea(gr.group.dialog, GUILayout.Height(100), GUILayout.ExpandHeight(true), GUILayout.ExpandWidth(true));
                         break;

@@ -141,8 +141,8 @@ Material:
     m_Floats:
     - _Albedo2Flow: 0.9
     - _Albedo2Tiling: 0.9
-    - _AlbedoContrast: 0.13
-    - _AlbedoIntensity: 4.2
+    - _AlbedoContrast: -0.3
+    - _AlbedoIntensity: 3.69
     - _Brightness: 1
     - _BumpScale: 1
     - _Contrast: 1
@@ -168,7 +168,7 @@ Material:
     - _FoamScale: 0.1
     - _GlossAmount: 0.03
     - _GlossMapScale: 1
-    - _Glossiness: 0.91
+    - _Glossiness: 0
     - _GlossyReflections: 1
     - _Intensity: 2
     - _IntensityMicrowave: 0.68
@@ -179,8 +179,8 @@ Material:
     - _InvFade: 0
     - _MainDetailFlow: 1
     - _MainDetailScale: 1
-    - _Metallic: 0.95
-    - _MicrowaveScale: 1
+    - _Metallic: 0.92
+    - _MicrowaveScale: 1.09
     - _MicrowaveStrength: 0.91
     - _MinuteDetailIntensity: 1.455
     - _MinuteDetailScrollSpeed: 0.089
@@ -197,7 +197,7 @@ Material:
     - _NormalDetailFlow: 1
     - _NormalMap1Strength: 0.8
     - _NormalMap2Flow: -0.2
-    - _NormalMap2Strength: 0.5
+    - _NormalMap2Strength: 0.59
     - _NormalMap2Tiling: 1.2
     - _NormalmapDetailScale: 1.2
     - _NormalmapDetailScaleA: 1
@@ -223,7 +223,7 @@ Material:
     - _Saturation: 1
     - _Shininess: 0.157
     - _SmoothnessTextureChannel: 0
-    - _SoftFactor: 0.11
+    - _SoftFactor: 0.755
     - _SpecularHighlights: 1
     - _Speed: 0.5
     - _SpeedX: 0.1
@@ -237,7 +237,7 @@ Material:
     - _WaveSpeed: 20
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 1, g: 0.7921569, b: 0.5529412, a: 1}
+    - _AlbedoColor: {r: 0.0979441, g: 0.3828419, b: 0.6698113, a: 1}
     - _BlendColor: {r: 0.29411763, g: 0.29411763, b: 0.29411763, a: 1}
     - _Color: {r: 1, g: 0.7924575, b: 0.55200005, a: 1}
     - _DiffuseColor: {r: 0.32352936, g: 0.32352936, b: 0.32352936, a: 1}
