@@ -402,12 +402,12 @@ MonoBehaviour:
   - textureNames:
     - 1K_Base_color
     audioClips:
-    - {fileID: 8300000, guid: 2c0b338e857b59e4f92a453fd314d542, type: 3}
-    - {fileID: 8300000, guid: 18ffeb27ddd2d3c46b42ebdb0ff85a8b, type: 3}
-    - {fileID: 8300000, guid: c566c545f6a17b64f86c930f291fe66d, type: 3}
-    - {fileID: 8300000, guid: 79971f9321a1efb4b93ba2911b7682db, type: 3}
-    - {fileID: 8300000, guid: d8ab4ad1a562ecb4b93915ab069f1297, type: 3}
-    - {fileID: 8300000, guid: ed46745a89384a244bded4549347ce81, type: 3}
+    - {fileID: 8300000, guid: 49a369c983feeab4daaccfa8496c3fd6, type: 3}
+    - {fileID: 8300000, guid: 79b877bb1f803f24893cb1f82e8c589d, type: 3}
+    - {fileID: 8300000, guid: d58d12c18417b3c46bfc454f0cbb1258, type: 3}
+    - {fileID: 8300000, guid: 2f62f3c2f711f2d4999f5e58281dd6b8, type: 3}
+    - {fileID: 8300000, guid: 3a64682c1f29f8f4cbde50d28b246563, type: 3}
+    - {fileID: 8300000, guid: 6c92b0df1aad1554ea44ab288bf01e96, type: 3}
   - textureNames:
     - defaultMat.002_Base_color
     audioClips:
@@ -427,12 +427,33 @@ MonoBehaviour:
     - {fileID: 8300000, guid: a9a2eba87898aad48bcaa3fe592e2b0e, type: 3}
     - {fileID: 8300000, guid: 9f83a704162c80547b97215baf10a031, type: 3}
   defaultStep:
-  - {fileID: 8300000, guid: 2c0b338e857b59e4f92a453fd314d542, type: 3}
-  - {fileID: 8300000, guid: 18ffeb27ddd2d3c46b42ebdb0ff85a8b, type: 3}
-  - {fileID: 8300000, guid: c566c545f6a17b64f86c930f291fe66d, type: 3}
-  - {fileID: 8300000, guid: 79971f9321a1efb4b93ba2911b7682db, type: 3}
-  - {fileID: 8300000, guid: d8ab4ad1a562ecb4b93915ab069f1297, type: 3}
-  - {fileID: 8300000, guid: ed46745a89384a244bded4549347ce81, type: 3}
+  - {fileID: 8300000, guid: 49a369c983feeab4daaccfa8496c3fd6, type: 3}
+  - {fileID: 8300000, guid: 79b877bb1f803f24893cb1f82e8c589d, type: 3}
+  - {fileID: 8300000, guid: d58d12c18417b3c46bfc454f0cbb1258, type: 3}
+  - {fileID: 8300000, guid: 2f62f3c2f711f2d4999f5e58281dd6b8, type: 3}
+  - {fileID: 8300000, guid: 3a64682c1f29f8f4cbde50d28b246563, type: 3}
+  - {fileID: 8300000, guid: 6c92b0df1aad1554ea44ab288bf01e96, type: 3}
+  swayClips:
+  - {fileID: 8300000, guid: beb2aee2c93a611489d4b28bd3f6006f, type: 3}
+  - {fileID: 8300000, guid: 240d8ef5d9bee034d8e23247932aa01e, type: 3}
+  - {fileID: 8300000, guid: c34e0cfb2403a294a8754247ac14a9d3, type: 3}
+  - {fileID: 8300000, guid: a7ba2b91034e08f41b4e36327d2960be, type: 3}
+  hitClips:
+  - {fileID: 8300000, guid: 49701a154097d52469a557377e1e5817, type: 3}
+  - {fileID: 8300000, guid: bc214d0e8faca7543ba7322cfac3a031, type: 3}
+  - {fileID: 8300000, guid: a6c640fe87038924387dbec60439df51, type: 3}
+  takeDamageClips:
+  - {fileID: 8300000, guid: 914ce23b1fa036c4cae988b475fc27ed, type: 3}
+  - {fileID: 8300000, guid: 4ecfed45759a43a49a55b95c444b646d, type: 3}
+  otherClips:
+  - {fileID: 8300000, guid: 84d8a4dea6b9c684ab5b6676bbb51910, type: 3}
+  - {fileID: 8300000, guid: 7d1d0d3a9c78e2e4dbe298de3672b8c2, type: 3}
+  - {fileID: 8300000, guid: b7b62a09e659faf479dd57a6ce5bd825, type: 3}
+  - {fileID: 8300000, guid: 914ce23b1fa036c4cae988b475fc27ed, type: 3}
+  - {fileID: 8300000, guid: 4ecfed45759a43a49a55b95c444b646d, type: 3}
+  - {fileID: 8300000, guid: 3d96199633d82174093c26b8f5988528, type: 3}
+  - {fileID: 8300000, guid: d87158329bd023047a54325219414a40, type: 3}
+  - {fileID: 8300000, guid: 4368630438a8d3d4e8687681dacc21cd, type: 3}
   audioSource: {fileID: 6717304868168164137}
 --- !u!1 &557038337896217667
 GameObject:
@@ -510,6 +531,7 @@ GameObject:
   - component: {fileID: 832831817366175175}
   - component: {fileID: 832831817366175174}
   - component: {fileID: 832831817366175173}
+  - component: {fileID: 7845881507872881952}
   m_Layer: 8
   m_Name: Hibox (1)
   m_TagString: PlayerAtackHitbox
@@ -595,6 +617,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7845881507872881952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832831817366175172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ab5bc530fa23a4396d28fdf39de9a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832831817990435317
 GameObject:
   m_ObjectHideFlags: 0

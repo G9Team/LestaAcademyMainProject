@@ -17,6 +17,7 @@ public class DialogTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Activate();
+        if (other.tag == "Player")
+            Activate();
     }
 }

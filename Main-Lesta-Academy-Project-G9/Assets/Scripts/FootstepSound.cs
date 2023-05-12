@@ -13,22 +13,26 @@ public class FootstepSound : MonoBehaviour
     }
     [SerializeField] private SoundTemplates[] soundTemplates;
     [SerializeField] private AudioClip[] defaultStep;
+    [SerializeField] private AudioClip[] swayClips;
+    [SerializeField] private AudioClip[] hitClips;
+    [SerializeField] private AudioClip[] takeDamageClips;
+    [SerializeField] private AudioClip[] otherClips;
     [SerializeField] private AudioSource audioSource;
 
     public void PlayFootstep()
     {
         RaycastHit hit;
         AudioClip clip = defaultStep[Random.Range(0, defaultStep.Length)];
-        if (Physics.Raycast(transform.position + new Vector3(0f,0.1f,0f), Vector3.down, out hit, 0.2f))
+        if (Physics.Raycast(transform.position + new Vector3(0f, 0.1f, 0f), Vector3.down, out hit, 0.2f))
         {
             Material mat = findRaycastMaterial(hit);
             if (mat != null)
             {
                 if (mat.GetTexture("_MainTex") == null) return;
                 string type = mat.GetTexture("_MainTex").name;
-                foreach(SoundTemplates step in soundTemplates)
+                foreach (SoundTemplates step in soundTemplates)
                 {
-                    if(step.textureNames.Contains(type))
+                    if (step.textureNames.Contains(type))
                     {
                         clip = step.audioClips[Random.Range(0, step.audioClips.Length)];
                         break;
@@ -36,8 +40,34 @@ public class FootstepSound : MonoBehaviour
                 }
             }
         }
-
         audioSource.PlayOneShot(clip);
+    }
+
+    public void PlaySway()
+    {
+        audioSource.PlayOneShot(swayClips[Random.Range(0, swayClips.Length)], 0.3f);
+    }
+
+    public void PlayHit()
+    {
+        audioSource.PlayOneShot(hitClips[Random.Range(0, hitClips.Length)], 0.3f);
+    }
+
+    public void PlayTD()
+    {
+        audioSource.PlayOneShot(takeDamageClips[Random.Range(0, takeDamageClips.Length)], 0.2f);
+    }
+
+    public void PlayCustom(string name)
+    {
+        foreach (AudioClip clip in otherClips)
+        {
+            if (clip.name == name)
+            {
+                audioSource.PlayOneShot(clip);
+                break;
+            }
+        }
     }
 
     Material findRaycastMaterial(RaycastHit hit)
