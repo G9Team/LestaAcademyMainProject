@@ -40,7 +40,7 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528773708467288509}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -74,9 +74,9 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -1.84, y: 17.3, z: -2.5700002}
-  - {x: -19.002308, y: 4.8, z: 0}
-  - {x: -53.326923, y: -20.199997, z: 0}
+  - {x: 3.8899996, y: 2.85, z: -0.00000023841858}
+  - {x: -58.899998, y: 2.85, z: 0}
+  - {x: -58.899998, y: 2.85, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 2
@@ -125,7 +125,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 8
+    numCapVertices: 0
     alignment: 0
     textureMode: 1
     shadowBias: 0.5
