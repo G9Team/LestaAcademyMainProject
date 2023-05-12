@@ -30,15 +30,16 @@ namespace New
         public void PullJumpTrigger() => _animator.SetTrigger("Jump");
         public void PullAttackTrigger()
         {
-            if (canAttack){
+            if (canAttack)
+            {
                 _animator.SetTrigger("Attack");
                 pressedAttack = true;
                 StartCoroutine(CanAttack());
                 if (!showSword)
                 {
-                    if(swordCoroutine != null)
+                    if (swordCoroutine != null)
                         StopCoroutine(swordCoroutine);
-                    swordCoroutine = StartCoroutine(ShowShowCoroutine());
+                    swordCoroutine = StartCoroutine(ShowSwordCoroutine());
                 }
             }
         }
@@ -50,7 +51,7 @@ namespace New
             canAttack = true;
         }
 
-        IEnumerator ShowShowCoroutine()
+        IEnumerator ShowSwordCoroutine()
         {
             showSword = true;
             float val = 2f;
@@ -101,16 +102,18 @@ namespace New
         public void HitStarted() => _hitbox.SetActive(true);
         public void HitEnded() => _hitbox.SetActive(false);
 
-        public void AnimFirstAttack(){
+        public void AnimFirstAttack()
+        {
             _animator.ResetTrigger("Attack");
             _isAttacking = true;
             _hitCounter++;
         }
-        public void AnimSecondAttack(){
+        public void AnimSecondAttack()
+        {
             _isAttacking = true;
             _hitCounter--;
         }
-        public void Stop(){}//=> _isAttacking = false;
+        public void Stop() { }//=> _isAttacking = false;
 
         private void Update()
         {
@@ -118,7 +121,7 @@ namespace New
         }
 
         private void AnimatorSetBool()
-        {        
+        {
             _animator.SetBool("Interacting", _isInteracting);
             _animator.SetFloat("YSpeed", _rigidbody.velocity.y);
             _animator.SetFloat("XSpeed", UpdateAnimatorValue(Mathf.Abs(Input.GetAxis("Horizontal"))));

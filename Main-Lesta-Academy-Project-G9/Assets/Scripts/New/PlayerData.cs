@@ -11,7 +11,7 @@ namespace New
     {
         public int MaxHealth { get; private set; }
         public int AttackForce { get; private set; } = 1;
-        private int _maxEnergy;
+        public int MaxEnergy { get; private set; }
         private int _currentLevel;
 
         private int _currrentEnergy;
@@ -23,7 +23,7 @@ namespace New
             }
             private set
             {
-                _currrentEnergy = (value > _maxEnergy) ? _maxEnergy :
+                _currrentEnergy = (value > MaxEnergy) ? MaxEnergy :
                                   (value < 0) ? 0 : value;
             }
         }
@@ -63,8 +63,11 @@ namespace New
                 return Vector3.right * _knockbackForce;
             }
         }
+        public int Wheet {get => _itemAmountByType[CollectableType.Wheet]; }
+        public int Pirojki {get => _itemAmountByType[CollectableType.Pirojki]; }
+        public int Coins {get => _starsByLevel[_currentLevel]; }
 
-        public event Action OnHealthToZero;
+        public event Action OnHealthToZero, OnUIUpdate;
 
         private Dictionary<CollectableType, int> _itemAmountByType = new Dictionary<CollectableType, int>();
         private Dictionary<int, int> _starsByLevel = new Dictionary<int, int>();
@@ -93,6 +96,7 @@ namespace New
                 Invulnerability();
             }
             CurrentHealth += health;
+            OnUIUpdate?.Invoke();
         }
 
         async private void Invulnerability(){
@@ -122,7 +126,7 @@ namespace New
         {
             MaxHealth = saveObject.maxHealth;
             AttackForce = saveObject.attackForce;
-            _maxEnergy = saveObject.maxEnergy;
+            MaxEnergy = saveObject.maxEnergy;
         }
 
 
@@ -151,7 +155,7 @@ namespace New
                     break;
 
                 case UpgradeType.MaxEnergy:
-                    _maxEnergy += valueToUpgrade;
+                    MaxEnergy += valueToUpgrade;
                     break;
 
                 case UpgradeType.CurrentHealth:
@@ -169,6 +173,7 @@ namespace New
                 default:
                     return;
             }
+            OnUIUpdate?.Invoke();
             SaveManager.AddValue(typeOfUpgrade, valueToUpgrade);
         }
 
