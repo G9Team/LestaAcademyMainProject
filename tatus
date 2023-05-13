@@ -1,0 +1,274 @@
+[33mcommit d3ab6277a53dc1d9f95a297aac2dcdd41d841cd6[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Merge: 06bccc6 1265e32
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Fri May 12 23:07:40 2023 +0300
+
+    bonus level. Platforms + Environment 01
+
+[33mcommit 06bccc62e197a6fb1bfb226f613e34dfdee13a13[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Fri May 12 23:03:31 2023 +0300
+
+    bonus level. Platforms + Environment
+
+[33mcommit 1265e32ee68e1feb47aa954e4299293e94b3fc46[m
+Merge: 21f804b e542405
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Fri May 12 22:46:22 2023 +0300
+
+    Merge branch 'dev' of https://github.com/G9Team/LestaAcademyMainProject into dev
+
+[33mcommit 21f804b8bc0647d7b36b7059aaf645b381d23069[m
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Fri May 12 22:27:40 2023 +0300
+
+    Add Ingame UI (working but waiting for data load) all levels
+
+[33mcommit e5424054e8c84da1b1ff7720210d4fed614e3eaa[m
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Fri May 12 19:32:32 2023 +0300
+
+    new update
+    
+    added sounds
+
+[33mcommit fc3570a11603f3e18a45bc061c767c03dfb7f5a6[m
+Merge: cd1d496 52fa1bb
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Thu May 11 23:26:19 2023 +0300
+
+    Merge branch 'dev' of https://github.com/G9Team/LestaAcademyMainProject into dev
+
+[33mcommit cd1d496f2da3ca2813e66973213a1849c75374c1[m
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Thu May 11 23:24:24 2023 +0300
+
+    Add adaptive UI to level 1.1 (markup only)
+
+[33mcommit 52fa1bb737a4482071d123cbb22db307395c95e9[m
+Author: RomZesM <dwarf.md@gmail.com>
+Date:   Thu May 11 12:21:04 2023 +0300
+
+    refactoring: bonus lvl
+
+[33mcommit 0ab992a0a807813da2e06b9ba9f73a170373a6fa[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Wed May 10 21:44:51 2023 +0300
+
+    bonus level. highlights
+
+[33mcommit fd0d1789f5e84e066b5e11ec8859d82283999563[m
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Tue May 9 21:37:45 2023 +0300
+
+    .
+
+[33mcommit ffdc25e943738ed4d754a1ddddc5d395382c84f2[m
+Merge: c16d5ca 14b9d74
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Tue May 9 20:44:13 2023 +0300
+
+    Merge branch 'dev' of https://github.com/G9Team/LestaAcademyMainProject into dev
+
+[33mcommit c16d5ca83da921e19aac0fcf2c13677eb612ed2d[m
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Tue May 9 20:43:53 2023 +0300
+
+    Update Jump.anim
+
+[33mcommit 14b9d74de0cc054c3628550ea746c3db086a2764[m
+Author: todokama <alehno01@mail.ru>
+Date:   Tue May 9 20:28:43 2023 +0300
+
+    platform + button
+
+[33mcommit cb1769db15dd9bbc46819feba1fdd8bba308e183[m
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Tue May 9 16:29:16 2023 +0300
+
+    Add final player model + minor 1.1 bug fixed
+
+[33mcommit dac7fbe5f96b5a78a30cac360f3c661469fa582d[m
+Merge: 31b0eec 0b15aaf
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Tue May 9 12:43:35 2023 +0300
+
+    Merge branch 'dev' of https://github.com/G9Team/LestaAcademyMainProject into dev
+
+[33mcommit 31b0eecca9fd5f19365186429beab40c45f24fe7[m
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Tue May 9 12:42:21 2023 +0300
+
+    Change boss fight to new state
+
+[33mcommit 0b15aaf8229071e9ab0916cf10d92aefd40033c4[m
+Author: RomZesM <dwarf.md@gmail.com>
+Date:   Mon May 8 19:11:38 2023 +0300
+
+    fix: dialog at lvl 1.1, refactoring
+
+[33mcommit 6c441e1e02788c492be2e0e7930e3cb469d6f087[m
+Author: RomZesM <dwarf.md@gmail.com>
+Date:   Mon May 8 17:06:30 2023 +0300
+
+    ADD: water pkg, water for 1.4
+
+[33mcommit 0642b16ea2395313d8c9cfeaa51a0b5383e4b0ea[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Mon May 8 16:55:38 2023 +0300
+
+    bonus level
+
+[33mcommit 9725cecd5e400264c40c9214da551945aace8f13[m
+Author: RomZesM <dwarf.md@gmail.com>
+Date:   Mon May 8 13:26:37 2023 +0300
+
+    refactoring: 1.4
+
+[33mcommit 43ee5790edde77d6252574f1a466df1efeb2aa44[m
+Merge: e8033e6 0e77260
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Sun May 7 13:48:20 2023 +0300
+
+    Merge branch 'dev' of https://github.com/G9Team/LestaAcademyMainProject into dev
+
+[33mcommit e8033e68c55d218fca83edfbe06c018af5d4304c[m
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Sun May 7 13:48:11 2023 +0300
+
+    Update Orpheus SDF.asset
+
+[33mcommit 0e772603f1f49ac185119b87d0e86c8516efd54e[m
+Author: RomZesM <dwarf.md@gmail.com>
+Date:   Sun May 7 12:41:24 2023 +0300
+
+    ADD: bonus lvl v0.1, blank with earth
+
+[33mcommit 685a4b74d564ae37b000341334f021df32a3e4ec[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Sun May 7 10:43:45 2023 +0300
+
+    environment boss level
+
+[33mcommit b4e2540ab8f4f4da3aff36d7db0ac5148a241a4e[m
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Sat May 6 23:43:14 2023 +0300
+
+    update
+    
+    Added Mandarin AI.
+    Added Flower AI.
+    Added Cannon.
+    Added Result Menu.
+    Added Save Manager(not finished).
+
+[33mcommit f76f84cd34754587fe8c5abe22d13752654f08c4[m
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Sat May 6 19:47:48 2023 +0300
+
+    change boss fight scene to v1.1
+
+[33mcommit 6d7524ba36dea2dfe96db576ff3dfd1d04a6ccd3[m
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Wed May 3 14:34:17 2023 +0300
+
+    Update PlayerAnimationManager.cs
+
+[33mcommit e217b9b407cb46a670317066be05abd36f142957[m
+Author: RomZesM <dwarf.md@gmail.com>
+Date:   Tue May 2 19:37:12 2023 +0300
+
+    refactoring 1.1
+
+[33mcommit 9dbb190fb548b771c0a0319a2b4163db0fdfd1e8[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Tue May 2 13:49:07 2023 +0300
+
+    Trampoline + fan
+
+[33mcommit 0c38bb33606d8bb9a599425fed99edf676f42957[m
+Merge: 6bf44a5 f840e95
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Mon May 1 12:23:10 2023 +0300
+
+    Merge branch 'dev' of https://github.com/G9Team/LestaAcademyMainProject into dev
+
+[33mcommit 6bf44a5ddbc2ae68d5fea3852891bb18f255264f[m
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Mon May 1 12:11:07 2023 +0300
+
+    Add general bossfight mechanics, sliding bug + falling on curved position fixed
+
+[33mcommit f840e9576759c1c7d107bf55865ba8bd84824c14[m
+Merge: 6982679 21b7639
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Thu Apr 27 19:40:34 2023 +0300
+
+    Merge branch 'dev' of https://github.com/G9Team/LestaAcademyMainProject into dev
+
+[33mcommit 698267948fa8ccb03f9cf071eeba29f460df2ea3[m
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Thu Apr 27 19:40:23 2023 +0300
+
+    changed sword model
+
+[33mcommit 21b76393c470ddbac68a35935bb540f5b9b44de6[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Thu Apr 27 19:33:17 2023 +0300
+
+    sword + light on all levels
+
+[33mcommit 94c702a8a31db1c6fdd9b9095374ab530f0eed21[m
+Author: Aizyka <seng_1111@mail.ru>
+Date:   Thu Apr 27 18:43:44 2023 +0300
+
+    save manager
+
+[33mcommit 2ee2760d25dd1a65d1047fac5c8f4d6d4f036220[m
+Merge: c69ca9a 7dfb443
+Author: todokama <alehno01@mail.ru>
+Date:   Tue Apr 25 22:01:37 2023 +0300
+
+    Merge branch 'dev' of https://github.com/G9Team/LestaAcademyMainProject into dev
+
+[33mcommit c69ca9a151ae64881ee02880c173c549ce028879[m
+Author: todokama <alehno01@mail.ru>
+Date:   Tue Apr 25 21:55:43 2023 +0300
+
+    Player 2.0 + platform
+
+[33mcommit 7dfb443e0226bbc40ed8ddb394409a7fac1722be[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Tue Apr 25 21:55:12 2023 +0300
+
+    life + energy + 1,3 and 1,4 final
+
+[33mcommit 7354d76b68b79b42aa44252198fa0107504648cd[m
+Author: RomZesM <dwarf.md@gmail.com>
+Date:   Tue Apr 25 17:19:05 2023 +0300
+
+    FIX: little fix 1.1
+
+[33mcommit 0227fa0244d19b439bb06520d65f19922c3984a4[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Mon Apr 24 19:44:55 2023 +0300
+
+    ...
+
+[33mcommit bab18fc2d327250e0bbe1b167c03122ccfdd9655[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Mon Apr 24 17:58:52 2023 +0300
+
+    1,3
+
+[33mcommit 2c6fd3a45099fc779061c8ba429eb4d0fd0cf77a[m
+Author: Irina Klimovich <irinazhitkovets@yandex.ru>
+Date:   Mon Apr 24 17:10:30 2023 +0300
+
+    1,2 fin
+
+[33mcommit 434670f09548283a49b60aab8f87b0fd3935bb31[m
+Author: Vladislav Shalkovskiy <vlad48516@gmail.com>
+Date:   Sat Apr 22 22:21:27 2023 +0300
+
+    fix constructor issu
