@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c5a561dd45d781d498af5e736a2e0005, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireballFlyDuration: 0.8
   _fireDelay: 1
-  _v2FlySpeed: 10
+  _v2FlySpeed: 1
   _v2StepDuration: 1
   _stepCounter: 3
 --- !u!114 &-740715099690295593
