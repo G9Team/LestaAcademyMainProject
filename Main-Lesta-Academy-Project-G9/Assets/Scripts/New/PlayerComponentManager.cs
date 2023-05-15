@@ -35,5 +35,6 @@ namespace New
                 _playerData.ChangeHealth(-1);
                 _velocityHandler.Attacked();
         }
+        public InputManager GetInputManager() => _inputManager;
     }
 }
