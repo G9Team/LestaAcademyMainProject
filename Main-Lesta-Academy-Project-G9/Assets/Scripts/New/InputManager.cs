@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace New
@@ -10,9 +11,10 @@ namespace New
         private PlayerMovement _playerMovement;
         private PlayerInteractor _interactor;
         private float _move, _exMove;
-        private bool _moveflag;
+        private bool _moveflag, _uiInput = false;
         bool _isAttacking = false;
         bool _isJumping = false;
+        public event UnityAction<UiInputType> OnUiInput;
 
         public void Initialize(PlayerInteractor interactor, PlayerMovement movement)
         {
@@ -22,6 +24,31 @@ namespace New
 
         void Update()
         {
+            #region UIInput
+            if(_uiInput){
+                if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){
+                    OnUiInput?.Invoke(UiInputType.Up);
+                }
+                else if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)){
+                    OnUiInput?.Invoke(UiInputType.Left);
+                }
+                else if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
+                    OnUiInput?.Invoke(UiInputType.Down);
+                }
+                else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)){
+                    OnUiInput?.Invoke(UiInputType.Right);
+                }
+                else if(Input.GetKeyDown(KeyCode.Escape)){
+                    OnUiInput?.Invoke(UiInputType.Escape);
+                }
+                else if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.KeypadEnter) 
+                        || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.E)){
+                    OnUiInput?.Invoke(UiInputType.Escape);
+                }
+
+                return;
+            }
+            #endregion
 
             #region playerControll
             _playerMovement.Move(Input.GetAxis("Horizontal"));
@@ -80,5 +107,9 @@ namespace New
             _moveflag = false;
 
         }
+
+        public void TurnOnUIInput() => _uiInput = true;
+
+        public void TurnOffUIInput() => _uiInput = false;
     }
 }
