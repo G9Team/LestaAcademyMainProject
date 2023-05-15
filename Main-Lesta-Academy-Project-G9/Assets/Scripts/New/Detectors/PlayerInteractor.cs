@@ -12,7 +12,7 @@ namespace New
         private IUpgrader _upgrader;
 
         public DetectionType TypeOfDetection { get; } = DetectionType.HeavyInteraction;
-        public event Action<DetectionType> OnDetectionApear;
+        public event Action<DetectionType, bool> OnDetectionApear;
 
         private bool _isInitialized = false;
 

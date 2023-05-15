@@ -10,7 +10,6 @@ public class CheckPoints : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Clision !");
             OnPlayerCheckpoint?.Invoke(other.transform.position);
         }
     }

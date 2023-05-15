@@ -6,7 +6,7 @@ namespace New
     public interface IDetector
     {
         public DetectionType TypeOfDetection {get;}
-        public event Action<DetectionType> OnDetectionApear;
+        public event Action<DetectionType, bool> OnDetectionApear;
     }
 
 }

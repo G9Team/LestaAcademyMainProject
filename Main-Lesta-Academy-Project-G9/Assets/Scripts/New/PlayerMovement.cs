@@ -37,7 +37,7 @@ namespace New
                 detector.OnDetectionApear += OnSomeDetection;
             }
         }
-        private void OnSomeDetection(DetectionType typeOfDetection)
+        private void OnSomeDetection(DetectionType typeOfDetection, bool grounded)
         {
             switch (typeOfDetection)
             {
@@ -45,7 +45,7 @@ namespace New
                     _wallDetected = !_wallDetected;
                     break;
                 case DetectionType.Ground:
-                    ProceedGroundDetection();
+                    ProceedGroundDetection(grounded);
                     break;
                 case DetectionType.HeavyInteraction:
                     ProceedHeavyInteraction();
@@ -55,8 +55,11 @@ namespace New
                     break;
             }
         }
-        private void ProceedGroundDetection()  {
-            _grounded = _canDash = _dubleJump = true;
+        private void ProceedGroundDetection(bool grounded)  {
+            if(grounded){
+               _canDash = _dubleJump = grounded;
+            }
+            _grounded = grounded;
             _animator?.SetGrounded(_grounded);
 
         }

@@ -11,7 +11,7 @@ namespace New
     {
         public DetectionType TypeOfDetection {get;} = DetectionType.Ledge;
 
-        public event Action<DetectionType> OnDetectionApear;
+        public event Action<DetectionType, bool> OnDetectionApear;
 
 
         // Implement ledge detection logic!

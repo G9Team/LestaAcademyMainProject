@@ -13,7 +13,7 @@ namespace New
 
         [SerializeField] private LayerMask _platformCollision;
         public DetectionType TypeOfDetection { get; } = DetectionType.Platform;
-        public event Action<DetectionType> OnDetectionApear;
+        public event Action<DetectionType, bool> OnDetectionApear;
         /*private void CheckPlatform()
         {
             _platformCollision = Physics.OverlapSphere(groundChecker.position, _groundCheckRadius, platformLayer);

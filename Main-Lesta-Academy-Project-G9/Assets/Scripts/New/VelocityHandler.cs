@@ -10,7 +10,8 @@ namespace New
         [SerializeField]
         private float _jumpForce, _mainGravityScaler, _fallGravityScaler,
             _dashForce = 15f, _dashDuration = 0.25f, _runSpeed,
-            _noControleDuraton, _xKnockbackForce, _yKnockbackForce;
+            _noControleDuraton, _xKnockbackForce, _yKnockbackForce,
+            _trmpolineForce;
         private bool _isFacingRight, _isAttacking, _isAttacked;
         private float _move
         {
@@ -80,6 +81,14 @@ namespace New
             {
                 StartCoroutine(DashTimer());
             }
+        }
+        
+        public void Trampoine(float trampolineForce){
+            _rigidbody.velocity = new Vector3(
+                0, 
+                trampolineForce * _jumpForce * _mainGravityScaler * _mainGravityScaler,
+                0
+            );
         }
 
         private void Dashing()

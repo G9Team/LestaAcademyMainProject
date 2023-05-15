@@ -31,7 +31,6 @@ public class AbyssScript : MonoBehaviour
         data.ChangeHealth(-1);
         player.GetComponent<PlayerComponentManager>().GetVelocityHandler().Attacked(0,0);
         player.transform.position = _checkPoints.LastCheckpointPosition;
-        Debug.Log(data.CurrentHealth);
 
     }
 

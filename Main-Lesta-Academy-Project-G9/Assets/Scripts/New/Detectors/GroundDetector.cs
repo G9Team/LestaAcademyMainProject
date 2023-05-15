@@ -12,7 +12,7 @@ namespace New
         [SerializeField] private Transform _legsPosition;
         [SerializeField] private LayerMask _everythingButPlayer;
         public DetectionType TypeOfDetection { get; } = DetectionType.Ground;
-        public event Action<DetectionType> OnDetectionApear;
+        public event Action<DetectionType, bool> OnDetectionApear;
         private bool _checkGrounded = true;
 
         // Update is called once per frame
@@ -23,16 +23,15 @@ namespace New
             CheckGrounded();
         }
 
-        private void OnCollisionExit(Collision other) => _checkGrounded = true;
+        private void OnCollisionExit(Collision other) => CheckGrounded();
+        private void OnTriggerExit(Collider other) { CheckGrounded();}
 
         private void CheckGrounded()
         {
-            if (Physics.CheckSphere(_legsPosition.position, 0.05f, _everythingButPlayer) ||
-                Physics.CheckSphere(_legsPosition.GetChild(0).position, 0.05f, _everythingButPlayer))
-            {
-                _checkGrounded = false;
-                OnDetectionApear.Invoke(TypeOfDetection);
-            }
+            bool tmp = Physics.CheckSphere(_legsPosition.position, 0.05f, _everythingButPlayer) ||
+                Physics.CheckSphere(_legsPosition.GetChild(0).position, 0.05f, _everythingButPlayer);
+            _checkGrounded = !tmp;
+            OnDetectionApear.Invoke(TypeOfDetection, tmp);
             
         }
 

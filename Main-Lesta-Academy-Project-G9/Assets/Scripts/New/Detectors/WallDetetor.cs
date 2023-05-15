@@ -10,7 +10,7 @@ namespace New
     {
         public DetectionType TypeOfDetection { get; } = DetectionType.Wall;
 
-        public event Action<DetectionType> OnDetectionApear;
+        public event Action<DetectionType, bool> OnDetectionApear;
 
         [SerializeField] private Transform _forward;
         [SerializeField] private LayerMask _everythingButPlayerAndEnemy;
@@ -36,8 +36,7 @@ namespace New
             }
             if (_wallDetected != walled)
             {
-                    Debug.Log("Wall");
-                OnDetectionApear.Invoke(TypeOfDetection);
+                OnDetectionApear.Invoke(TypeOfDetection, false);
             }
         }
 
