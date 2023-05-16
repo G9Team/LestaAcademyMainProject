@@ -31,12 +31,13 @@ public class SceneLoader
         sceneCanvas.transform.Find("ResultWindow/Next").GetComponent<Button>().onClick.AddListener(() =>
         {
             sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(
-                MainCoroutine(sceneCanvas,sceneIndex));
+                MainCoroutine(sceneCanvas, SceneManager.GetActiveScene().buildIndex));
         });
         sceneCanvas.transform.Find("ResultWindow/Restart").GetComponent<Button>().onClick.AddListener(() =>
         {
             sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(
-                MainCoroutine(sceneCanvas, SceneManager.GetActiveScene().buildIndex));
+                MainCoroutine(sceneCanvas,0));
+            
         });
         //sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(MainCoroutine(sceneCanvas,sceneIndex));
     }

@@ -124,6 +124,11 @@ namespace New
         public void Attack(){
             _animator.PullAttackTrigger();
         }
+        
+        public void SecondAttack(){
+            _animator.PullSecondAttackTrigger();
+        }
+        
         public void AnimFirst(){
             _animator.AnimFirstAttack();
             _mover.ChangeSpeed(0.5f);

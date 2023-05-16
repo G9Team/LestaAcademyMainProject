@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,9 @@ namespace New
         private bool showSword = false;
         private bool pressedAttack = false;
         private bool canAttack = true;
+        private bool mustHide = false;
         Coroutine swordCoroutine = null;
+        GameObject _projectile;
 
         private bool _isGrounded = true, _isRunning, _isInteracting, _combo, _isAttacking, _canSetCombo;
         private int _hitCounter = 0;
@@ -44,11 +47,42 @@ namespace New
             }
         }
 
+        public void PullSecondAttackTrigger()
+        {
+            if (canAttack && Mathf.Floor(_rigidbody.velocity.y) < 0.1f)
+            {
+                mustHide = true;
+                _animator.SetTrigger("SecondAttack");
+                StartCoroutine(CanAttackSuper());
+            }
+        }
+
         IEnumerator CanAttack()
         {
             canAttack = false;
             yield return new WaitForSeconds(attackDelay);
             canAttack = true;
+        }
+        
+        IEnumerator CanAttackSuper()
+        {
+            canAttack = false;
+            GetComponent<InputManager>().lockInput = true;
+            yield return new WaitForSeconds(1f);
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject spawned = Instantiate(_projectile, this.transform.position + new Vector3(0f,1.7f,0f) + this.transform.forward, Quaternion.identity);
+                CannonProjectile cp = spawned.GetComponent<CannonProjectile>();
+                cp.throwType = CannonProjectile.type.LINE;
+                cp.direction = this.transform.forward;
+                cp.speed = 7.5f;
+                cp.lifeTime = 10f;
+                cp.enemiesProjectile = false;
+                yield return new WaitForSeconds(0.45f);
+            }
+            yield return new WaitForSeconds(1f);
+            canAttack = true;
+            GetComponent<InputManager>().lockInput = false;
         }
 
         IEnumerator ShowSwordCoroutine()
@@ -70,11 +104,17 @@ namespace New
                 yield return new WaitForSeconds(Time.deltaTime);
             }
             swordRenderer.material.SetFloat("_Threshold", 0f);
-            while (pressedAttack)
+            int i = 0;
+            while (i < 30 && !mustHide)
             {
                 pressedAttack = false;
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(0.1f);
+                i++;
+                if (pressedAttack)
+                    i = 0;
             }
+
+            mustHide = false;
 
             showSword = false;
             while (val < 0.5f)
@@ -136,5 +176,9 @@ namespace New
             else return 0;
         }
 
+        private void Start()
+        {
+            _projectile = Resources.Load<GameObject>("CannonProjectile");
+        }
     }
 }

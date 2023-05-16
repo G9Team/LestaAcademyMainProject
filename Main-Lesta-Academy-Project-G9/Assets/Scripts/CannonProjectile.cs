@@ -8,6 +8,7 @@ public class CannonProjectile : MonoBehaviour {
     public Vector3 direction;
     public float speed = 5f;
     public float lifeTime = 10f;
+    public bool enemiesProjectile = true;
 
     public enum type
     {
@@ -54,8 +55,17 @@ public class CannonProjectile : MonoBehaviour {
     
     private void OnTriggerEnter(Collider other)
     {
-        IAlive alive = other.GetComponent<IAlive>();
-        if(alive != null)
-            alive.ChangeHealth(-1);
+        if (enemiesProjectile)
+        {
+            IAlive alive = other.GetComponent<IAlive>();
+            if(alive != null)
+                alive.ChangeHealth(-1);
+        }
+        else
+        {
+            AIBase alive = other.GetComponent<AIBase>();
+            if(alive != null)
+                alive.OnTakeDamage(1);
+        }
     }
 }
