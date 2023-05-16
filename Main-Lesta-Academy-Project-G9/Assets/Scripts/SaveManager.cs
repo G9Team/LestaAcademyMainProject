@@ -12,7 +12,7 @@ public class SaveManager : MonoBehaviour
         public int maxHealth;
         public int attackForce;
         public int maxEnergy;
-        public int sceneId;
+        //public int sceneId;
     }
 
     #endregion
@@ -48,12 +48,12 @@ public class SaveManager : MonoBehaviour
         else
             _save = Newtonsoft.Json.JsonConvert.DeserializeObject<SaveObject>(File.ReadAllText(_path));
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_save.sceneId);
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(_save.sceneId);
     }
 
     void SaveData()
     {
-        _save.sceneId = Mathf.Max(1, UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        //_save.sceneId = Mathf.Max(1, UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
         File.WriteAllText(_path, Newtonsoft.Json.JsonConvert.SerializeObject(_save));
     }
 
@@ -63,8 +63,7 @@ public class SaveManager : MonoBehaviour
         {
             maxHealth = 3,
             attackForce = 1,
-            maxEnergy = 3,
-            sceneId = 1
+            maxEnergy = 3
         };
         SaveData();
     }

@@ -1641,7 +1641,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &2957239213129197810
 MonoBehaviour:
@@ -2222,7 +2222,7 @@ GameObject:
   - component: {fileID: 8239439928033939311}
   - component: {fileID: 2262847829556563221}
   m_Layer: 5
-  m_Name: Next
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2345,7 +2345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C\x03"
+  m_text: "\u0412\u044B\u0439\u0442\u0438 \u0432 \u043C\u0435\u043D\u044E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94b1024a255ef44d18edef03c3c1a09f, type: 2}
   m_sharedMaterial: {fileID: -8289661863880999258, guid: 94b1024a255ef44d18edef03c3c1a09f, type: 2}
@@ -2428,7 +2428,7 @@ GameObject:
   - component: {fileID: 2652595744627195794}
   - component: {fileID: 462617334798335273}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: Next
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

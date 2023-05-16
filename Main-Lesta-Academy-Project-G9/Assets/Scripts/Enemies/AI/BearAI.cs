@@ -43,6 +43,11 @@ public class BearAI : AIBase
     }
     void Start()
     {
+        Invoke("Init", 3f);
+    }
+
+    void Init()
+    {
         _animator = GetComponent<Animator>();
         InitAI();
         ForceState(ENEMY_STATE.PATROL);

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     GameObject _projectile;
-    public Vector3 direction;
     public float speed;
     public float lifeTime;
     void Start()
@@ -19,7 +18,7 @@ public class Cannon : MonoBehaviour
         GameObject spawned = Instantiate(_projectile, this.transform.position, Quaternion.identity);
         CannonProjectile cp = spawned.GetComponent<CannonProjectile>();
         cp.throwType = CannonProjectile.type.LINE;
-        cp.direction = direction;
+        cp.direction = this.transform.forward;
         cp.speed = speed;
         cp.lifeTime = lifeTime;
     }

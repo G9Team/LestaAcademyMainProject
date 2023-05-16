@@ -14,6 +14,7 @@ namespace New
         private bool _moveflag, _uiInput = false;
         bool _isAttacking = false;
         bool _isJumping = false;
+        public bool lockInput = false;
         public event UnityAction<UiInputType> OnUiInput;
 
         public void Initialize(PlayerInteractor interactor, PlayerMovement movement)
@@ -51,33 +52,42 @@ namespace New
             #endregion
 
             #region playerControll
-            _playerMovement.Move(Input.GetAxis("Horizontal"));
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (!lockInput)
             {
-                _interactor.OnInteractionInput();
-            }
-            if (Input.GetAxis("Jump") > 0 && !_isJumping)
-            {
-                _isJumping = true;
-                _playerMovement.Jump();
-            }
-            else if (Input.GetAxis("Jump") == 0)
-                _isJumping = false;
-            if (Input.GetKeyDown(KeyCode.LeftShift)){
-                _playerMovement.Dash();
-            }
-            if (Input.GetAxis("Fire1") > 0 && !_isAttacking)
-            {
-                _isAttacking = true;
-                _playerMovement.Attack();
-            }
-            else if (Input.GetAxis("Fire1") == 0)
-                _isAttacking = false;
-            if (Input.GetKeyDown(KeyCode.CapsLock))
-            {
+                _playerMovement.Move(Input.GetAxis("Horizontal"));
 
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    _interactor.OnInteractionInput();
+                }
+                if (Input.GetAxis("Jump") > 0 && !_isJumping)
+                {
+                    _isJumping = true;
+                    _playerMovement.Jump();
+                }
+                else if (Input.GetAxis("Jump") == 0)
+                    _isJumping = false;
+                if (Input.GetKeyDown(KeyCode.LeftShift)){
+                    _playerMovement.Dash();
+                }
+                if (Input.GetAxis("Fire1") > 0 && !_isAttacking)
+                {
+                    _isAttacking = true;
+                    _playerMovement.Attack();
+                }
+                else if (Input.GetAxis("Fire1") == 0)
+                    _isAttacking = false;
+
+                if (Input.GetKeyDown(KeyCode.L))
+                    _playerMovement.SecondAttack();
+                if (Input.GetKeyDown(KeyCode.CapsLock))
+                {
+
+                }
             }
+            else
+                _playerMovement.Move(0f);
             #endregion
         }
         private void ProceedMove()
