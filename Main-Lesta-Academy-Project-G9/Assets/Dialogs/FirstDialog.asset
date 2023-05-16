@@ -31,6 +31,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 1
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
@@ -39,6 +40,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u041B\u043E\u0438"
@@ -48,6 +50,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
@@ -59,6 +62,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u041B\u043E\u0438"
@@ -72,6 +76,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
@@ -88,6 +93,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u041B\u043E\u0438"
@@ -101,6 +107,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
@@ -113,6 +120,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u041B\u043E\u0438"
@@ -129,6 +137,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
@@ -142,6 +151,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u041B\u043E\u0438"
@@ -160,6 +170,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
@@ -168,6 +179,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u041B\u043E\u0438"
@@ -179,6 +191,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
@@ -187,6 +200,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
     answers: []
   - eventName: 
     characterName: "\u041B\u043E\u0438"
@@ -199,4 +213,14 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
+    clip: {fileID: 0}
+    answers: []
+  - eventName: EndDialog
+    characterName: 
+    dialog: 
+    minDialogTime: 0
+    groupType: 1
+    force: 0
+    hideName: 0
+    clip: {fileID: 0}
     answers: []

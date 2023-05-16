@@ -16,7 +16,7 @@ public class SceneLoader
     {
         LoadScene(SceneManager.GetSceneByName(sceneName).buildIndex);
     }
-    public static void LoadScene(int sceneIndex)
+    public static void ShowResult()
     {
         GameObject sceneCanvas = GameObject.Instantiate(Resources.Load("SceneLoaderCanvas") as GameObject);
         GameObject.DontDestroyOnLoad(sceneCanvas);
@@ -39,6 +39,15 @@ public class SceneLoader
                 MainCoroutine(sceneCanvas,0));
             
         });
+        //sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(MainCoroutine(sceneCanvas,sceneIndex));
+    }
+    
+    public static void LoadScene(int sceneIndex)
+    {
+        GameObject sceneCanvas = GameObject.Instantiate(Resources.Load("SceneLoaderCanvas") as GameObject);
+        GameObject.DontDestroyOnLoad(sceneCanvas);
+        sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(
+            MainCoroutine(sceneCanvas,sceneIndex));
         //sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(MainCoroutine(sceneCanvas,sceneIndex));
     }
 
