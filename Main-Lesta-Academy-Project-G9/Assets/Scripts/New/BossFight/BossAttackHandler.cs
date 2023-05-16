@@ -14,17 +14,6 @@ namespace New
         [SerializeField] private Animator _animator;
 
 
-        private void Update() {
-            if(Input.GetKeyDown(KeyCode.X)){
-                BulletHell();
-            }
-            if(Input.GetKeyDown(KeyCode.C)){
-                RailGun();
-            }
-            if(Input.GetKeyDown(KeyCode.Z)){
-                FloorIsLava();
-            }
-        }
         public void ProceedAttack(BossAttackType type)
         {
             switch (type)

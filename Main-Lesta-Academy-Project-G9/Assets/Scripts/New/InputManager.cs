@@ -107,10 +107,11 @@ namespace New
             {
                 _playerMovement.Move(Mathf.Sign(_move));
             }
-            */
+            
             _playerMovement.Move(_move);
             StopAllCoroutines();
             StartCoroutine(MoveStoper());
+            */
         }
         private IEnumerator MoveStoper(){
             yield return new WaitForSeconds(0.1f);

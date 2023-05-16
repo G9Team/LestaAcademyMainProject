@@ -73,7 +73,7 @@ public class TDControl : MonoBehaviour
 
     void Rotation()
     {
-        //--------------
+        /*
 
         if (onlyKeyboard == false)
         {
@@ -92,7 +92,7 @@ public class TDControl : MonoBehaviour
         mouseY = Mathf.Clamp(mouseY, mouseVerticaleClamp.x, mouseVerticaleClamp.y);
         tr.rotation = Quaternion.Slerp(tr.rotation, Quaternion.Euler(mouseY, mouseX + rotationStart.y, 0), smoothMouse * Time.deltaTime);
 
-        //--------------
+        */
     }
 
 

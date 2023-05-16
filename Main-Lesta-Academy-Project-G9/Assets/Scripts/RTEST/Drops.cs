@@ -7,6 +7,7 @@ public class Drops : MonoBehaviour
     private GameObject _nucleus;
     private bool _fire = true;
     private float _nucleusSpeed = 4f;
+    [SerializeField] private GameObject _nucPrefab;
 
 
     // Start is called before the first frame update
@@ -20,7 +21,7 @@ public class Drops : MonoBehaviour
     {
         if (_fire) {
 
-            _nucleus = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            _nucleus = Instantiate(_nucPrefab);
             _nucleus.transform.SetPositionAndRotation(transform.position, new Quaternion(0, 0, 0, 0));
             
 

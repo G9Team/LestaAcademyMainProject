@@ -10,8 +10,7 @@ namespace New
         [SerializeField]
         private float _jumpForce, _mainGravityScaler, _fallGravityScaler,
             _dashForce = 15f, _dashDuration = 0.25f, _runSpeed,
-            _noControleDuraton, _xKnockbackForce, _yKnockbackForce,
-            _trmpolineForce;
+            _noControleDuraton, _xKnockbackForce, _yKnockbackForce;
         private bool _isFacingRight, _isAttacking, _isAttacked;
         private float _move
         {
@@ -26,7 +25,7 @@ namespace New
         }
         private float _internalMove, _moveScaler = 1, _currentAttackSpeedX;
         
-        private int _direction;
+        private int _direction = -1;
 
         private Rigidbody _rigidbody;
         public bool IsDashing { get; private set; }
@@ -36,7 +35,12 @@ namespace New
             _rigidbody = GetComponent<Rigidbody>();
         }
 
+        private void Update() {
+            if(_isAttacked){
+                Attacked(_xKnockbackForce, _yKnockbackForce);  
 
+            }
+        }
         private void FixedUpdate()
         {
             if (IsDashing)
@@ -48,13 +52,12 @@ namespace New
                 GravityHandler();
 
                 return;
-            }
+            }         
 
             _rigidbody.velocity = new Vector3(_move * (_runSpeed), _rigidbody.velocity.y, 0);
             _direction = _move != 0 ? (int)Mathf.Sign(_move) : _direction;
             if (_move > 0 && !_isFacingRight) Flip(_move);
             else if (_move < 0 && _isFacingRight) Flip(_move);
-
 
             GravityHandler();
         }
@@ -118,7 +121,6 @@ namespace New
                 _rigidbody.velocity += Vector3.up * _fallGravityScaler;
             }
             _rigidbody.velocity += Vector3.up * _rigidbody.mass * _mainGravityScaler * -1;
-
         }
 
         private void Flip(float moveInput)
@@ -135,7 +137,7 @@ namespace New
         private void AttackedMovement(){
         }
         public void Attacked(){
-            Attacked(_xKnockbackForce, _yKnockbackForce);            
+            _isAttacked = true;
         }
 
         public void Attacked(float knockbackX, float knockbackY){
@@ -145,7 +147,6 @@ namespace New
             
         }
         private IEnumerator NoControllTime(){
-            _isAttacked = true;
             yield return new WaitForSeconds(_noControleDuraton);
             _isAttacked = false;
         }

@@ -89,7 +89,7 @@ namespace New
                
                 return;
             }
-            _mover.Move(moveDirection);
+            _mover.Move(moveDirection); 
 
         }
 

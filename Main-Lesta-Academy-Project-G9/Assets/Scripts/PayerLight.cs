@@ -6,7 +6,6 @@ public class PayerLight : MonoBehaviour
 {
     [SerializeField] private GameObject[] _spotlights;
 
-    private BoxRunner _runnerForDir;
     private GameObject _player;
     private int _costil = 1;
 

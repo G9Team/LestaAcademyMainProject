@@ -251,7 +251,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 621716c5910f2f14e8813ea700fbf6e3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -338,7 +338,7 @@ MonoBehaviour:
   _dashForce: 30
   _dashDuration: 0.25
   _runSpeed: 8
-  _noControleDuraton: 0.25
+  _noControleDuraton: 0.2
   _xKnockbackForce: 15
   _yKnockbackForce: 15
 --- !u!114 &526844129335637325
@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f4ce25371334704e936696743a9a46a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockInput: 0
 --- !u!114 &526844129335637321
 MonoBehaviour:
   m_ObjectHideFlags: 0

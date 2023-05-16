@@ -20,6 +20,7 @@ public class ExampleWheelController : MonoBehaviour
 
     void Update()
     {
+        /*
         if (Input.GetKey (KeyCode.UpArrow)) // Rotate forward
             m_Rigidbody.AddRelativeTorque(new Vector3(-1 * acceleration, 0, 0), ForceMode.Acceleration); // Add forward torque to mesh
         else if (Input.GetKey (KeyCode.DownArrow)) // Rotate backward
@@ -29,5 +30,6 @@ public class ExampleWheelController : MonoBehaviour
 
         if (motionVectorRenderer) // If the custom motion vector texture renderer exists
             motionVectorRenderer.material.SetFloat(Uniforms._MotionAmount, Mathf.Clamp(m, -0.25f, 0.25f)); // Set the multiplier on the renderer's material
+            */
     }
 }
