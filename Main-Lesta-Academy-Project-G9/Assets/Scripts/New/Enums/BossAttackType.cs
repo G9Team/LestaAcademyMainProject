@@ -5,7 +5,7 @@ namespace New
     public enum BossAttackType
     {
         #region FirstStage
-        FireBall,
+        FireBall = 0,
         Spikes,
         #endregion
 

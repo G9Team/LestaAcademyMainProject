@@ -7,9 +7,10 @@ namespace New
 
     public class BossOrchestrator : MonoBehaviour
     {
-        [SerializeField] private GameObject _bossBody, _stageVFX;
+        [SerializeField] private GameObject _bossBody, _stageVFX, _crystal;
         [SerializeField] private float _loopTimer, _breakTimer;
         [SerializeField] private BossHealth _health;
+        [SerializeField] private BossAudio _audio;
         private Animator _animator;
         private BossPosition _bossPosition;
         private BossStageProcessor _stageProcessor;
@@ -66,6 +67,7 @@ namespace New
         {
             _actualTimer = _loopTimer;
             _bossPosition.ChangePosition();
+            _audio.TeleportationAudio();
             Debug.Log("NextLoop");
             CalculateAttack();
 
@@ -78,23 +80,27 @@ namespace New
             _actualBreak = 2.5f;
             _stageVFX.SetActive(true);
             _stopper = true;
+            _audio.StageShiftAudio();
         }
         private void CalculateAttack()
         {
+            BossAttackType nextAttack = BossAttackType.FireBall;
             switch (_stageProcessor.Stage)
             {
                 case BossStage.First:
-                    _attackHandler.ProceedAttack(_firstStageAttacks[Random.Range(0, _firstStageAttacks.Count)]);
+                    nextAttack = _firstStageAttacks[Random.Range(0, _firstStageAttacks.Count)];
                     break;
                 case BossStage.Second:
 
-                    _attackHandler.ProceedAttack(AttackWithPosition(_secondStageAttacks));
+                     nextAttack = AttackWithPosition(_secondStageAttacks);
 
                     break;
                 case BossStage.Third:
-                    _attackHandler.ProceedAttack(AttackWithPosition(_thirdStageAttacks));
+                     nextAttack = AttackWithPosition(_thirdStageAttacks);
                     break;
             }
+            _attackHandler.ProceedAttack(nextAttack);
+            _audio.ProceedAttackSound(nextAttack);
         }
         private BossAttackType AttackWithPosition(List<BossAttackType> attackTypes)
         {
@@ -106,7 +112,9 @@ namespace New
         private void Die()
         {
             _bossBody.GetComponent<Animator>().Play("death");
+            _audio.DeathSound();
             Destroy(_bossBody, 2.5f);
+            Instantiate(_crystal, _bossBody.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
             
         }

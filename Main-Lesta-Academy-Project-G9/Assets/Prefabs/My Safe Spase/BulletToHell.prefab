@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _flyDuration: 1
-  _fireDelay: 0.8
+  _fireDelay: 0.5
 --- !u!114 &5084363981396851248
 MonoBehaviour:
   m_ObjectHideFlags: 0
