@@ -48,7 +48,11 @@ public class FootstepSound : MonoBehaviour
 
     public void PlaySway()
     {
+        Debug.Log("Sway: " + audioSource.volume);
+        audioSource.volume = 0.08f; 
         audioSource.PlayOneShot(swayClips[Random.Range(0, swayClips.Length)], 0.3f);
+        Debug.Log("Sway2: " + audioSource.volume);
+        audioSource.volume = 0.1f; 
     }
 
     public void PlayHit()
