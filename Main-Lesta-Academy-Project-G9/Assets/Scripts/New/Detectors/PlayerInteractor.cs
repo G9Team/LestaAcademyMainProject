@@ -60,6 +60,12 @@ namespace New
                 case UpgradeType.CurrentEnergy:
                     clip = "energy";
                     break;
+                case UpgradeType.Pirojki:
+                    clip = "generalItem";
+                    break;
+                case UpgradeType.Wheet:
+                    clip = "generalItem";
+                    break;
             }
             if (clip != "")
                 _checker.transform.parent.GetComponent<FootstepSound>().PlayCustom(clip);
