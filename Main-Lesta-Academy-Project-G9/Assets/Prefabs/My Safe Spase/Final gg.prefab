@@ -342,6 +342,7 @@ MonoBehaviour:
   _noControleDuraton: 0.2
   _xKnockbackForce: 15
   _yKnockbackForce: 15
+  _attackDirection: 0
 --- !u!114 &526844129335637325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,7 +449,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 914ce23b1fa036c4cae988b475fc27ed, type: 3}
   - {fileID: 8300000, guid: 4ecfed45759a43a49a55b95c444b646d, type: 3}
   otherClips:
-  - {fileID: 8300000, guid: 84d8a4dea6b9c684ab5b6676bbb51910, type: 3}
+  - {fileID: 8300000, guid: cf7181e2cc429964cb2ef20060d7940c, type: 3}
   - {fileID: 8300000, guid: 7d1d0d3a9c78e2e4dbe298de3672b8c2, type: 3}
   - {fileID: 8300000, guid: b7b62a09e659faf479dd57a6ce5bd825, type: 3}
   - {fileID: 8300000, guid: 914ce23b1fa036c4cae988b475fc27ed, type: 3}

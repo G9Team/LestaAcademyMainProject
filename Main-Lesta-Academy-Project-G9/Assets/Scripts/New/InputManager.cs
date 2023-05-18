@@ -69,7 +69,7 @@ namespace New
                 else if (Input.GetAxis("Jump") == 0)
                     _isJumping = false;
                 if (Input.GetKeyDown(KeyCode.LeftShift)){
-                    _playerMovement.Dash();
+                   // _playerMovement.Dash();
                 }
                 if (Input.GetAxis("Fire1") > 0 && !_isAttacking)
                 {
