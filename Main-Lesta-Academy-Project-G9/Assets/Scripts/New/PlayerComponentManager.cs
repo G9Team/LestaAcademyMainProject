@@ -14,6 +14,7 @@ namespace New
         [SerializeField] private PlayerAnimationManager _animationManager;
         [SerializeField] private InputManager _inputManager;
         [SerializeField] private PlayerInteractionsChecker _interactionChecker;
+        private FootstepSound _audio;
         private IPlayerData _playerData;
         private IUpgrader _upgrader;
         private PlayerInteractor _interactor;
@@ -21,6 +22,7 @@ namespace New
             _playerData = new PlayerData(SceneManager.sceneCountInBuildSettings, SceneManager.GetActiveScene().buildIndex);
             _upgrader = new PlayerUpgrader(_playerData);
             _interactor = new PlayerInteractor(_upgrader, _interactionChecker);
+            _audio = GetComponent<FootstepSound>();
 
             _playerMovement.Initialize(_interactor, _velocityHandler, _animationManager);
             _inputManager.Initialize(_interactor, _playerMovement);
@@ -34,6 +36,7 @@ namespace New
         public void DamagePlayer(int damage){
                 _playerData.ChangeHealth(-1);
                 _velocityHandler.Attacked();
+                _audio.PlayTD();
         }
         public InputManager GetInputManager() => _inputManager;
     }

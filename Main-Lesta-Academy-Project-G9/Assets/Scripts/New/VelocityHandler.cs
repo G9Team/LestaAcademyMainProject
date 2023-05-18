@@ -146,6 +146,12 @@ namespace New
             StartCoroutine(NoControllTime());
             
         }
+        public void AttackedByEnemy(float direction){
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.velocity = new Vector3 (_xKnockbackForce * direction, _yKnockbackForce, 0);
+            StartCoroutine(NoControllTime());
+            
+        }
         private IEnumerator NoControllTime(){
             yield return new WaitForSeconds(_noControleDuraton);
             _isAttacked = false;
