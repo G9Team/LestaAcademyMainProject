@@ -414,12 +414,12 @@ MonoBehaviour:
   - textureNames:
     - defaultMat.002_Base_color
     audioClips:
-    - {fileID: 8300000, guid: dbdb59ba30720e24ca689978cc0e7582, type: 3}
-    - {fileID: 8300000, guid: 8f9ba1a931b043d49b5ca4b1fd0b4cb7, type: 3}
-    - {fileID: 8300000, guid: 8718d0483961e2f4e9546d066beb7e49, type: 3}
-    - {fileID: 8300000, guid: 6a3fd9ec071994049aa93b6872200d09, type: 3}
-    - {fileID: 8300000, guid: 77da6a764411cbe4e8b93f092d94aa40, type: 3}
-    - {fileID: 8300000, guid: 7d7533c18a2ed994cb186529cc3c1fa6, type: 3}
+    - {fileID: 8300000, guid: ac456dcb003f94646bcaabc039c5be03, type: 3}
+    - {fileID: 8300000, guid: d10697eccf118fc4299c42bc52d9b19f, type: 3}
+    - {fileID: 8300000, guid: 6ff7ebf972f8f814ba60fad38d24a431, type: 3}
+    - {fileID: 8300000, guid: 5472246066d7086419aa0155ec1e4261, type: 3}
+    - {fileID: 8300000, guid: ab2339e2b83e8f54fa78a7555c8b271c, type: 3}
+    - {fileID: 8300000, guid: f7f15b5e65bd39b42804c9ab1dadd7bc, type: 3}
   - textureNames:
     - 
     audioClips:
@@ -2529,6 +2529,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   _checkRdius: 1
+  _hint: {fileID: 0}
 --- !u!1 &7201678358745991153
 GameObject:
   m_ObjectHideFlags: 0
