@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -88,6 +89,12 @@ public class BearAI : AIBase
         if (health <= 0f) return;
         UpdateAI();
         if (_stateClass != null) _stateClass.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        if (health <= 0f) return;
+        if (_stateClass != null) _stateClass.FixedUpdate();
     }
 
     public override void OnTakeDamage(float damage)

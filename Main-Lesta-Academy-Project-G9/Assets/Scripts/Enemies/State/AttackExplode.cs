@@ -40,6 +40,11 @@ public class AttackExplode : AiStateBase
 
     public void Update()
     {
+        
+    }
+
+    public void FixedUpdate()
+    {
         Vector3 enemyPos = _ai.GetEnemyPosition();
         if (Mathf.Abs(_ai.transform.position.y - enemyPos.y) > 0.5f) return;
         _movePosition(enemyPos);

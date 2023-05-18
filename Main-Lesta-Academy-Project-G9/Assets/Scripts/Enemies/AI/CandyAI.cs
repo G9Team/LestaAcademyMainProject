@@ -89,6 +89,12 @@ public class CandyAI : AIBase
         UpdateAI();
         if (_stateClass != null) _stateClass.Update();
     }
+    
+    private void FixedUpdate()
+    {
+        if (health <= 0f) return;
+        if (_stateClass != null) _stateClass.FixedUpdate();
+    }
 
     public override void OnTakeDamage(float damage)
     {

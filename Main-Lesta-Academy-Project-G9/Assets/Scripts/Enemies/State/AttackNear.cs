@@ -33,7 +33,15 @@ public class AttackNear : AiStateBase
     {
         Vector3 enemyPos = _ai.GetEnemyPosition();
         if (Mathf.Abs(_ai.transform.position.y - enemyPos.y) > 2f) return;
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(enemyPos.x, _ai.transform.position.y, enemyPos.z) - _ai.transform.position);
+        _ai.transform.rotation = Quaternion.Slerp(_ai.transform.rotation, targetRotation, 5f * Time.deltaTime);
         
+    }
+
+    public void FixedUpdate()
+    {
+        Vector3 enemyPos = _ai.GetEnemyPosition();
+        if (Mathf.Abs(_ai.transform.position.y - enemyPos.y) > 2f) return;
         _movePosition(enemyPos);
     }
 
@@ -47,7 +55,6 @@ public class AttackNear : AiStateBase
         vel.z = 0f;
         if (!(_attacking && dontMoveWhileAttacking))
             _rigidbody.velocity = vel * Time.deltaTime;
-        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(position.x, _ai.transform.position.y, position.z) - _ai.transform.position);
-        _ai.transform.rotation = Quaternion.Slerp(_ai.transform.rotation, targetRotation, 5f * Time.deltaTime);
+        
     }
 }
