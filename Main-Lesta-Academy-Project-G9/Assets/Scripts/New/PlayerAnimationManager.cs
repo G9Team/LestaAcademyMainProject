@@ -180,5 +180,9 @@ namespace New
         {
             _projectile = Resources.Load<GameObject>("CannonProjectile");
         }
+
+        public void PlayDeathAnimation(){
+            _animator.Play("Death");
+        }
     }
 }

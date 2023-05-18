@@ -29,9 +29,15 @@ public class PatrolState : AiStateBase
             _moveDir *= -1f;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         _movePosition();
+    }
+
+    public void Update()
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(_ai.transform.position.x + _moveDir, _ai.transform.position.y, _ai.transform.position.z) - _ai.transform.position);
+        _ai.transform.rotation = Quaternion.Slerp(_ai.transform.rotation, targetRotation, 5f * Time.deltaTime);
     }
 
     void _movePosition()
@@ -42,9 +48,7 @@ public class PatrolState : AiStateBase
         vel.y = oldVel.y;
         vel.x = Mathf.Abs(oldVel.x) > Mathf.Abs(_moveDir * speed) ? oldVel.x : _moveDir * speed;
         vel.z = 0;
-        _rigidbody.velocity = vel * Time.deltaTime;
-        Quaternion targetRotation = Quaternion.LookRotation(new Vector3(_ai.transform.position.x + _moveDir, _ai.transform.position.y, _ai.transform.position.z) - _ai.transform.position);
-        _ai.transform.rotation = Quaternion.Slerp(_ai.transform.rotation, targetRotation, 5f * Time.deltaTime);
+        _rigidbody.velocity = vel * Time.fixedDeltaTime;
         //_ai.transform.LookAt(new Vector3(_ai.transform.position.x + _moveDir, _ai.transform.position.y, _ai.transform.position.z));
     }
 }

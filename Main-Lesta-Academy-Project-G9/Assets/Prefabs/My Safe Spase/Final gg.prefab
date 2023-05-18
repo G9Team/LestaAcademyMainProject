@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 526844129335637298}
   - component: {fileID: 526844129335637321}
   - component: {fileID: 5336770773596016960}
+  - component: {fileID: 5757797433602839228}
   m_Layer: 8
   m_Name: Final gg
   m_TagString: Player
@@ -341,6 +342,7 @@ MonoBehaviour:
   _noControleDuraton: 0.2
   _xKnockbackForce: 15
   _yKnockbackForce: 15
+  _attackDirection: 0
 --- !u!114 &526844129335637325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,15 +449,27 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 914ce23b1fa036c4cae988b475fc27ed, type: 3}
   - {fileID: 8300000, guid: 4ecfed45759a43a49a55b95c444b646d, type: 3}
   otherClips:
-  - {fileID: 8300000, guid: 84d8a4dea6b9c684ab5b6676bbb51910, type: 3}
+  - {fileID: 8300000, guid: cf7181e2cc429964cb2ef20060d7940c, type: 3}
   - {fileID: 8300000, guid: 7d1d0d3a9c78e2e4dbe298de3672b8c2, type: 3}
   - {fileID: 8300000, guid: b7b62a09e659faf479dd57a6ce5bd825, type: 3}
   - {fileID: 8300000, guid: 914ce23b1fa036c4cae988b475fc27ed, type: 3}
   - {fileID: 8300000, guid: 4ecfed45759a43a49a55b95c444b646d, type: 3}
-  - {fileID: 8300000, guid: 3d96199633d82174093c26b8f5988528, type: 3}
-  - {fileID: 8300000, guid: d87158329bd023047a54325219414a40, type: 3}
-  - {fileID: 8300000, guid: 4368630438a8d3d4e8687681dacc21cd, type: 3}
+  - {fileID: 8300000, guid: 22950bf8071d66345bb4ba6ba60f8b88, type: 3}
+  - {fileID: 8300000, guid: 830ee77c676f6c043971dcfafdf2ff34, type: 3}
+  - {fileID: 8300000, guid: 76f8a3796fcf2994780f82d29e4188ad, type: 3}
   audioSource: {fileID: 6717304868168164137}
+--- !u!114 &5757797433602839228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526844129335637299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01835a0c9726ae348a70c7bb0159e90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &557038337896217667
 GameObject:
   m_ObjectHideFlags: 0

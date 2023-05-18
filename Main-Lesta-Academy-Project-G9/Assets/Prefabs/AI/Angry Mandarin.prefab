@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 8310955590117262313}
   m_Layer: 0
   m_Name: Angry Mandarin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,10 +290,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundTemplates: []
   defaultStep:
-  - {fileID: 8300000, guid: 8a21719f0ae561741a0ba8df78be5731, type: 3}
-  - {fileID: 8300000, guid: d5940a1b488b6bf428341463015e02fb, type: 3}
-  - {fileID: 8300000, guid: e5db6b02b8e118a4a8c7250920b5d746, type: 3}
-  - {fileID: 8300000, guid: 5f4706da5b7055e418fa120fa039a179, type: 3}
+  - {fileID: 8300000, guid: fb858344e60f6434f900585391ce0d1a, type: 3}
+  - {fileID: 8300000, guid: 3d1ebe70f36e69447bc78acc5ea298d3, type: 3}
+  - {fileID: 8300000, guid: 1c033981cfd15374bb8bde8e26d130f2, type: 3}
+  - {fileID: 8300000, guid: bfc52304233210b47a7f4031824efae4, type: 3}
   swayClips: []
   hitClips: []
   takeDamageClips: []

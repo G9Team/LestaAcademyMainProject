@@ -23,4 +23,9 @@ public class IdleState : AiStateBase
     public void Update()
     {
     }
+
+    public void FixedUpdate()
+    {
+        
+    }
 }

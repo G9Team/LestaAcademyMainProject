@@ -29,6 +29,10 @@ public class AttackCannon : AiStateBase
     {
     }
 
+    public void FixedUpdate()
+    {
+    }
+
     public void Attack()
     {
         GameObject spawned = GameObject.Instantiate(_projectile, _ai.transform.position + new Vector3(0f, 3f, 0f), Quaternion.identity);

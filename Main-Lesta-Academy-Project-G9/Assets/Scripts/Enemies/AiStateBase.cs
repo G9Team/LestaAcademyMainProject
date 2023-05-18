@@ -7,4 +7,5 @@ public interface AiStateBase
     void Init(AIBase ai);
     void MiniUpdate();
     void Update();
+    void FixedUpdate();
 }

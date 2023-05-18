@@ -25,36 +25,52 @@ public class FootstepSound : MonoBehaviour
         AudioClip clip = defaultStep[Random.Range(0, defaultStep.Length)];
         if (Physics.Raycast(transform.position + new Vector3(0f, 0.1f, 0f), Vector3.down, out hit, 0.2f))
         {
+            
             Material mat = findRaycastMaterial(hit);
             if (mat != null)
             {
+              
                 if (mat.GetTexture("_MainTex") == null) return;
                 string type = mat.GetTexture("_MainTex").name;
                 foreach (SoundTemplates step in soundTemplates)
                 {
                     if (step.textureNames.Contains(type))
                     {
+                        
                         clip = step.audioClips[Random.Range(0, step.audioClips.Length)];
                         break;
                     }
                 }
             }
         }
+       
+      audioSource.volume = 0.1f;
+     
         audioSource.PlayOneShot(clip);
     }
 
     public void PlaySway()
     {
+      
+        audioSource.volume = 0.08f; 
         audioSource.PlayOneShot(swayClips[Random.Range(0, swayClips.Length)], 0.3f);
+        audioSource.volume = 0.1f; 
     }
 
     public void PlayHit()
     {
+       
+        audioSource.volume = 0.4f; 
+       
         audioSource.PlayOneShot(hitClips[Random.Range(0, hitClips.Length)], 0.3f);
+        //audioSource.volume = 0.1f; 
+        
     }
 
     public void PlayTD()
     {
+        
+        
         audioSource.PlayOneShot(takeDamageClips[Random.Range(0, takeDamageClips.Length)], 0.2f);
     }
 

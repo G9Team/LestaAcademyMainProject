@@ -40,6 +40,11 @@ public class AttackExplode : AiStateBase
 
     public void Update()
     {
+        
+    }
+
+    public void FixedUpdate()
+    {
         Vector3 enemyPos = _ai.GetEnemyPosition();
         if (Mathf.Abs(_ai.transform.position.y - enemyPos.y) > 0.5f) return;
         _movePosition(enemyPos);
@@ -49,10 +54,10 @@ public class AttackExplode : AiStateBase
     {
         Vector3 oldVel = _rigidbody.velocity;
         Vector3 delta = position - _rigidbody.position;
-        Vector3 vel = delta / Time.deltaTime;
+        Vector3 vel = delta / Time.fixedDeltaTime;
         vel.y = oldVel.y;
         vel.x = Mathf.Abs(oldVel.x) > Mathf.Abs(vel.x) ? oldVel.x : vel.x;
         vel.z = 0f;
-        _rigidbody.velocity = vel * Time.deltaTime;
+        _rigidbody.velocity = vel * Time.fixedDeltaTime;
     }
 }
