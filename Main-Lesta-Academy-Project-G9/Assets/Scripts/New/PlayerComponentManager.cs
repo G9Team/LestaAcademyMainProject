@@ -34,9 +34,15 @@ namespace New
             return this._velocityHandler;
         }
         public void DamagePlayer(int damage){
-                _playerData.ChangeHealth(-1);
+                _playerData.ChangeHealth(damage);
                 _velocityHandler.Attacked();
                 _audio.PlayTD();
+        }
+        public void DamagePlayerFromEnemy(float direction, int damage){
+                _playerData.ChangeHealth(damage);
+                _velocityHandler.AttackedByEnemy(direction);
+                _audio.PlayTD();
+
         }
         public InputManager GetInputManager() => _inputManager;
     }

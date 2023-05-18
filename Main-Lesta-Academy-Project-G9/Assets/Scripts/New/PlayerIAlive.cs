@@ -28,8 +28,23 @@ namespace New
 
         public void ChangeHealth(int health)
         {
-            _manager.DamagePlayer(health);
+            _manager.DamagePlayerFromEnemy(CalculateDirection(), health);
             RefreshHealth();
+        }
+        
+        private float CalculateDirection(){
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject closestEnemy = null;
+            foreach (var enemy in enemies)
+            {
+                if (closestEnemy is null 
+                    || Vector3.Distance(this.transform.position, closestEnemy.transform.position) > 
+                    Vector3.Distance(this.transform.position, enemy.transform.position))
+                {
+                    closestEnemy = enemy;
+                } 
+            }
+            return Mathf.Sign(this.transform.position.x - closestEnemy.transform.position.x);
         }
 
         private void RefreshHealth() => _health = _playerData.CurrentHealth;

@@ -10,8 +10,8 @@ namespace New
         [SerializeField]
         private float _jumpForce, _mainGravityScaler, _fallGravityScaler,
             _dashForce = 15f, _dashDuration = 0.25f, _runSpeed,
-            _noControleDuraton, _xKnockbackForce, _yKnockbackForce;
-        private bool _isFacingRight, _isAttacking, _isAttacked;
+            _noControleDuraton, _xKnockbackForce, _yKnockbackForce, _attackDirection;
+        private bool _isFacingRight, _isAttacking, _isAttacked, _isAttackedByEnemy;
         private float _move
         {
             get
@@ -39,6 +39,9 @@ namespace New
             if(_isAttacked){
                 Attacked(_xKnockbackForce, _yKnockbackForce);  
 
+            }
+            if (_isAttackedByEnemy){
+                ActualAttackedByEnemy(_attackDirection);
             }
         }
         private void FixedUpdate()
@@ -139,6 +142,11 @@ namespace New
         public void Attacked(){
             _isAttacked = true;
         }
+        public void AttackedByEnemy(float direction){
+            _attackDirection = direction;
+            _isAttackedByEnemy = true;
+            StartCoroutine(NoControllTime());
+        }
 
         public void Attacked(float knockbackX, float knockbackY){
             _rigidbody.velocity = Vector3.zero;
@@ -146,7 +154,7 @@ namespace New
             StartCoroutine(NoControllTime());
             
         }
-        public void AttackedByEnemy(float direction){
+        public void ActualAttackedByEnemy(float direction){
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.velocity = new Vector3 (_xKnockbackForce * direction, _yKnockbackForce, 0);
             StartCoroutine(NoControllTime());
@@ -155,6 +163,7 @@ namespace New
         private IEnumerator NoControllTime(){
             yield return new WaitForSeconds(_noControleDuraton);
             _isAttacked = false;
+            _isAttackedByEnemy = false;
         }
 
     }
