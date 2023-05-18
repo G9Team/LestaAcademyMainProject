@@ -13,12 +13,20 @@ namespace New
         [SerializeField] private AudioSource _externalAudio;
         private AudioSource _audio;
 
+        private float _timer = 10f;
         private void Awake() {
             _audio = GetComponent<AudioSource>();
         }
 
+        private void Update() {
+            if (_timer <= 0){
+                _audio.PlayOneShot(_clips[6]);
+                _timer = Random.Range(10f, 30f);
+            }
+            _timer -= Time.deltaTime;
+        }
+
         public void ProceedAttackSound(BossAttackType type){
-            _audio.Stop();
             switch (type)
             {  
                 case BossAttackType.FireBall:
@@ -57,9 +65,8 @@ namespace New
             StandardPlay(8);
         }
         private void StandardPlay(int indexInClips){
-            _audio.Stop();
-            _audio.clip = _clips[indexInClips];
-            _audio.Play();
+           
+            _audio.PlayOneShot(_clips[indexInClips]);
         }
 
     }

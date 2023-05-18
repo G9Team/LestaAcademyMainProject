@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.702
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12655903, g: 0.15845107, b: 0.21545956, a: 0.702}
+  m_IndirectSpecularColor: {r: 0.1265589, g: 0.15845081, b: 0.21545944, a: 0.702}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22373,7 +22373,7 @@ MonoBehaviour:
   _bossBody: {fileID: 919132148267294757}
   _stageVFX: {fileID: 725038997}
   _crystal: {fileID: 9220872288763941087, guid: d10cb04588c137548b804eac102fb27c, type: 3}
-  _loopTimer: 4
+  _loopTimer: 6
   _breakTimer: 5
   _health: {fileID: 5866666020651966696}
   _audio: {fileID: 2051346115}
@@ -34334,7 +34334,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c17ac8600d6a73a429ff72258021c8b0, type: 3}
   - {fileID: 8300000, guid: 5d09ebc040996fb4b9a8e6085200d020, type: 3}
   - {fileID: 8300000, guid: e2721f2c848e92e4f8a777180ff53944, type: 3}
-  - {fileID: 8300000, guid: a94b1024ee30e574c83eb00905c3c0a4, type: 3}
+  - {fileID: 8300000, guid: 471e92492f1e8b8409c8b665528846ca, type: 3}
   - {fileID: 8300000, guid: 2f08902bca6b51146b83645a0c5ee2aa, type: 3}
   _externalAudio: {fileID: 1951947699}
 --- !u!1 &2055438701
