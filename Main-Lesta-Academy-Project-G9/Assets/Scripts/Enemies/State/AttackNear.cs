@@ -49,12 +49,12 @@ public class AttackNear : AiStateBase
     {
         Vector3 oldVel = _rigidbody.velocity;
         Vector3 delta = position - _rigidbody.position;
-        Vector3 vel = delta / Time.deltaTime;
-        vel.y = oldVel.y * Physics.gravity.y*Time.deltaTime;
+        Vector3 vel = delta / Time.fixedDeltaTime;
+        vel.y = oldVel.y * Physics.gravity.y*Time.fixedDeltaTime;
         vel.x = Mathf.Min(Mathf.Max((Mathf.Abs(oldVel.x) > Mathf.Abs(vel.x) ? oldVel.x : vel.x), -1f), 1f)*200;
         vel.z = 0f;
         if (!(_attacking && dontMoveWhileAttacking))
-            _rigidbody.velocity = vel * Time.deltaTime;
+            _rigidbody.velocity = vel * Time.fixedDeltaTime;
         
     }
 }
