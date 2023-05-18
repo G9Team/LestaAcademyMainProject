@@ -11,7 +11,7 @@ namespace New
     {
         [SerializeField] private LayerMask _interactableOnly;
         [SerializeField] private float _checkRdius;
-        [SerializeField] private GameObject _hint;
+         private GameObject _hint;
         public bool IsInteractionAvaliable()
         {
             if (Physics.CheckSphere(this.transform.position, _checkRdius, _interactableOnly)){
@@ -27,9 +27,13 @@ namespace New
 
         }
 
+        private void Start() {
+            _hint = GameObject.FindGameObjectWithTag("Hint");
+        }
+
         private void Update() {
             if (Physics.CheckSphere(this.transform.position, _checkRdius, _interactableOnly)){
-                _hint.SetActive(true);
+                _hint?.SetActive(true);
             }else{
                 _hint.SetActive(false);
             }

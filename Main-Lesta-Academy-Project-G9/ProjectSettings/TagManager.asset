@@ -8,6 +8,7 @@ TagManager:
   - Ledge
   - Liana
   - Enemy
+  - Hint
   layers:
   - Default
   - TransparentFX
