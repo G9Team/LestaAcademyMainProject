@@ -17,6 +17,7 @@ public class Ambient : MonoBehaviour
     {
         AudioClip selected = ambientSounds[Random.Range(0, ambientSounds.Length)];
         _source.clip = selected;
+        Debug.Log("ambient: " + _source.volume);
         _source.Play();
 
         Invoke("InvokeSound", selected.length+Random.Range(10f, 20f));
