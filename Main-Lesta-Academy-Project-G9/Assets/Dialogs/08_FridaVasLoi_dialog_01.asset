@@ -71,7 +71,7 @@ MonoBehaviour:
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
     dialog: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430 \u043C\u0435\u043D\u044F
-      \u0437\u043E\u0432\u0443\u0442.\u044B"
+      \u0437\u043E\u0432\u0443\u0442."
     minDialogTime: 0
     groupType: 0
     force: 0
