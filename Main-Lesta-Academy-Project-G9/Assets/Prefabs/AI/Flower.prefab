@@ -369,8 +369,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498220c7a62ee4adca8c85140121a53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  detectDistance: 30
+  health: 40
+  detectDistance: 20
 --- !u!82 &589686671542254967
 AudioSource:
   m_ObjectHideFlags: 0

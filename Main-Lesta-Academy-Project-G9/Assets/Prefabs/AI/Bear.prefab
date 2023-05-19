@@ -643,7 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ade07699879ac45b34200dbc2d761b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 30
   detectDistance: 10
 --- !u!136 &217262168482039106
 CapsuleCollider:
