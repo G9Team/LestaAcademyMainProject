@@ -17,7 +17,7 @@ MonoBehaviour:
     position: 0
     sprite: {fileID: 21300000, guid: 81521ca2d3e664453942e744d9cd3c77, type: 3}
   - characterName: "\u041D\u0438\u0444-\u041D\u0438\u0444"
-    position: 0
+    position: 1
     sprite: {fileID: 21300000, guid: 87d71d62d05b61b4dabd986f4ecfbd0b, type: 3}
   arrayGroups:
   - eventName: 
@@ -55,7 +55,7 @@ MonoBehaviour:
     answers: []
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
-    dialog: "\u0437\u0430\u0447\u0435\u043C \u043E\u043D \u043C\u043D\u0435?"
+    dialog: "\u0417\u0430\u0447\u0435\u043C \u043E\u043D \u043C\u043D\u0435?"
     minDialogTime: 0
     groupType: 0
     force: 0
