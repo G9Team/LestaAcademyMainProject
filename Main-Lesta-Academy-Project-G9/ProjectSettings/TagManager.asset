@@ -9,6 +9,7 @@ TagManager:
   - Liana
   - Enemy
   - Hint
+  - Escape
   layers:
   - Default
   - TransparentFX

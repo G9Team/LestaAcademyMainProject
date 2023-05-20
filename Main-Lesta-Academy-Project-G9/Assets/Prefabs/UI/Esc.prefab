@@ -373,11 +373,11 @@ GameObject:
   - component: {fileID: 5773644113974078431}
   m_Layer: 5
   m_Name: Esc
-  m_TagString: Untagged
+  m_TagString: Escape
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5773644113974078424
 RectTransform:
   m_ObjectHideFlags: 0

@@ -10,10 +10,12 @@ namespace New
         [SerializeField] private int _maxHealth;
         public int Health { get; private set; }
         public event UnityAction NextStage, Death, Damaged;
+        private IPlayerData _data;
 
 
         private void Awake()
         {
+            _data = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerComponentManager>().GetPlayerData();
             Health = _maxHealth;
         }
         public void GetDamage(int amount)
@@ -42,8 +44,7 @@ namespace New
         {
             if (other.tag == "PlayerAtackHitbox")
             {
-                IPlayerData data = other.transform.parent.GetComponent<PlayerComponentManager>().GetPlayerData();
-                GetDamage(data.AttackForce);
+                GetDamage(_data.AttackForce);
             }
         }
 

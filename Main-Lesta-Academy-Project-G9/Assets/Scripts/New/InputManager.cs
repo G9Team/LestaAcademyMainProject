@@ -9,6 +9,7 @@ namespace New
     public class InputManager : MonoBehaviour
     {
         private PlayerMovement _playerMovement;
+        private GameObject _escapeMenu;
         private PlayerInteractor _interactor;
         private float _move, _exMove;
         private bool _moveflag, _uiInput = false;
@@ -21,6 +22,10 @@ namespace New
         {
             _interactor = interactor;
             _playerMovement = movement;
+        }
+        private void Awake() {
+            _escapeMenu = GameObject.FindGameObjectWithTag("Escape");
+            _escapeMenu.SetActive(false);
         }
 
         void Update()
@@ -81,9 +86,9 @@ namespace New
 
                 if (Input.GetKeyDown(KeyCode.L))
                     _playerMovement.SecondAttack();
-                if (Input.GetKeyDown(KeyCode.CapsLock))
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
-
+                    _escapeMenu.SetActive(!_escapeMenu.activeSelf);
                 }
             }
             else
