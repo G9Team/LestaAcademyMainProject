@@ -200,7 +200,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 321737015004840336}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6435335622487437159}
+        m_TargetAssemblyTypeName: New.BobUIUpdate, Assembly-CSharp
+        m_MethodName: OnHeartPick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &321737015125978451
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +333,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 321737015125978444}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6435335622487437159}
+        m_TargetAssemblyTypeName: New.BobUIUpdate, Assembly-CSharp
+        m_MethodName: OnEnergyPich
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &321737015215957668
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,10 +468,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 321737015880633705}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 6435335622487437159}
+        m_TargetAssemblyTypeName: New.BobUIUpdate, Assembly-CSharp
+        m_MethodName: ProceedUpdate
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -467,6 +491,7 @@ GameObject:
   - component: {fileID: 321737015880633704}
   - component: {fileID: 321737015880633706}
   - component: {fileID: 321737015880633707}
+  - component: {fileID: 6435335622487437159}
   m_Layer: 5
   m_Name: Bob Panel
   m_TagString: Untagged
@@ -535,3 +560,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6435335622487437159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321737015880633705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54578f21b33ecaf4687d9d60912e3915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
