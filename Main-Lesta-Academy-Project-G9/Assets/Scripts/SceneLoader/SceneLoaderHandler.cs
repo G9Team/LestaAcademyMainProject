@@ -22,9 +22,9 @@ public class SceneLoader
         GameObject.DontDestroyOnLoad(sceneCanvas);
         New.PlayerComponentManager manager = GameObject.FindObjectOfType<PlayerComponentManager>();
         int collected = 0;
-        if(manager != null)
+        if (manager != null)
         {
-             collected = ((New.PlayerData)manager.GetPlayerData()).GetCollectableCount(CollectableType.Star);
+            collected = ((New.PlayerData)manager.GetPlayerData()).Coins;
         }
         sceneCanvas.transform.Find("ResultWindow/ResultCount").GetComponent<TMPro.TextMeshProUGUI>().text =
             $"СОБРАНО ЧЕРНИЛЬНЫХ КАПЕЛЬ - {collected}/10";
@@ -36,23 +36,26 @@ public class SceneLoader
         sceneCanvas.transform.Find("ResultWindow/Restart").GetComponent<Button>().onClick.AddListener(() =>
         {
             sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(
-                MainCoroutine(sceneCanvas,SceneManager.GetActiveScene().buildIndex +1));
-            
+                MainCoroutine(sceneCanvas, SceneManager.GetActiveScene().buildIndex + 1));
+
         });
         //sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(MainCoroutine(sceneCanvas,sceneIndex));
     }
-    
+
     public static void LoadScene(int sceneIndex)
     {
         GameObject sceneCanvas = GameObject.Instantiate(Resources.Load("SceneLoaderCanvas") as GameObject);
         GameObject.DontDestroyOnLoad(sceneCanvas);
         sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(
-            MainCoroutine(sceneCanvas,sceneIndex));
+            MainCoroutine(sceneCanvas, sceneIndex));
         //sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(MainCoroutine(sceneCanvas,sceneIndex));
     }
 
-    static IEnumerator MainCoroutine(GameObject sceneCanvas,int sceneIndex)
+    static IEnumerator MainCoroutine(GameObject sceneCanvas, int sceneIndex)
     {
+        SaveManager sm = GameObject.FindObjectOfType<SaveManager>();
+        if (sm != null)
+            sm.ChangeLevel(sceneIndex);
         Animator animator = sceneCanvas.GetComponent<Animator>();
         animator.SetTrigger("Start");
         while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
@@ -62,9 +65,9 @@ public class SceneLoader
         Text hintText = sceneCanvas.transform.Find("LoadWindow/Hint").GetComponent<Text>(); //idk about hints for now
         Image fadeImage = sceneCanvas.transform.Find("LoadWindow/Fade").GetComponent<Image>();
 
-        
+
         Color col = Color.black;
-        while(col.a > 0)
+        while (col.a > 0)
         {
             col.a -= Time.deltaTime * 1.5f;
             fadeImage.color = col;
@@ -72,9 +75,9 @@ public class SceneLoader
         }
         sceneCanvas.transform.Find("LoadWindow").gameObject.SetActive(true);
         AsyncOperation sceneLoadAsync = SceneManager.LoadSceneAsync(sceneIndex);
-        while(!sceneLoadAsync.isDone)
+        while (!sceneLoadAsync.isDone)
         {
-            loadingText.text = $"Loading {(int)(sceneLoadAsync.progress*100f)}%";
+            loadingText.text = $"Loading {(int)(sceneLoadAsync.progress * 100f)}%";
             yield return new WaitForSeconds(Time.deltaTime);
         }
         loadingText.text = $"Loading 100%";

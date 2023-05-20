@@ -63,9 +63,9 @@ namespace New
                 return Vector3.right * _knockbackForce;
             }
         }
-        public int Wheet {get => _itemAmountByType[CollectableType.Wheet]; }
-        public int Pirojki {get => _itemAmountByType[CollectableType.Pirojki]; }
-        public int Coins {get => _starsByLevel[_currentLevel]; }
+        public int Wheet { get => _itemAmountByType[CollectableType.Wheet]; }
+        public int Pirojki { get => _itemAmountByType[CollectableType.Pirojki]; }
+        public int Coins { get => _starsByLevel[_currentLevel]; }
 
         public event Action OnHealthToZero, OnUIUpdate;
 
@@ -86,26 +86,31 @@ namespace New
             _isVulnerable = true;
         }
 
-        public void SetLevel(int currentLevelIndex){
+        public void SetLevel(int currentLevelIndex)
+        {
             _currentLevel = currentLevelIndex;
         }
 
-        public void ChangeHealth(int health){
-            if(health < 0 && !_isVulnerable) return;
-            if (health < 0){
+        public void ChangeHealth(int health)
+        {
+            if (health < 0 && !_isVulnerable) return;
+            if (health < 0)
+            {
                 Invulnerability();
             }
             CurrentHealth += health;
             OnUIUpdate?.Invoke();
         }
 
-        async private void Invulnerability(){
+        async private void Invulnerability()
+        {
             _isVulnerable = false;
-            await System.Threading.Tasks.Task.Run(() =>{
+            await System.Threading.Tasks.Task.Run(() =>
+            {
                 Thread.Sleep(2000);
                 _isVulnerable = true;
-            } );
-            
+            });
+
         }
 
         public int GetCollectableCount(CollectableType typeOfItem)
@@ -124,9 +129,12 @@ namespace New
 
         public void LoadSave(SaveManager.SaveObject saveObject)
         {
+
             MaxHealth = saveObject.maxHealth;
+            CurrentHealth = saveObject.currentHealth;
             AttackForce = saveObject.attackForce;
             MaxEnergy = saveObject.maxEnergy;
+            CurrentEnergy = saveObject.currentEnergy;
         }
 
 

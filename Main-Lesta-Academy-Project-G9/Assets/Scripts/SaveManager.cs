@@ -9,10 +9,12 @@ public class SaveManager : MonoBehaviour
 
     public struct SaveObject
     {
+        public int currentHealth;
         public int maxHealth;
         public int attackForce;
+        public int currentEnergy;
         public int maxEnergy;
-        //public int sceneId;
+        public int sceneId;
     }
 
     #endregion
@@ -28,17 +30,54 @@ public class SaveManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         _path = Path.Combine(Application.persistentDataPath, _path);
-        LoadData();
+        //LoadData();
     }
 
     private void OnLevelWasLoaded(int level)
     {
+        if (FindObjectsOfType<SaveManager>().Length > 1)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         New.PlayerComponentManager manager = FindObjectOfType<New.PlayerComponentManager>();
-        if(manager != null)
+        if (manager != null)
         {
             ((New.PlayerData)manager.GetPlayerData()).LoadSave(_save);
         }
-        SaveData();
+    }
+
+    public void Continue()
+    {
+        if (!File.Exists(_path))
+            return;
+        LoadData();
+        SceneLoader.LoadScene(_save.sceneId);
+    }
+
+    public void NewGame()
+    {
+        CreateNew();
+        SceneLoader.LoadScene(1);
+    }
+
+    public void ChangeLevel(int nextLevel)
+    {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            New.PlayerComponentManager manager = FindObjectOfType<New.PlayerComponentManager>();
+            if (manager != null)
+            {
+                New.PlayerData plyData = (New.PlayerData)manager.GetPlayerData();
+                _save.currentHealth = plyData.CurrentHealth;
+                _save.maxHealth = plyData.MaxHealth;
+                _save.currentEnergy = plyData.CurrentEnergy;
+                _save.maxEnergy = plyData.MaxEnergy;
+                _save.attackForce = plyData.AttackForce;
+            }
+            _save.sceneId = nextLevel;
+            SaveData();
+        }
     }
 
     void LoadData()
@@ -61,9 +100,12 @@ public class SaveManager : MonoBehaviour
     {
         _save = new SaveObject()
         {
+            currentHealth = 3,
             maxHealth = 3,
             attackForce = 1,
-            maxEnergy = 3
+            currentEnergy = 3,
+            maxEnergy = 3,
+            sceneId = 1
         };
         SaveData();
     }
