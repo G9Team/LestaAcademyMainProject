@@ -12,6 +12,7 @@ namespace New
         [SerializeField] private WallDetetor _wallDetector;
         [SerializeField] private LedgeDetector _ledgeDetector;
         private PlayerAnimationManager _animator;
+        private FootstepSound _audio;
         private List<IDetector> _detectors = new List<IDetector>();
 
         public int Direction { get; private set; }
@@ -25,11 +26,12 @@ namespace New
 
  
         }
-        public void Initialize(PlayerInteractor interactor, IMover mover, PlayerAnimationManager manager)
+        public void Initialize(PlayerInteractor interactor, IMover mover, PlayerAnimationManager manager, FootstepSound audio)
         {
             _animator = manager;
             _detectors.Add(interactor);
             _mover = mover;
+            _audio = audio;
 
 
             foreach (IDetector detector in _detectors)
@@ -57,6 +59,9 @@ namespace New
         }
         private void ProceedGroundDetection(bool grounded)  {
             if(grounded){
+               if(!_grounded){
+                    _audio.PlayCustom("grounding");
+               }
                _canDash = _dubleJump = grounded;
             }
             _grounded = grounded;

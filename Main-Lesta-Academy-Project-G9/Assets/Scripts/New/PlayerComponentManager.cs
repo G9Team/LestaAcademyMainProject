@@ -25,7 +25,7 @@ namespace New
             _interactor = new PlayerInteractor(_upgrader, _interactionChecker);
             _audio = GetComponent<FootstepSound>();
 
-            _playerMovement.Initialize(_interactor, _velocityHandler, _animationManager);
+            _playerMovement.Initialize(_interactor, _velocityHandler, _animationManager, _audio);
             _inputManager.Initialize(_interactor, _playerMovement);
             _playerData.OnHealthToZero += OnPlyerDeath;
         }
