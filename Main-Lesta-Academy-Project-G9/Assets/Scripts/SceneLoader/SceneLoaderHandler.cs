@@ -36,7 +36,7 @@ public class SceneLoader
         sceneCanvas.transform.Find("ResultWindow/Restart").GetComponent<Button>().onClick.AddListener(() =>
         {
             sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(
-                MainCoroutine(sceneCanvas,0));
+                MainCoroutine(sceneCanvas,SceneManager.GetActiveScene().buildIndex +1));
             
         });
         //sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(MainCoroutine(sceneCanvas,sceneIndex));

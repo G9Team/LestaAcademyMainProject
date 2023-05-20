@@ -10,6 +10,7 @@ public class SceneTrigger : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             SceneLoader.ShowResult();
+            other.GetComponent<New.InputManager>().TurnOnUIInput();
         }
     }
 }

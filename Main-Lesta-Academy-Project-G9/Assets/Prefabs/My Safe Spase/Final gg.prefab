@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 526844129335637298}
   - component: {fileID: 526844129335637321}
   - component: {fileID: 5336770773596016960}
-  - component: {fileID: 5757797433602839228}
+  - component: {fileID: 2006192738}
   m_Layer: 8
   m_Name: Final gg
   m_TagString: Player
@@ -459,7 +459,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 76f8a3796fcf2994780f82d29e4188ad, type: 3}
   - {fileID: 8300000, guid: 186fc1f6ef6d38d4180edebe7f569e6f, type: 3}
   audioSource: {fileID: 6717304868168164137}
---- !u!114 &5757797433602839228
+--- !u!114 &2006192738
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
