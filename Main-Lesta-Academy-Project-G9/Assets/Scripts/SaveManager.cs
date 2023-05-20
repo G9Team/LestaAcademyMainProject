@@ -58,12 +58,12 @@ public class SaveManager : MonoBehaviour
     public void NewGame()
     {
         CreateNew();
-        SceneLoader.LoadScene(1);
+        SceneLoader.LoadScene(2);
     }
 
     public void ChangeLevel(int nextLevel)
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex != 0)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex > 1)
         {
             New.PlayerComponentManager manager = FindObjectOfType<New.PlayerComponentManager>();
             if (manager != null)
@@ -105,7 +105,7 @@ public class SaveManager : MonoBehaviour
             attackForce = 1,
             currentEnergy = 3,
             maxEnergy = 3,
-            sceneId = 1
+            sceneId = 2
         };
         SaveData();
     }

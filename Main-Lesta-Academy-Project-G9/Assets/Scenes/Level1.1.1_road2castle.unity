@@ -830,6 +830,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 41052308}
     m_Modifications:
+    - target: {fileID: -6814338769063343094, guid: 53b39b1e2f8ad8247a3fc104a7670b66, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 654109779875190851, guid: b568965e591e1b54aa1fccefcd2317b1, type: 2}
     - target: {fileID: 4708336762492615970, guid: 53b39b1e2f8ad8247a3fc104a7670b66, type: 3}
       propertyPath: m_Name
       value: Bear
@@ -42891,7 +42895,7 @@ AudioSource:
   m_GameObject: {fileID: 1344281608}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 654109779875190851, guid: b568965e591e1b54aa1fccefcd2317b1, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.3
@@ -44387,7 +44391,7 @@ AudioSource:
   m_GameObject: {fileID: 1400852376}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 654109779875190851, guid: b568965e591e1b54aa1fccefcd2317b1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 38ebb4d801daf73419b58da5c4dbe5b2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
@@ -49817,7 +49821,7 @@ AudioSource:
   m_GameObject: {fileID: 1568626731}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 654109779875190851, guid: b568965e591e1b54aa1fccefcd2317b1, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.7
@@ -62679,7 +62683,7 @@ AudioSource:
   m_GameObject: {fileID: 2013051438}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4967470886722093480, guid: b568965e591e1b54aa1fccefcd2317b1, type: 2}
   m_audioClip: {fileID: 8300000, guid: f80b3d75f0ec87e4f9f2e2a5d3498ed2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
@@ -66532,6 +66536,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6717304868168164137, guid: 74679eb735a3d4547b9df7322c9f5a0f, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 654109779875190851, guid: b568965e591e1b54aa1fccefcd2317b1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74679eb735a3d4547b9df7322c9f5a0f, type: 3}
 --- !u!4 &516315834437055896 stripped
