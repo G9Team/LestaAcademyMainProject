@@ -78,3 +78,12 @@ MonoBehaviour:
     hideName: 0
     clip: {fileID: 8300000, guid: 5bff0f52423d3fb48ac2af3cb15f93f4, type: 3}
     answers: []
+  - eventName: Upgrade
+    characterName: 
+    dialog: 
+    minDialogTime: 0
+    groupType: 1
+    force: 0
+    hideName: 0
+    clip: {fileID: 0}
+    answers: []
