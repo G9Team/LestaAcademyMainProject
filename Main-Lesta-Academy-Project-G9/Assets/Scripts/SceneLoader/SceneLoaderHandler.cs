@@ -7,7 +7,12 @@ using UnityEngine.UI;
 
 public class SceneLoaderHandler : MonoBehaviour
 {
-
+    public void Continue()
+    {
+        transform.Find("Bob Panel").gameObject.SetActive(false);
+        StartCoroutine(
+                SceneLoader.MainCoroutine(gameObject, SceneManager.GetActiveScene().buildIndex + 1));
+    }
 }
 
 public class SceneLoader
@@ -35,13 +40,14 @@ public class SceneLoader
         });
         sceneCanvas.transform.Find("ResultWindow/Restart").GetComponent<Button>().onClick.AddListener(() =>
         {
-            sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(
+            if (collected == 10)
+                sceneCanvas.transform.Find("Bob Panel").gameObject.SetActive(true);
+            else
+                sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(
                 MainCoroutine(sceneCanvas, SceneManager.GetActiveScene().buildIndex + 1));
-
         });
         //sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(MainCoroutine(sceneCanvas,sceneIndex));
     }
-
     public static void LoadScene(int sceneIndex)
     {
         GameObject sceneCanvas = GameObject.Instantiate(Resources.Load("SceneLoaderCanvas") as GameObject);
@@ -51,10 +57,10 @@ public class SceneLoader
         //sceneCanvas.GetComponent<SceneLoaderHandler>().StartCoroutine(MainCoroutine(sceneCanvas,sceneIndex));
     }
 
-    static IEnumerator MainCoroutine(GameObject sceneCanvas, int sceneIndex)
+    public static IEnumerator MainCoroutine(GameObject sceneCanvas, int sceneIndex)
     {
         SaveManager sm = GameObject.FindObjectOfType<SaveManager>();
-        if (sm != null)
+        if (sm != null && sceneIndex != SceneManager.GetActiveScene().buildIndex)
             sm.ChangeLevel(sceneIndex);
         Animator animator = sceneCanvas.GetComponent<Animator>();
         animator.SetTrigger("Start");
