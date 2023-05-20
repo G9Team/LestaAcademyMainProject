@@ -42,6 +42,7 @@ namespace New
                     _audio.clip = _clips[(int)type];
                     break;
                 case BossAttackType.BulletHell:
+                    _audio.PlayOneShot(_clips[(int)type -1]);
                     _audio.clip = _clips[(int)type];
                     break;
                 default:

@@ -131,6 +131,7 @@ namespace New
         }
         
         public void SecondAttack(){
+            _audio.PlayCustom("super");
             _animator.PullSecondAttackTrigger();
         }
         
