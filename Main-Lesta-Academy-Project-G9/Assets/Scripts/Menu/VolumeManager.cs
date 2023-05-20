@@ -1,58 +1,37 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class VolumeManager : MonoBehaviour
 {
 
-    private static readonly string FirstPlay = "FirstPlay";
-    private static readonly string MusicPref = "MusicPref";
-    private int firstPlayInt;
-    [SerializeField] private Slider musicSlider;
-    private float musicFloat;
-    [SerializeField] private AudioSource musicAudio;
-    [SerializeField] private AudioSource soundEffectsAudio;
-    [SerializeField] private AudioClip buttonSound;
+    [SerializeField] private string volumeParameter;
+    [SerializeField] private Slider audioSlider;
+    [SerializeField] private AudioMixer mixer;
 
-    void Start()
+    private const float _multipliar = 20f;
+    private float _volumeValue;
+
+    void Awake()
     {
-        firstPlayInt = PlayerPrefs.GetInt(FirstPlay);
-
-        if (firstPlayInt == 0)
-        {
-            musicFloat = 0.5f;
-            musicSlider.value = musicFloat;
-            PlayerPrefs.SetFloat(MusicPref, musicFloat);
-            PlayerPrefs.SetInt(FirstPlay, -1);
-        }
-        else
-        {
-            musicFloat = PlayerPrefs.GetFloat(MusicPref);
-            musicSlider.value = musicFloat;
-        }
+        audioSlider.onValueChanged.AddListener(HandleSliderValueChanged);
     }
 
-    public void SaveSoundSettings()
+    private void Start()
     {
-        PlayerPrefs.SetFloat(MusicPref, musicSlider.value);
+        _volumeValue = PlayerPrefs.GetFloat(volumeParameter, Mathf.Log10(audioSlider.value) * _multipliar);
+        audioSlider.value = Mathf.Pow(10f, _volumeValue / _multipliar);
     }
 
-    void OnApplicationFocus(bool inFocus)
+    private void HandleSliderValueChanged(float value)
     {
-        if (!inFocus)
-        {
-            SaveSoundSettings();
-        }
+        var volumeValue = Mathf.Log10(value) * _multipliar;
+        mixer.SetFloat(volumeParameter, volumeValue);
     }
 
-    public void UpdateSound()
+    private void OnDisable()
     {
-        musicAudio.volume = musicSlider.value;
+        PlayerPrefs.SetFloat(volumeParameter, _volumeValue);
     }
-
-    public void ButtonSound()
-    {
-        musicAudio.PlayOneShot(buttonSound);
-    }
-
 }
 
