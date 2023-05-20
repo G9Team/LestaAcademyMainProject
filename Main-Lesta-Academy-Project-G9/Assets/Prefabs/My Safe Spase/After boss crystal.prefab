@@ -105,6 +105,8 @@ GameObject:
   - component: {fileID: 8411825607804242533}
   - component: {fileID: 4833230223404942784}
   - component: {fileID: 7275532273832374538}
+  - component: {fileID: 1042332247185317541}
+  - component: {fileID: 5952607328218334834}
   m_Layer: 0
   m_Name: After boss crystal
   m_TagString: Untagged
@@ -178,3 +180,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1042332247185317541
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9220872288763941087}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1452301, y: 0.15859437, z: 0.058862545}
+  m_Center: {x: 0.0041617393, y: 0.05174935, z: 0.0033572675}
+--- !u!114 &5952607328218334834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9220872288763941087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78163216a68cb31468e3c5d5808f63cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
