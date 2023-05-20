@@ -51,6 +51,13 @@ namespace New
         {
             if (canAttack && Mathf.Floor(_rigidbody.velocity.y) < 0.1f)
             {
+                New.PlayerComponentManager manager = GetComponent<New.PlayerComponentManager>();
+                if (manager != null)
+                {
+                    if (((New.PlayerData)manager.GetPlayerData()).CurrentEnergy < 3)
+                        return;
+                    manager.GetPlayerData().Upgrade(UpgradeType.CurrentEnergy, -3);
+                }
                 mustHide = true;
                 _animator.SetTrigger("SecondAttack");
                 StartCoroutine(CanAttackSuper());
@@ -68,7 +75,7 @@ namespace New
         {
             canAttack = false;
             GetComponent<InputManager>().lockInput = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.66f);
             for (int i = 0; i < 3; i++)
             {
                 GameObject spawned = Instantiate(_projectile, this.transform.position + new Vector3(0f, 1.7f, 0f) + this.transform.forward, Quaternion.identity);
@@ -79,9 +86,9 @@ namespace New
                 cp.lifeTime = 10f;
                 cp.damage = 15f;
                 cp.enemiesProjectile = false;
-                yield return new WaitForSeconds(0.45f);
+                yield return new WaitForSeconds(0.3f);
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.66f);
             canAttack = true;
             GetComponent<InputManager>().lockInput = false;
         }
