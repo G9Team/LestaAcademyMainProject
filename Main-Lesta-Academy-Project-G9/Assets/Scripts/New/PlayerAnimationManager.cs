@@ -63,7 +63,7 @@ namespace New
             yield return new WaitForSeconds(attackDelay);
             canAttack = true;
         }
-        
+
         IEnumerator CanAttackSuper()
         {
             canAttack = false;
@@ -71,12 +71,13 @@ namespace New
             yield return new WaitForSeconds(1f);
             for (int i = 0; i < 3; i++)
             {
-                GameObject spawned = Instantiate(_projectile, this.transform.position + new Vector3(0f,1.7f,0f) + this.transform.forward, Quaternion.identity);
+                GameObject spawned = Instantiate(_projectile, this.transform.position + new Vector3(0f, 1.7f, 0f) + this.transform.forward, Quaternion.identity);
                 CannonProjectile cp = spawned.GetComponent<CannonProjectile>();
                 cp.throwType = CannonProjectile.type.LINE;
                 cp.direction = this.transform.forward;
                 cp.speed = 7.5f;
                 cp.lifeTime = 10f;
+                cp.damage = 15f;
                 cp.enemiesProjectile = false;
                 yield return new WaitForSeconds(0.45f);
             }
@@ -181,7 +182,8 @@ namespace New
             _projectile = Resources.Load<GameObject>("CannonProjectile");
         }
 
-        public void PlayDeathAnimation(){
+        public void PlayDeathAnimation()
+        {
             _animator.Play("Death");
         }
     }
