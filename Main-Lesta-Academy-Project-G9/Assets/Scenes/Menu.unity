@@ -2523,6 +2523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Esc
       objectReference: {fileID: 0}
+    - target: {fileID: 5773644113974078425, guid: 958bfb872660f89409af5de41fb5b54a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5773644114418298693, guid: 958bfb872660f89409af5de41fb5b54a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
