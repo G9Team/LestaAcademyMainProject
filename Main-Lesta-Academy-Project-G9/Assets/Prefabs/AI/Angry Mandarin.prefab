@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 2297662563338330612}
   - component: {fileID: -1600972547656445947}
   - component: {fileID: 8310955590117262313}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Angry Mandarin
   m_TagString: Enemy
   m_Icon: {fileID: 0}

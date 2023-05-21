@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 6261237625981600063}
   - component: {fileID: 6261237625981600062}
   - component: {fileID: 3744096660450241814}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Candy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
