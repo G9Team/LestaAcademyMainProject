@@ -12,7 +12,7 @@ public class BobUIUpdate : MonoBehaviour
 
     private const int MAX_UPDATE_VALUE = 7;
     private IPlayerData _data;
-    private UpgradeType _upgradeType = UpgradeType.MaxEnergy;
+    private UpgradeType _upgradeType = UpgradeType.MaxEnergy, _subType = UpgradeType.CurrentEnergy;
     
     private void Awake() {
         _data = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerComponentManager>().GetPlayerData();
@@ -26,6 +26,7 @@ public class BobUIUpdate : MonoBehaviour
             return;
         }
         _upgradeType = UpgradeType.MaxHealth;
+        _subType = UpgradeType.CurrentHealth;
     }
     public void OnEnergyPich(){
             if(_data.MaxEnergy == MAX_UPDATE_VALUE){
@@ -33,10 +34,12 @@ public class BobUIUpdate : MonoBehaviour
             return;
         }
         _upgradeType = UpgradeType.MaxEnergy;
+        _subType = UpgradeType.CurrentEnergy;
     }
 
     public void ProceedUpdate(){
         _data.Upgrade(_upgradeType, 1);
+        _data.Upgrade(_subType, 1);
         Destroy(this.gameObject);
     }
  
