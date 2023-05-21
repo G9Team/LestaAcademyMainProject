@@ -31825,6 +31825,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3490990764795640818, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
+      propertyPath: m_Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490990764795640818, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
+      propertyPath: m_MinValue
+      value: 0.00000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490990765085118157, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
+      propertyPath: m_Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490990765085118157, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
+      propertyPath: m_MinValue
+      value: 0.00000001
+      objectReference: {fileID: 0}
     - target: {fileID: 8221506168648001152, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
       propertyPath: m_text
       value: 
@@ -33162,7 +33178,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -4967470886722093480, guid: b568965e591e1b54aa1fccefcd2317b1, type: 2}
   m_audioClip: {fileID: 8300000, guid: 08595db0195b4b348a4267942fb9e02f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.03
+  m_Volume: 0.291
   m_Pitch: 1
   Loop: 1
   Mute: 0

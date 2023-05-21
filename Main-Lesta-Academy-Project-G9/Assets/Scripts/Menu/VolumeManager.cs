@@ -9,8 +9,14 @@ public class VolumeManager : MonoBehaviour
     [SerializeField] private Slider audioSlider;
     [SerializeField] private AudioMixer mixer;
 
+
+    private static readonly string FirstPlay = "FirstPlay";
+    private int firstPlayInt;
+
     private const float _multipliar = 20f;
     private float _volumeValue;
+
+   
 
     void Awake()
     {
@@ -19,8 +25,20 @@ public class VolumeManager : MonoBehaviour
 
     private void Start()
     {
-        _volumeValue = PlayerPrefs.GetFloat(volumeParameter, Mathf.Log10(audioSlider.value) * _multipliar);
-        audioSlider.value = Mathf.Pow(10f, _volumeValue / _multipliar);
+        firstPlayInt = PlayerPrefs.GetInt(FirstPlay);
+
+        if (firstPlayInt == 0)
+        {
+            PlayerPrefs.SetFloat(volumeParameter, 0.5f);
+            PlayerPrefs.SetInt(FirstPlay, -1);
+        }
+
+        else
+        {
+            _volumeValue = PlayerPrefs.GetFloat(volumeParameter, Mathf.Log10(audioSlider.value) * _multipliar);
+            audioSlider.value = Mathf.Pow(10f, _volumeValue / _multipliar);
+        }
+
     }
 
     private void HandleSliderValueChanged(float value)
