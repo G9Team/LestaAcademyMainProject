@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 832831817366175174}
   - component: {fileID: 832831817366175173}
   - component: {fileID: 7845881507872881952}
-  m_Layer: 8
+  m_Layer: 16
   m_Name: Hibox (1)
   m_TagString: PlayerAtackHitbox
   m_Icon: {fileID: 0}

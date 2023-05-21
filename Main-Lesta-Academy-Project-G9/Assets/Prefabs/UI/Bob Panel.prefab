@@ -147,7 +147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9649afccfcb74044a267cde086b3394, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7d8edf8ea11eed42b12d424b4063ec0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -186,9 +186,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 66e3784f80c946c43b3ea01d07da726c, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: f7d8edf8ea11eed42b12d424b4063ec0, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 642da295950728f4cb631ac630fbd626, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 642da295950728f4cb631ac630fbd626, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 66e3784f80c946c43b3ea01d07da726c, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 66e3784f80c946c43b3ea01d07da726c, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 63d463dc600c9054da979336e0c88bfd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff226f43d336f20449e00bb9743784a6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -319,9 +319,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 46b447a9cc079ae459e6c981db1fd871, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: ff226f43d336f20449e00bb9743784a6, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 95495f2c3d8fdc44cbf013cfc9407763, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 95495f2c3d8fdc44cbf013cfc9407763, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 46b447a9cc079ae459e6c981db1fd871, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 46b447a9cc079ae459e6c981db1fd871, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
