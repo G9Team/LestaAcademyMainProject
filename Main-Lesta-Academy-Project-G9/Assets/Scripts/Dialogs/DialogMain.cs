@@ -171,12 +171,12 @@ public class DialogMain : MonoBehaviour
         _dialogTime += Time.deltaTime;
         if (_currentDialog.arrayGroups[_currentDialogPosition].groupType == DialogAsset.ArrayGroup.GroupType.DIALOG)
         {
-            if (Input.GetMouseButtonDown(0) && _messageText.text != _currentDialog.arrayGroups[_currentDialogPosition].dialog)
+            if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && _messageText.text != _currentDialog.arrayGroups[_currentDialogPosition].dialog)
             {
                 if (_currentUpdateTextCoroutine != null) StopCoroutine(_currentUpdateTextCoroutine);
                 _messageText.text = _currentDialog.arrayGroups[_currentDialogPosition].dialog;
             }
-            else if (Input.GetMouseButtonDown(0))
+            else if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             {
                 if (_dialogTime > _currentDialog.arrayGroups[_currentDialogPosition].minDialogTime)
                 {

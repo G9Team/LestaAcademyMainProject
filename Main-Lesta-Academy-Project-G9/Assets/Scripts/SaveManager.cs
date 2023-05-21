@@ -35,7 +35,7 @@ public class SaveManager : MonoBehaviour
 
     private void OnLevelWasLoaded(int level)
     {
-        if (FindObjectsOfType<SaveManager>().Length > 1)
+        if (FindObjectsOfType<SaveManager>().Length > 1 && _save.sceneId != 0)
         {
             Destroy(this.gameObject);
             return;
@@ -63,7 +63,7 @@ public class SaveManager : MonoBehaviour
 
     public void ChangeLevel(int nextLevel)
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex > 1)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex > 1 && nextLevel > 1)
         {
             New.PlayerComponentManager manager = FindObjectOfType<New.PlayerComponentManager>();
             if (manager != null)

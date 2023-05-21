@@ -12,6 +12,12 @@ public class Intro : MonoBehaviour
         StartCoroutine(WaitForLevel());
     }
 
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+            SceneManager.LoadScene(1);
+    }
+
     IEnumerator WaitForLevel()
     {
         yield return new WaitForSeconds(waitTime);
