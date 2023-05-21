@@ -31821,6 +31821,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main UI
       objectReference: {fileID: 0}
+    - target: {fileID: 3488866270651227520, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8221506168648001152, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932581890922093265, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001358378561888239, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bc54a25c834e88e44a461a30c47f10e0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ff821f3456392c42bc5e071d1228c3a, type: 3}
 --- !u!1 &1847526951
