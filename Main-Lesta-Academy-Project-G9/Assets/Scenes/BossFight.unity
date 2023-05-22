@@ -22297,7 +22297,7 @@ MonoBehaviour:
   _bossBody: {fileID: 919132148267294757}
   _stageVFX: {fileID: 725038997}
   _crystal: {fileID: 9220872288763941087, guid: d10cb04588c137548b804eac102fb27c, type: 3}
-  _loopTimer: 4
+  _loopTimer: 5
   _breakTimer: 5
   _health: {fileID: 5866666020651966696}
   _audio: {fileID: 2051346115}

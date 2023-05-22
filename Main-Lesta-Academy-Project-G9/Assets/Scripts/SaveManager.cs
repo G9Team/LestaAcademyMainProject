@@ -149,10 +149,6 @@ public class SaveManager : MonoBehaviour
                 return _instance._save.attackForce;
             case New.UpgradeType.MaxEnergy:
                 return _instance._save.maxEnergy;
-            case New.UpgradeType.Pirojki:
-                return _instance._save.pirojki;
-            case New.UpgradeType.Wheet:
-                return _instance._save.wheet;
         }
         return 0;
     }
@@ -172,12 +168,6 @@ public class SaveManager : MonoBehaviour
             case New.UpgradeType.MaxEnergy:
                 _instance._save.maxEnergy += value;
                 break;
-            case New.UpgradeType.Wheet:
-                _instance._save.wheet += value;
-                break;
-            case New.UpgradeType.Pirojki:
-                _instance._save.pirojki += value;
-                break;
         }
     }
 
@@ -195,12 +185,6 @@ public class SaveManager : MonoBehaviour
                 break;
             case New.UpgradeType.MaxEnergy:
                 _instance._save.maxEnergy = value;
-                break;
-            case New.UpgradeType.Pirojki:
-                _instance._save.pirojki = value;
-                break;
-            case New.UpgradeType.Wheet:
-                _instance._save.wheet = value;
                 break;
         }
     }

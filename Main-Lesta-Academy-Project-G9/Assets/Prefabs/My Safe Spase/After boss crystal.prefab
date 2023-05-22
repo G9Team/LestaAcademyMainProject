@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5593480391248690688}
   - component: {fileID: 5508756110451750325}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7275532273832374538}
   - component: {fileID: 1042332247185317541}
   - component: {fileID: 5952607328218334834}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: After boss crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

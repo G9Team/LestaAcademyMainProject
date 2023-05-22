@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7131665068005949610}
   m_Layer: 0
   m_Name: CannonProjectile
-  m_TagString: Untagged
+  m_TagString: PlayerAtackHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   speed: 5
   lifeTime: 10
+  damage: 1
   enemiesProjectile: 1
   throwType: 2
 --- !u!1001 &469948933003950907
