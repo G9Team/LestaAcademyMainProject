@@ -44,7 +44,7 @@ public class FootstepSound : MonoBehaviour
             }
         }
        
-      audioSource.volume = 0.1f;
+      audioSource.volume = 0.55f;
      
         audioSource.PlayOneShot(clip);
     }
@@ -52,15 +52,15 @@ public class FootstepSound : MonoBehaviour
     public void PlaySway()
     {
       
-        audioSource.volume = 0.08f; 
+       // audioSource.volume = 0.08f; 
         audioSource.PlayOneShot(swayClips[Random.Range(0, swayClips.Length)], 0.3f);
-        audioSource.volume = 0.1f; 
+       // audioSource.volume = 0.1f; 
     }
 
     public void PlayHit()
     {
        
-        audioSource.volume = 0.4f; 
+       // audioSource.volume = 0.4f; 
        
         audioSource.PlayOneShot(hitClips[Random.Range(0, hitClips.Length)], 0.3f);
         //audioSource.volume = 0.1f; 
@@ -69,9 +69,10 @@ public class FootstepSound : MonoBehaviour
 
     public void PlayTD()
     {
-        
-        
+
+        audioSource.volume = 0.4f;
         audioSource.PlayOneShot(takeDamageClips[Random.Range(0, takeDamageClips.Length)], 0.2f);
+        audioSource.volume = 0.55f;
     }
 
     public void PlayCustom(string name)
@@ -80,7 +81,9 @@ public class FootstepSound : MonoBehaviour
         {
             if (clip.name == name)
             {
+                
                 audioSource.PlayOneShot(clip);
+              
                 break;
             }
         }
