@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
+    AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void LoadNewGame()
     {
@@ -11,5 +18,10 @@ public class Menu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ButtonSound()
+    {
+        audioSource.PlayOneShot(audioClip);
     }
 }
