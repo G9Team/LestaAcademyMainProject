@@ -63,12 +63,16 @@ namespace New
                 return Vector3.right * _knockbackForce;
             }
         }
-        public int Wheet { get => _itemAmountByType[CollectableType.Wheet]; }
-        public int Pirojki { get => _itemAmountByType[CollectableType.Pirojki]; }
+        public int Wheet { get => _wheet;
+            private set => _wheet = value; }
+        private int _wheet;
+        public int Pirojki { get => _pirojki; 
+            private set => _pirojki = value;}
+        private int _pirojki;
         public int Coins { get => _starsByLevel[_currentLevel]; }
 
         public event Action OnHealthToZero, OnUIUpdate;
-
+        public Dictionary<CollectableType, int> ItemAmountByType{get => _itemAmountByType;}
         private Dictionary<CollectableType, int> _itemAmountByType = new Dictionary<CollectableType, int>();
         private Dictionary<int, int> _starsByLevel = new Dictionary<int, int>();
         private bool _isVulnerable = true;
@@ -135,6 +139,10 @@ namespace New
             AttackForce = saveObject.attackForce;
             MaxEnergy = saveObject.maxEnergy;
             CurrentEnergy = saveObject.currentEnergy;
+            //_itemAmountByType.Add(CollectableType.Wheet, saveObject.wheet);
+            _wheet = saveObject.wheet;
+            //_itemAmountByType.Add(CollectableType.Pirojki, saveObject.pirojki);
+            _pirojki = saveObject.pirojki;
         }
 
 
@@ -147,11 +155,13 @@ namespace New
             switch (typeOfUpgrade)
             {
                 case UpgradeType.Wheet:
-                    _itemAmountByType[(CollectableType)typeOfUpgrade] += valueToUpgrade;
+                    _wheet += valueToUpgrade;
+                    //_itemAmountByType[(CollectableType)typeOfUpgrade] += valueToUpgrade;
                     break;
 
                 case UpgradeType.Pirojki:
-                    _itemAmountByType[(CollectableType)typeOfUpgrade] += valueToUpgrade;
+                    Pirojki += valueToUpgrade;
+                    //_itemAmountByType[(CollectableType)typeOfUpgrade] += valueToUpgrade;
                     break;
 
                 case UpgradeType.Star:

@@ -44,7 +44,7 @@ MonoBehaviour:
     groupType: 0
     force: 0
     hideName: 0
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 353acb9226ee4be47ac01535960d780a, type: 3}
     answers: []
   - eventName: 
     characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"

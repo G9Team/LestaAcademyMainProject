@@ -29,3 +29,12 @@ MonoBehaviour:
     hideName: 0
     clip: {fileID: 8300000, guid: b7ab9ecb25f0349e68abc0b45434d9b5, type: 3}
     answers: []
+  - eventName: Lantern
+    characterName: 
+    dialog: 
+    minDialogTime: 0
+    groupType: 1
+    force: 0
+    hideName: 0
+    clip: {fileID: 0}
+    answers: []

@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 namespace New
 {
 
     public class IngameUI : MonoBehaviour
     {
-        private const int INDEX_REDUSE = 3, MAX_WHEET = 10, MAX_COINS =10, MAX_PIROJKI = 10;
+        private const int INDEX_REDUSE = 3,  MAX_COINS =10; 
+        private int _maxWheet, _maxPirojki;
         [SerializeField]
         private GameObject[] _allVoidHearts, _allFullHearts, _allVoidEnergy,
             _allFullEnergy, _healthFrames, _energyFrames;
@@ -30,11 +32,45 @@ namespace New
         {
             _playerData = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerComponentManager>().GetPlayerData();
             _playerData.OnUIUpdate += UpdateUI;
-            UpdateUI();
             _bossHealth = FindObjectOfType<BossHealth>();
             if (_bossHealth is not null){
                 _bossHealth.Damaged += UpdateBossHP;
                 _bossHealth.Death += BossDeath;
+            }
+            CollectableObject[] c = FindObjectsOfType<CollectableObject>();
+            foreach (var item in c)
+            {
+                if(item.Type == UpgradeType.Pirojki) _maxPirojki++;
+                if(item.Type == UpgradeType.Wheet) _maxWheet++;
+            }
+            print(_maxPirojki);
+            _maxPirojki += GetPreviousValue(UpgradeType.Pirojki);
+            _maxWheet += GetPreviousValue(UpgradeType.Wheet);
+            UpdateUI();
+        }
+
+        private int GetPreviousValue(UpgradeType type){
+            if(SceneManager.GetActiveScene().buildIndex < 5) return 0;
+            if(type == UpgradeType.Wheet){
+                if(SceneManager.GetActiveScene().buildIndex == 5){
+                    return 6;
+                }
+                else{
+                    return 10;
+                }
+            }
+            else{
+                if (SceneManager.GetActiveScene().buildIndex == 5){
+                    return 0;
+                }
+                else if(SceneManager.GetActiveScene().buildIndex == 6){
+                    return 4;
+                }
+                else if(SceneManager.GetActiveScene().buildIndex == 7){
+                    return 4;
+                }
+                else return 10;
+
             }
         }
 
@@ -73,11 +109,11 @@ namespace New
             }
             if (_previousWheet != _playerData.Wheet){
                 _previousWheet = _playerData.Wheet;
-                _wheetText.text =  _previousWheet + "/" + MAX_WHEET;  
+                _wheetText.text =  _previousWheet + "/" + _maxWheet;  
             }
             if (_previousPirogki != _playerData.Pirojki){
                 _previousPirogki = _playerData.Pirojki;
-                _progkiText.text =  _previousPirogki + "/" + MAX_PIROJKI;  
+                _progkiText.text =  _previousPirogki + "/" + _maxPirojki;  
             }
             print("UI Updated");
         }

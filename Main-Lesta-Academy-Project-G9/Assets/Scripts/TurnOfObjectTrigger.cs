@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class TurnOfObjectTrigger : MonoBehaviour
 {
-    private enum ObjectMode{
+    private enum ObjectMode
+    {
         SwitchActive,
         Delete,
         Replase
     }
     [SerializeField] private ObjectMode _objectMode;
-   [SerializeField] private GameObject _objectToTurn, _objectToReplase;
+    [SerializeField] private GameObject _objectToTurn, _objectToReplase;
 
-   private void OnTriggerEnter(Collider other) {
-    if(other.tag == "Player" && _objectToTurn is not null){
+    private void OnTriggerEnter(Collider other)
+    {
+        ProceedAction(other);
+    }
+    public void ProceedAction(Collider other){
+            if(other.tag == "Player" && _objectToTurn is not null){
         switch (_objectMode)
         {
             case ObjectMode.SwitchActive:
@@ -28,6 +33,7 @@ public class TurnOfObjectTrigger : MonoBehaviour
                 break;
         }
     }
-   }
-   
+
+    }
+
 }

@@ -85,7 +85,7 @@ MonoBehaviour:
     hideName: 0
     clip: {fileID: 8300000, guid: 9899f90df628ad94aa2d826a15eb9f62, type: 3}
     answers: []
-  - eventName: 
+  - eventName: IDAD
     characterName: "\u041B\u043E\u0438"
     dialog: "\u041B\u043E\u0438 \u043F\u043E\u0434\u043B\u0435\u0442\u0430\u0435\u0442
       \u043A \u043A\u0430\u043C\u043D\u044E, \u0441\u0430\u0434\u0438\u0442\u0441\u044F
@@ -121,4 +121,13 @@ MonoBehaviour:
     force: 0
     hideName: 0
     clip: {fileID: 8300000, guid: 121aaeb0c47d6544ba0dc31b498f6929, type: 3}
+    answers: []
+  - eventName: OnEnded
+    characterName: 
+    dialog: 
+    minDialogTime: 0
+    groupType: 1
+    force: 0
+    hideName: 0
+    clip: {fileID: 0}
     answers: []
