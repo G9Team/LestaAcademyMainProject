@@ -17,6 +17,7 @@ public class EscapeUIScript : MonoBehaviour
     public void OnMainMenuButton()
     {
         SceneLoader.LoadScene(1);
+        this.enabled = false;
     }
     public void OnControlsButton()
     {
