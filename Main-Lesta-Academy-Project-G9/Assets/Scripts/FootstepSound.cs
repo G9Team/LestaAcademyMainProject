@@ -44,7 +44,7 @@ public class FootstepSound : MonoBehaviour
             }
         }
        
-      audioSource.volume = 0.8f;
+      audioSource.volume = 0.7f;
      
         audioSource.PlayOneShot(clip);
     }
