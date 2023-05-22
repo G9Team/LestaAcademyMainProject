@@ -40,7 +40,15 @@ namespace New
             _thirdStageAttacks.AddRange(_secondStageAttacks);
         }
         private void Start() {
-            NextLoop();
+            FreeLoop();
+        }
+
+        private void FreeLoop(){
+            _actualTimer = _loopTimer;
+            _bossPosition.ChangePosition();
+            _audio.TeleportationAudio();
+            _audio.StandardPlay(6);
+
         }
 
         private void Update()

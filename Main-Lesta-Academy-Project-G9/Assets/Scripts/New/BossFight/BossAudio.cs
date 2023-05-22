@@ -65,7 +65,7 @@ namespace New
             _externalAudio.Stop();
             StandardPlay(8);
         }
-        private void StandardPlay(int indexInClips){
+        public void StandardPlay(int indexInClips){
            
             _audio.PlayOneShot(_clips[indexInClips]);
         }

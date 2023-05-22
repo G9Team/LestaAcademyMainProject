@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6602594803243261987}
   - component: {fileID: 3475692081038797588}
   - component: {fileID: 5084363981396851248}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: BulletToHell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
