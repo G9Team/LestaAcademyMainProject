@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157aa48ae1bbc47249dc473041978810, type: 3}
+  m_Name: 09_PigVas_dialog_otkaz_03
+  m_EditorClassIdentifier: 
+  arrayCharacters:
+  - characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
+    position: 0
+    sprite: {fileID: 21300000, guid: 81521ca2d3e664453942e744d9cd3c77, type: 3}
+  - characterName: "\u041D\u0438\u0444-\u041D\u0438\u0444"
+    position: 1
+    sprite: {fileID: 21300000, guid: 87d71d62d05b61b4dabd986f4ecfbd0b, type: 3}
+  arrayGroups:
+  - eventName: 
+    characterName: "\u041D\u0438\u0444-\u041D\u0438\u0444"
+    dialog: "\u041D\u0443 \u0447\u0442\u043E, \u043D\u0430\u0448\u043B\u0430 \u0441\u043E\u043B\u043E\u043C\u0443?"
+    minDialogTime: 0
+    groupType: 0
+    force: 0
+    hideName: 0
+    clip: {fileID: 8300000, guid: 3627b057dd4547f4099736a6c21c2051, type: 3}
+    answers: []
+  - eventName: 
+    characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
+    dialog: "\u041D\u0435\u0442, \u0435\u0449\u0451 \u043D\u0435 \u043D\u0430\u0448\u043B\u0430."
+    minDialogTime: 0
+    groupType: 0
+    force: 0
+    hideName: 0
+    clip: {fileID: 8300000, guid: 83b28489dfb895a4b9374141d505d4df, type: 3}
+    answers: []
+  - eventName: 
+    characterName: "\u041D\u0438\u0444-\u041D\u0438\u0444"
+    dialog: "\u041E\u0447\u0435\u043D\u044C \u0436\u0430\u043B\u044C. \u0417\u0440\u044F
+      \u044F \u043D\u0430 \u0442\u0435\u0431\u044F \u0440\u0430\u0441\u0441\u0447\u0438\u0442\u044B\u0432\u0430\u043B.
+      \u0425\u043E\u0447\u0435\u0448\u044C \u0441\u0434\u0435\u043B\u0430\u0442\u044C
+      \u0447\u0442\u043E \u0442\u043E \u0445\u043E\u0440\u043E\u0448\u043E, \u0441\u0434\u0435\u043B\u0430\u0439
+      \u044D\u0442\u043E \u0441\u0430\u043C!.\n"
+    minDialogTime: 0
+    groupType: 0
+    force: 0
+    hideName: 0
+    clip: {fileID: 8300000, guid: 2a44a64d95a7549638bde798f3094b59, type: 3}
+    answers: []
+  - eventName: 
+    characterName: "\u041D\u0438\u0444-\u041D\u0438\u0444"
+    dialog: "\u041D\u043E \u0442\u0435\u043F\u0435\u0440\u044C \u0438 \u0431\u043E\u0431
+      \u044F \u0442\u0435\u0431\u0435 \u043D\u0435 \u043E\u0442\u0434\u0430\u043C,
+      \u0430 \u043E\u043D \u0437\u043D\u0430\u0435\u0448\u044C \u043A\u0430\u043A\u043E\u0439
+      \u043F\u043E\u043B\u0435\u0437\u043D\u044B\u0439? "
+    minDialogTime: 0
+    groupType: 0
+    force: 0
+    hideName: 0
+    clip: {fileID: 8300000, guid: 6689b3670a0044bba8d64044deacddf6, type: 3}
+    answers: []
+  - eventName: 
+    characterName: "\u041D\u0438\u0444-\u041D\u0438\u0444"
+    dialog: "\u041A\u0430\u0436\u0434\u043E\u043C\u0443, \u043A\u0442\u043E \u0435\u0433\u043E
+      \u0441\u044A\u0435\u0441\u0442, \u0431\u043E\u0431 \u0434\u0430\u0435\u0442
+      \u0447\u0442\u043E-\u0442\u043E \u0441\u0432\u043E\u0451. \u041A\u043E\u043C\u0443-\u0442\u043E
+      \u043D\u0435\u0432\u0438\u0434\u0430\u043D\u043D\u0443\u044E \u0441\u0438\u043B\u0443,
+      \u043A\u043E\u043C\u0443-\u0442\u043E \u043A\u0440\u0435\u043F\u043A\u043E\u0435
+      \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435, \u0430 \u043A\u043E\u043C\u0443-\u0442\u043E
+      \u043D\u0435\u0431\u044B\u0432\u0430\u043B\u044B\u0439 \u0437\u0430\u043F\u0430\u0441
+      \u044D\u043D\u0435\u0440\u0433\u0438\u0438!  \u0418\u043B\u0438 \u043A\u0430\u043A-\u0442\u043E
+      \u0442\u0430\u043A. \u042F \u0442\u043E\u0447\u043D\u043E \u043D\u0435 \u0437\u043D\u0430\u044E,
+      \u0441\u0430\u043C \u0442\u043E \u044F \u0435\u0433\u043E \u043D\u0435 \u0435\u043B.
+      \n"
+    minDialogTime: 0
+    groupType: 0
+    force: 0
+    hideName: 0
+    clip: {fileID: 8300000, guid: abd95afbeb2044cca819c8f015fc1e67, type: 3}
+    answers: []
+  - eventName: 
+    characterName: "\u0412\u0430\u0441\u0438\u043B\u0438\u043D\u0430"
+    dialog: "\u0425\u043E\u0440\u043E\u0448\u043E."
+    minDialogTime: 0
+    groupType: 0
+    force: 0
+    hideName: 0
+    clip: {fileID: 8300000, guid: b4092df976913b341a4a9f1565c81a0f, type: 3}
+    answers: []
