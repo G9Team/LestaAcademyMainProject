@@ -6,7 +6,7 @@ public class AttackFly : AiStateBase
 {
     AIBase _ai;
     Rigidbody _rigidbody;
-    float _attackDistance = 4.5f;
+    float _attackDistance = 4f;
     bool _attacking = false;
     Animator _animator;
 
