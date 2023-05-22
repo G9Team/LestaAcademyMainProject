@@ -8,6 +8,8 @@ public class Menu : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        this.transform.Find("Menu Panel/Continue").GetComponent<UnityEngine.UI.Button>().interactable =
+            System.IO.File.Exists(System.IO.Path.Combine(Application.persistentDataPath, "save.json"));
     }
 
     public void LoadNewGame()
